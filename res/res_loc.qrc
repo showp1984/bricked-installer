@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/res/img_us" lang="us">
+        <file>img_us/skyscraper.png</file>
+    </qresource>
+</RCC>
