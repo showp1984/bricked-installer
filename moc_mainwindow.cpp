@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Fri Jun 29 22:09:00 2012
+** Created: Fri Jun 29 23:35:08 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,13 +32,18 @@ static const uint qt_meta_data_MainWindow[] = {
 
  // slots: signature, parameters, type, tag, flags
       12,   11,   11,   11, 0x08,
-      38,   11,   11,   11, 0x08,
+      32,   11,   11,   11, 0x08,
+      54,   11,   11,   11, 0x08,
+      76,   11,   11,   11, 0x08,
+     102,   11,   11,   11, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
-    "MainWindow\0\0on_actionInfo_triggered()\0"
+    "MainWindow\0\0on_btn_go_clicked()\0"
+    "on_btn_go_2_clicked()\0on_btn_quit_clicked()\0"
+    "on_actionInfo_triggered()\0"
     "on_actionQuit_triggered()\0"
 };
 
@@ -71,11 +76,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: on_actionInfo_triggered(); break;
-        case 1: on_actionQuit_triggered(); break;
+        case 0: on_btn_go_clicked(); break;
+        case 1: on_btn_go_2_clicked(); break;
+        case 2: on_btn_quit_clicked(); break;
+        case 3: on_actionInfo_triggered(); break;
+        case 4: on_actionQuit_triggered(); break;
         default: ;
         }
-        _id -= 2;
+        _id -= 5;
     }
     return _id;
 }

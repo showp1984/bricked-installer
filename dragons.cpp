@@ -35,7 +35,7 @@ void dragons::changeEvent(QEvent *e)
 
 void dragons::on_btn_yes_clicked()
 {
-    welcome = new MainWindow(); // Be sure to destroy you window somewhere
+    welcome = new MainWindow();
     welcome->show();
     this->close();
 }

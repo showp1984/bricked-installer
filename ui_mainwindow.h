@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri Jun 29 22:30:03 2012
+** Created: Fri Jun 29 23:46:45 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,11 +14,14 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QCheckBox>
+#include <QtGui/QFrame>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
+#include <QtGui/QPlainTextEdit>
 #include <QtGui/QPushButton>
 #include <QtGui/QWidget>
 
@@ -33,6 +36,12 @@ public:
     QPushButton *btn_go;
     QLabel *lbl_welcome;
     QLabel *lbl_brickedimage;
+    QPushButton *btn_go_2;
+    QPushButton *btn_quit;
+    QPlainTextEdit *txt_disclaimer;
+    QLabel *lbl_disclaimer_accept;
+    QCheckBox *chk_agreed;
+    QFrame *line;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuInfo;
@@ -41,7 +50,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(734, 516);
+        MainWindow->resize(730, 516);
         actionQuit = new QAction(MainWindow);
         actionQuit->setObjectName(QString::fromUtf8("actionQuit"));
         actionInfo = new QAction(MainWindow);
@@ -64,10 +73,52 @@ public:
         lbl_brickedimage = new QLabel(welcome);
         lbl_brickedimage->setObjectName(QString::fromUtf8("lbl_brickedimage"));
         lbl_brickedimage->setGeometry(QRect(10, 10, 181, 461));
+        btn_go_2 = new QPushButton(welcome);
+        btn_go_2->setObjectName(QString::fromUtf8("btn_go_2"));
+        btn_go_2->setEnabled(true);
+        btn_go_2->setGeometry(QRect(630, 460, 93, 27));
+        btn_quit = new QPushButton(welcome);
+        btn_quit->setObjectName(QString::fromUtf8("btn_quit"));
+        btn_quit->setEnabled(true);
+        btn_quit->setGeometry(QRect(530, 460, 93, 27));
+        txt_disclaimer = new QPlainTextEdit(welcome);
+        txt_disclaimer->setObjectName(QString::fromUtf8("txt_disclaimer"));
+        txt_disclaimer->setGeometry(QRect(200, 10, 521, 211));
+        txt_disclaimer->setFrameShape(QFrame::StyledPanel);
+        txt_disclaimer->setFrameShadow(QFrame::Sunken);
+        txt_disclaimer->setLineWidth(1);
+        txt_disclaimer->setMidLineWidth(0);
+        txt_disclaimer->setUndoRedoEnabled(false);
+        txt_disclaimer->setReadOnly(true);
+        txt_disclaimer->setTextInteractionFlags(Qt::NoTextInteraction);
+        txt_disclaimer->setBackgroundVisible(false);
+        txt_disclaimer->setCenterOnScroll(false);
+        lbl_disclaimer_accept = new QLabel(welcome);
+        lbl_disclaimer_accept->setObjectName(QString::fromUtf8("lbl_disclaimer_accept"));
+        lbl_disclaimer_accept->setGeometry(QRect(230, 260, 481, 81));
+        lbl_disclaimer_accept->setWordWrap(true);
+        chk_agreed = new QCheckBox(welcome);
+        chk_agreed->setObjectName(QString::fromUtf8("chk_agreed"));
+        chk_agreed->setGeometry(QRect(200, 270, 20, 21));
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(chk_agreed->sizePolicy().hasHeightForWidth());
+        chk_agreed->setSizePolicy(sizePolicy);
+        chk_agreed->setMinimumSize(QSize(0, 0));
+        chk_agreed->setSizeIncrement(QSize(0, 0));
+        chk_agreed->setBaseSize(QSize(0, 0));
+        chk_agreed->setIconSize(QSize(16, 16));
+        chk_agreed->setTristate(false);
+        line = new QFrame(welcome);
+        line->setObjectName(QString::fromUtf8("line"));
+        line->setGeometry(QRect(207, 229, 511, 41));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
         MainWindow->setCentralWidget(welcome);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 734, 23));
+        menuBar->setGeometry(QRect(0, 0, 730, 23));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuInfo = new QMenu(menuBar);
@@ -107,6 +158,25 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><img src=\":/res/img_us/img_us/skyscraper.png\" /></p></body></html>", 0, QApplication::UnicodeUTF8));
+        btn_go_2->setText(QApplication::translate("MainWindow", "Go!", 0, QApplication::UnicodeUTF8));
+        btn_quit->setText(QApplication::translate("MainWindow", "Quit", 0, QApplication::UnicodeUTF8));
+        txt_disclaimer->setPlainText(QApplication::translate("MainWindow", "#include <std_disclaimer.h>\n"
+"/*\n"
+" * Your warranty is now void.\n"
+" *\n"
+" * I am not responsible for bricked devices, dead SD cards,\n"
+" * thermonuclear war, or you getting fired because the alarm app failed.\n"
+" * Please do some research if you have any concerns about features\n"
+" * included in this kernel before flashing it! YOU are choosing to make\n"
+" * these modifications, and if you point the finger at me for messing up\n"
+" * your device, I will laugh at you.\n"
+" */", 0, QApplication::UnicodeUTF8));
+        lbl_disclaimer_accept->setText(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600; color:#ff0000;\">Yes</span> I accept the above terms and I have understood that <span style=\" font-weight:600;\">the author of this kernel/application is in no way responsible</span> for <span style=\" font-size:20pt; font-weight:600; color:#ff0000;\">my</span> actions.</p></body></html>", 0, QApplication::UnicodeUTF8));
+        chk_agreed->setText(QString());
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
         menuInfo->setTitle(QApplication::translate("MainWindow", "Help", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
