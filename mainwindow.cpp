@@ -29,3 +29,9 @@ void MainWindow::on_actionQuit_triggered()
 {
     this->close();
 }
+
+void MainWindow::on_actionInfo_triggered()
+{
+    infowind = new Info(); // Be sure to destroy you window somewhere
+    infowind->show();
+}

@@ -6,9 +6,12 @@ TARGET = Bricked-Installer
 TEMPLATE = app
 SOURCES += main.cpp \
     mainwindow.cpp \
-    dragons.cpp
+    dragons.cpp \
+    info.cpp
 HEADERS += mainwindow.h \
-    dragons.h
+    dragons.h \
+    info.h
 FORMS += mainwindow.ui \
-    dragons.ui
+    dragons.ui \
+    info.ui
 RESOURCES += res/res_loc.qrc

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dragons.ui'
 **
-** Created: Fri Jun 29 20:36:13 2012
+** Created: Fri Jun 29 22:26:21 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -34,6 +34,8 @@ public:
         if (dragons->objectName().isEmpty())
             dragons->setObjectName(QString::fromUtf8("dragons"));
         dragons->resize(514, 160);
+        dragons->setMinimumSize(QSize(514, 160));
+        dragons->setMaximumSize(QSize(514, 160));
         lbl_warn = new QLabel(dragons);
         lbl_warn->setObjectName(QString::fromUtf8("lbl_warn"));
         lbl_warn->setGeometry(QRect(10, 10, 491, 111));

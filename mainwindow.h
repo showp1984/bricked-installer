@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "info.h"
+
 namespace Ui {
     class MainWindow;
 }
@@ -18,8 +20,10 @@ protected:
 
 private:
     Ui::MainWindow *ui;
+    Info *infowind;
 
 private slots:
+    void on_actionInfo_triggered();
     void on_actionQuit_triggered();
 };
 

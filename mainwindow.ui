@@ -21,6 +21,9 @@
     <bool>false</bool>
    </property>
    <widget class="QPushButton" name="btn_go">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>630</x>
