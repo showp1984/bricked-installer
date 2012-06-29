@@ -29,8 +29,3 @@ void MainWindow::on_actionQuit_triggered()
 {
     this->close();
 }
-
-void MainWindow::on_btn_quit_clicked()
-{
-
-}

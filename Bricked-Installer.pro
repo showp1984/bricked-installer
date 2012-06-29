@@ -5,7 +5,10 @@ QT += sql
 TARGET = Bricked-Installer
 TEMPLATE = app
 SOURCES += main.cpp \
-    mainwindow.cpp
-HEADERS += mainwindow.h
-FORMS += mainwindow.ui
+    mainwindow.cpp \
+    dragons.cpp
+HEADERS += mainwindow.h \
+    dragons.h
+FORMS += mainwindow.ui \
+    dragons.ui
 RESOURCES += res/res_loc.qrc

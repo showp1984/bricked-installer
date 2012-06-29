@@ -11,9 +11,9 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Bricked-Installer</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
+  <widget class="QWidget" name="welcome">
    <property name="enabled">
     <bool>true</bool>
    </property>

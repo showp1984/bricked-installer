@@ -1,10 +1,14 @@
 #include <QtGui/QApplication>
-#include "mainwindow.h"
+#include <QTimer>
+
+#include "dragons.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+
+    dragons d;
+    d.show();
+
     return a.exec();
 }
