@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'detect.ui'
 **
-** Created: Sat Jun 30 17:58:52 2012
+** Created: Sat Jun 30 19:39:05 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -145,53 +145,53 @@ public:
         lbl_found->setGeometry(QRect(200, 190, 191, 17));
         lbl_snr = new QLabel(centralwidget);
         lbl_snr->setObjectName(QString::fromUtf8("lbl_snr"));
-        lbl_snr->setGeometry(QRect(240, 210, 171, 17));
+        lbl_snr->setGeometry(QRect(240, 210, 171, 21));
         lbl_state = new QLabel(centralwidget);
         lbl_state->setObjectName(QString::fromUtf8("lbl_state"));
-        lbl_state->setGeometry(QRect(240, 230, 171, 17));
+        lbl_state->setGeometry(QRect(240, 230, 171, 21));
         lbl_name = new QLabel(centralwidget);
         lbl_name->setObjectName(QString::fromUtf8("lbl_name"));
-        lbl_name->setGeometry(QRect(240, 270, 171, 17));
+        lbl_name->setGeometry(QRect(240, 270, 171, 21));
         lbl_romver = new QLabel(centralwidget);
         lbl_romver->setObjectName(QString::fromUtf8("lbl_romver"));
-        lbl_romver->setGeometry(QRect(240, 290, 171, 17));
+        lbl_romver->setGeometry(QRect(240, 290, 171, 21));
         lbl_androver = new QLabel(centralwidget);
         lbl_androver->setObjectName(QString::fromUtf8("lbl_androver"));
-        lbl_androver->setGeometry(QRect(240, 310, 171, 17));
+        lbl_androver->setGeometry(QRect(240, 310, 171, 21));
         lbl_sensever = new QLabel(centralwidget);
         lbl_sensever->setObjectName(QString::fromUtf8("lbl_sensever"));
-        lbl_sensever->setGeometry(QRect(240, 330, 171, 17));
+        lbl_sensever->setGeometry(QRect(240, 330, 171, 21));
         lbl_edt_snr = new QLabel(centralwidget);
         lbl_edt_snr->setObjectName(QString::fromUtf8("lbl_edt_snr"));
-        lbl_edt_snr->setGeometry(QRect(420, 210, 231, 16));
+        lbl_edt_snr->setGeometry(QRect(420, 210, 231, 21));
         lbl_edt_snr->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lbl_edt_state = new QLabel(centralwidget);
         lbl_edt_state->setObjectName(QString::fromUtf8("lbl_edt_state"));
-        lbl_edt_state->setGeometry(QRect(420, 230, 231, 16));
+        lbl_edt_state->setGeometry(QRect(420, 230, 231, 21));
         lbl_edt_state->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lbl_edt_model = new QLabel(centralwidget);
         lbl_edt_model->setObjectName(QString::fromUtf8("lbl_edt_model"));
-        lbl_edt_model->setGeometry(QRect(350, 270, 301, 16));
+        lbl_edt_model->setGeometry(QRect(350, 270, 301, 21));
         lbl_edt_model->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lbl_edt_romver = new QLabel(centralwidget);
         lbl_edt_romver->setObjectName(QString::fromUtf8("lbl_edt_romver"));
-        lbl_edt_romver->setGeometry(QRect(420, 290, 231, 16));
+        lbl_edt_romver->setGeometry(QRect(350, 290, 301, 21));
         lbl_edt_romver->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lbl_edt_androidver = new QLabel(centralwidget);
         lbl_edt_androidver->setObjectName(QString::fromUtf8("lbl_edt_androidver"));
-        lbl_edt_androidver->setGeometry(QRect(420, 310, 231, 16));
+        lbl_edt_androidver->setGeometry(QRect(420, 310, 231, 21));
         lbl_edt_androidver->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lbl_edt_sensever = new QLabel(centralwidget);
         lbl_edt_sensever->setObjectName(QString::fromUtf8("lbl_edt_sensever"));
-        lbl_edt_sensever->setGeometry(QRect(420, 330, 231, 16));
+        lbl_edt_sensever->setGeometry(QRect(420, 330, 231, 21));
         lbl_edt_sensever->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lbl_edt_device = new QLabel(centralwidget);
         lbl_edt_device->setObjectName(QString::fromUtf8("lbl_edt_device"));
-        lbl_edt_device->setGeometry(QRect(350, 250, 301, 16));
+        lbl_edt_device->setGeometry(QRect(350, 250, 301, 21));
         lbl_edt_device->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lbl_device = new QLabel(centralwidget);
         lbl_device->setObjectName(QString::fromUtf8("lbl_device"));
-        lbl_device->setGeometry(QRect(240, 250, 171, 17));
+        lbl_device->setGeometry(QRect(240, 250, 171, 21));
         lbl_qcorrect = new QLabel(centralwidget);
         lbl_qcorrect->setObjectName(QString::fromUtf8("lbl_qcorrect"));
         lbl_qcorrect->setGeometry(QRect(200, 400, 461, 16));
@@ -206,13 +206,13 @@ public:
         btn_quit->setGeometry(QRect(630, 460, 91, 27));
         lbl_kernelversion = new QLabel(centralwidget);
         lbl_kernelversion->setObjectName(QString::fromUtf8("lbl_kernelversion"));
-        lbl_kernelversion->setGeometry(QRect(240, 350, 171, 17));
+        lbl_kernelversion->setGeometry(QRect(240, 350, 171, 21));
         lbl_kernelbuild = new QLabel(centralwidget);
         lbl_kernelbuild->setObjectName(QString::fromUtf8("lbl_kernelbuild"));
-        lbl_kernelbuild->setGeometry(QRect(240, 370, 171, 17));
+        lbl_kernelbuild->setGeometry(QRect(240, 370, 171, 21));
         lbl_edt_kernelversion = new QLabel(centralwidget);
         lbl_edt_kernelversion->setObjectName(QString::fromUtf8("lbl_edt_kernelversion"));
-        lbl_edt_kernelversion->setGeometry(QRect(420, 350, 231, 16));
+        lbl_edt_kernelversion->setGeometry(QRect(350, 350, 301, 21));
         lbl_edt_kernelversion->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lbl_edt_kernelbuild = new QLabel(centralwidget);
         lbl_edt_kernelbuild->setObjectName(QString::fromUtf8("lbl_edt_kernelbuild"));
@@ -277,7 +277,7 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">I found this phone:</span></p></body></html>", 0, QApplication::UnicodeUTF8));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">I found this device:</span></p></body></html>", 0, QApplication::UnicodeUTF8));
         lbl_snr->setText(QApplication::translate("detect", "S/N:", 0, QApplication::UnicodeUTF8));
         lbl_state->setText(QApplication::translate("detect", "State:", 0, QApplication::UnicodeUTF8));
         lbl_name->setText(QApplication::translate("detect", "Name:", 0, QApplication::UnicodeUTF8));

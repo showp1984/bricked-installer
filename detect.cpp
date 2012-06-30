@@ -101,7 +101,15 @@ void detect::detect_device(void)
 
     ui->lbl_detectphone->show();
 
+#ifdef Q_WS_X11
     p.start( "tools/adb devices" );
+#endif
+#ifdef Q_WS_MAC
+    p.start( "tools/adb-mac devices" );
+#endif
+#ifdef Q_WS_WIN
+    p.start( "tools\\adb.exe devices" );
+#endif
     p.waitForFinished(4000);
     p_out = p.readAllStandardOutput();
 
@@ -111,6 +119,9 @@ void detect::detect_device(void)
             while (snr.isEmpty()) {
                 snr = list.takeLast();
             }
+#ifdef Q_WS_WIN
+            snr = list.takeLast();
+#endif
             if (!snr.isEmpty()) {
                 list2 = snr.split("\t");
                 ui->lbl_detectstate->show();
@@ -122,7 +133,15 @@ void detect::detect_device(void)
                     p.terminate();
                     p_out = "";
 
+#ifdef Q_WS_X11
                     p.start( "tools/fastboot devices" );
+#endif
+#ifdef Q_WS_MAC
+                    p.start( "tools/fastboot-mac devices" );
+#endif
+#ifdef Q_WS_WIN
+                    p.start( "tools\\fastboot.exe devices" );
+#endif
                     p.waitForFinished(4000);
                     p_out = p.readAllStandardOutput();
 
@@ -153,7 +172,15 @@ void detect::detect_device(void)
 
             ui->lbl_detectdevice->show();
 
+#ifdef Q_WS_X11
             p.start( "tools/adb -s " + snr + " shell getprop ro.product.model" );
+#endif
+#ifdef Q_WS_MAC
+            p.start( "tools/adb-mac -s " + snr + " shell getprop ro.product.model" );
+#endif
+#ifdef Q_WS_WIN
+            p.start( "tools\\adb.exe -s " + snr + " shell getprop ro.product.model" );
+#endif
             p.waitForFinished(4000);
             p_out = p.readAllStandardOutput();
 
@@ -164,7 +191,15 @@ void detect::detect_device(void)
                 p.terminate();
                 p_out = "";
 
+#ifdef Q_WS_X11
                 p.start( "tools/adb -s " + snr + " shell getprop ro.product.device" );
+#endif
+#ifdef Q_WS_MAC
+                p.start( "tools/adb-mac -s " + snr + " shell getprop ro.product.device" );
+#endif
+#ifdef Q_WS_WIN
+                p.start( "tools\\adb.exe -s " + snr + " shell getprop ro.product.device" );
+#endif
                 p.waitForFinished(4000);
                 p_out = p.readAllStandardOutput();
 
@@ -180,7 +215,15 @@ void detect::detect_device(void)
 
                 ui->lbl_detectromversion->show();
 
+#ifdef Q_WS_X11
                 p.start( "tools/adb -s " + snr + " shell getprop ro.product.version" );
+#endif
+#ifdef Q_WS_MAC
+                p.start( "tools/adb-mac -s " + snr + " shell getprop ro.product.version" );
+#endif
+#ifdef Q_WS_WIN
+                p.start( "tools\\adb.exe -s " + snr + " shell getprop ro.product.version" );
+#endif
                 p.waitForFinished(4000);
                 p_out = p.readAllStandardOutput();
 
@@ -195,7 +238,15 @@ void detect::detect_device(void)
 
                 ui->lbl_detectandroidversion->show();
 
+#ifdef Q_WS_X11
                 p.start( "tools/adb -s " + snr + " shell getprop ro.build.version.release" );
+#endif
+#ifdef Q_WS_MAC
+                p.start( "tools/adb-mac -s " + snr + " shell getprop ro.build.version.release" );
+#endif
+#ifdef Q_WS_WIN
+                p.start( "tools\\adb.exe -s " + snr + " shell getprop ro.build.version.release" );
+#endif
                 p.waitForFinished(4000);
                 p_out = p.readAllStandardOutput();
 
@@ -210,7 +261,15 @@ void detect::detect_device(void)
 
                 ui->lbl_detectsenseversion->show();
 
+#ifdef Q_WS_X11
                 p.start( "tools/adb -s " + snr + " shell getprop ro.build.sense.version" );
+#endif
+#ifdef Q_WS_MAC
+                p.start( "tools/adb-mac -s " + snr + " shell getprop ro.build.sense.version" );
+#endif
+#ifdef Q_WS_WIN
+                p.start( "tools\\adb.exe -s " + snr + " shell getprop ro.build.sense.version" );
+#endif
                 p.waitForFinished(4000);
                 p_out = p.readAllStandardOutput();
 
@@ -226,7 +285,15 @@ void detect::detect_device(void)
 
             ui->lbl_detectkernelversion->show();
 
+#ifdef Q_WS_X11
             p.start( "tools/adb -s " + snr + " shell uname -r" );
+#endif
+#ifdef Q_WS_MAC
+            p.start( "tools/adb-mac -s " + snr + " shell uname -r" );
+#endif
+#ifdef Q_WS_WIN
+            p.start( "tools\\adb.exe -s " + snr + " shell uname -r" );
+#endif
             p.waitForFinished(4000);
             p_out = p.readAllStandardOutput();
 
@@ -240,7 +307,15 @@ void detect::detect_device(void)
             p.terminate();
             p_out = "";
 
+#ifdef Q_WS_X11
             p.start( "tools/adb -s " + snr + " shell uname -v" );
+#endif
+#ifdef Q_WS_MAC
+            p.start( "tools/adb-mac -s " + snr + " shell uname -v" );
+#endif
+#ifdef Q_WS_WIN
+            p.start( "tools\\adb.exe -s " + snr + " shell uname -v" );
+#endif
             p.waitForFinished(4000);
             p_out = p.readAllStandardOutput();
 
@@ -272,7 +347,15 @@ void detect::detect_device(void)
 
             ui->lbl_detectdevice->show();
 
+#ifdef Q_WS_X11
             p.start( "tools/fastboot getvar product" );
+#endif
+#ifdef Q_WS_MAC
+            p.start( "tools/fastboot-mac getvar product" );
+#endif
+#ifdef Q_WS_WIN
+            p.start( "tools\\fastboot.exe getvar product" );
+#endif
             p.waitForFinished(4000);
             p_out = p.readAllStandardOutput();
 
@@ -306,7 +389,7 @@ void detect::detect_device(void)
 
         ui->lbl_edt_snr->setText(snr);
 
-        if (state == "device") {
+        if (state.contains("device")) {
             state = "booted";
         }
         ui->lbl_edt_state->setText(state);
