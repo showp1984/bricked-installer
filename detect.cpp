@@ -31,12 +31,14 @@ detect::detect(QWidget *parent) :
     ui->lbl_detectromversion->hide();
     ui->lbl_detectsenseversion->hide();
     ui->lbl_detectstate->hide();
+    ui->lbl_detectkernelversion->hide();
     ui->lbl_doneandroid->hide();
     ui->lbl_donedevcode->hide();
     ui->lbl_donephone->hide();
     ui->lbl_donerom->hide();
     ui->lbl_donesense->hide();
     ui->lbl_donestate->hide();
+    ui->lbl_donekernel->hide();
 
     ui->lbl_found->hide();
     ui->lbl_snr->hide();
@@ -46,6 +48,8 @@ detect::detect(QWidget *parent) :
     ui->lbl_romver->hide();
     ui->lbl_androver->hide();
     ui->lbl_sensever->hide();
+    ui->lbl_kernelbuild->hide();
+    ui->lbl_kernelversion->hide();
 
     ui->lbl_qcorrect->hide();
     ui->btn_no->hide();
@@ -137,7 +141,7 @@ void detect::detect_device(void)
         detecttimer->stop();
         ui->bar_detectphone->setMinimum(0);
         ui->bar_detectphone->setMaximum(100);
-        ui->bar_detectphone->setValue(31);
+        ui->bar_detectphone->setValue(11);
 
         ui->lbl_donephone->show();
         ui->lbl_donestate->show();
@@ -155,7 +159,7 @@ void detect::detect_device(void)
 
             if (!p_out.isEmpty()) {
                 model = p_out;
-                ui->bar_detectphone->setValue(46);
+                ui->bar_detectphone->setValue(33);
 
                 p.terminate();
                 p_out = "";
@@ -167,7 +171,7 @@ void detect::detect_device(void)
                 if (!p_out.isEmpty()) {
                     device = p_out;
                     ui->lbl_donedevcode->show();
-                    ui->bar_detectphone->setValue(62);
+                    ui->bar_detectphone->setValue(49);
                 }
             }
 
@@ -183,7 +187,7 @@ void detect::detect_device(void)
             if (!p_out.isEmpty()) {
             romver = p_out;
                 ui->lbl_donerom->show();
-                ui->bar_detectphone->setValue(77);
+                ui->bar_detectphone->setValue(64);
             }
 
             p.terminate();
@@ -198,7 +202,7 @@ void detect::detect_device(void)
             if (!p_out.isEmpty()) {
                 androidver = p_out;
                 ui->lbl_doneandroid->show();
-                ui->bar_detectphone->setValue(83);
+                ui->bar_detectphone->setValue(70);
             }
 
             p.terminate();
@@ -213,18 +217,54 @@ void detect::detect_device(void)
             if (!p_out.isEmpty()) {
                 sensever = p_out;
                 ui->lbl_donesense->show();
+                ui->bar_detectphone->setValue(80);
             }
+
+            p.terminate();
+            p_out = "";
+
+            ui->lbl_detectkernelversion->show();
+
+            p.start( "tools/adb -s " + snr + " shell uname -r" );
+            p.waitForFinished(4000);
+            p_out = p.readAllStandardOutput();
+
+            if (!p_out.isEmpty()) {
+                kernelver = p_out;
+                ui->lbl_donekernel->show();
+                ui->lbl_donekernel->setText("Done! (1/2)");
+                ui->bar_detectphone->setValue(90);
+            }
+
+            p.terminate();
+            p_out = "";
+
+            p.start( "tools/adb -s " + snr + " shell uname -v" );
+            p.waitForFinished(4000);
+            p_out = p.readAllStandardOutput();
+
+            if (!p_out.isEmpty()) {
+                kernelbuildver = p_out;
+                ui->lbl_donekernel->show();
+                ui->lbl_donekernel->setText("Done!");
+                ui->bar_detectphone->setValue(100);
+            }
+
             ui->lbl_device->show();
             ui->lbl_name->show();
             ui->lbl_romver->show();
             ui->lbl_androver->show();
             ui->lbl_sensever->show();
+            ui->lbl_kernelbuild->show();
+            ui->lbl_kernelversion->show();
 
             ui->lbl_edt_device->setText(device);
             ui->lbl_edt_model->setText(model);
             ui->lbl_edt_romver->setText(romver);
             ui->lbl_edt_androidver->setText(androidver);
             ui->lbl_edt_sensever->setText(sensever);
+            ui->lbl_edt_kernelversion->setText(kernelver);
+            ui->lbl_edt_kernelbuild->setText(kernelbuildver);
         } else if (state.contains("bootloader") || state.contains("fastboot")) {
             p.terminate();
             p_out = "";
@@ -290,12 +330,14 @@ void detect::on_btn_no_clicked()
     ui->lbl_detectromversion->hide();
     ui->lbl_detectsenseversion->hide();
     ui->lbl_detectstate->hide();
+    ui->lbl_detectkernelversion->hide();
     ui->lbl_doneandroid->hide();
     ui->lbl_donedevcode->hide();
     ui->lbl_donephone->hide();
     ui->lbl_donerom->hide();
     ui->lbl_donesense->hide();
     ui->lbl_donestate->hide();
+    ui->lbl_donekernel->hide();
 
     ui->bar_detectphone->setMinimum(0);
     ui->bar_detectphone->setMaximum(0);
@@ -309,6 +351,8 @@ void detect::on_btn_no_clicked()
     ui->lbl_romver->hide();
     ui->lbl_androver->hide();
     ui->lbl_sensever->hide();
+    ui->lbl_kernelbuild->hide();
+    ui->lbl_kernelversion->hide();
 
     ui->lbl_qcorrect->hide();
     ui->btn_no->hide();
@@ -321,6 +365,8 @@ void detect::on_btn_no_clicked()
     ui->lbl_edt_androidver->setText("");
     ui->lbl_edt_sensever->setText("");
     ui->lbl_edt_state->setText("");
+    ui->lbl_edt_kernelbuild->setText("");
+    ui->lbl_edt_kernelversion->setText("");
 
     p_out = "";
     snr = "";
@@ -330,4 +376,6 @@ void detect::on_btn_no_clicked()
     romver = "";
     androidver = "";
     sensever = "";
+    kernelbuildver = "";
+    kernelver = "";
 }

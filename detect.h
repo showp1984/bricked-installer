@@ -38,6 +38,8 @@ private:
     QString romver;
     QString androidver;
     QString sensever;
+    QString kernelbuildver;
+    QString kernelver;
     bool firstcall;
 
 private slots:

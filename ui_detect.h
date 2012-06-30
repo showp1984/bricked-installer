@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'detect.ui'
 **
-** Created: Sat Jun 30 16:46:23 2012
+** Created: Sat Jun 30 17:58:52 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -65,6 +65,12 @@ public:
     QPushButton *btn_yes;
     QPushButton *btn_no;
     QPushButton *btn_quit;
+    QLabel *lbl_kernelversion;
+    QLabel *lbl_kernelbuild;
+    QLabel *lbl_edt_kernelversion;
+    QLabel *lbl_edt_kernelbuild;
+    QLabel *lbl_detectkernelversion;
+    QLabel *lbl_donekernel;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuHelp;
@@ -136,7 +142,7 @@ public:
         lbl_donesense->setGeometry(QRect(650, 140, 41, 16));
         lbl_found = new QLabel(centralwidget);
         lbl_found->setObjectName(QString::fromUtf8("lbl_found"));
-        lbl_found->setGeometry(QRect(200, 180, 191, 17));
+        lbl_found->setGeometry(QRect(200, 190, 191, 17));
         lbl_snr = new QLabel(centralwidget);
         lbl_snr->setObjectName(QString::fromUtf8("lbl_snr"));
         lbl_snr->setGeometry(QRect(240, 210, 171, 17));
@@ -188,16 +194,41 @@ public:
         lbl_device->setGeometry(QRect(240, 250, 171, 17));
         lbl_qcorrect = new QLabel(centralwidget);
         lbl_qcorrect->setObjectName(QString::fromUtf8("lbl_qcorrect"));
-        lbl_qcorrect->setGeometry(QRect(200, 380, 461, 17));
+        lbl_qcorrect->setGeometry(QRect(200, 400, 461, 16));
         btn_yes = new QPushButton(centralwidget);
         btn_yes->setObjectName(QString::fromUtf8("btn_yes"));
-        btn_yes->setGeometry(QRect(210, 420, 141, 27));
+        btn_yes->setGeometry(QRect(210, 430, 141, 27));
         btn_no = new QPushButton(centralwidget);
         btn_no->setObjectName(QString::fromUtf8("btn_no"));
-        btn_no->setGeometry(QRect(360, 420, 141, 27));
+        btn_no->setGeometry(QRect(360, 430, 141, 27));
         btn_quit = new QPushButton(centralwidget);
         btn_quit->setObjectName(QString::fromUtf8("btn_quit"));
         btn_quit->setGeometry(QRect(630, 460, 91, 27));
+        lbl_kernelversion = new QLabel(centralwidget);
+        lbl_kernelversion->setObjectName(QString::fromUtf8("lbl_kernelversion"));
+        lbl_kernelversion->setGeometry(QRect(240, 350, 171, 17));
+        lbl_kernelbuild = new QLabel(centralwidget);
+        lbl_kernelbuild->setObjectName(QString::fromUtf8("lbl_kernelbuild"));
+        lbl_kernelbuild->setGeometry(QRect(240, 370, 171, 17));
+        lbl_edt_kernelversion = new QLabel(centralwidget);
+        lbl_edt_kernelversion->setObjectName(QString::fromUtf8("lbl_edt_kernelversion"));
+        lbl_edt_kernelversion->setGeometry(QRect(420, 350, 231, 16));
+        lbl_edt_kernelversion->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lbl_edt_kernelbuild = new QLabel(centralwidget);
+        lbl_edt_kernelbuild->setObjectName(QString::fromUtf8("lbl_edt_kernelbuild"));
+        lbl_edt_kernelbuild->setGeometry(QRect(330, 370, 321, 31));
+        QFont font;
+        font.setFamily(QString::fromUtf8("Bitstream Charter"));
+        font.setPointSize(8);
+        lbl_edt_kernelbuild->setFont(font);
+        lbl_edt_kernelbuild->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lbl_edt_kernelbuild->setWordWrap(true);
+        lbl_detectkernelversion = new QLabel(centralwidget);
+        lbl_detectkernelversion->setObjectName(QString::fromUtf8("lbl_detectkernelversion"));
+        lbl_detectkernelversion->setGeometry(QRect(200, 160, 361, 17));
+        lbl_donekernel = new QLabel(centralwidget);
+        lbl_donekernel->setObjectName(QString::fromUtf8("lbl_donekernel"));
+        lbl_donekernel->setGeometry(QRect(650, 160, 41, 16));
         detect->setCentralWidget(centralwidget);
         menubar = new QMenuBar(detect);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -269,6 +300,12 @@ public:
         btn_yes->setText(QApplication::translate("detect", "Yes", 0, QApplication::UnicodeUTF8));
         btn_no->setText(QApplication::translate("detect", "No. Do it again!", 0, QApplication::UnicodeUTF8));
         btn_quit->setText(QApplication::translate("detect", "Quit", 0, QApplication::UnicodeUTF8));
+        lbl_kernelversion->setText(QApplication::translate("detect", "Kernel version:", 0, QApplication::UnicodeUTF8));
+        lbl_kernelbuild->setText(QApplication::translate("detect", "Kernel build:", 0, QApplication::UnicodeUTF8));
+        lbl_edt_kernelversion->setText(QString());
+        lbl_edt_kernelbuild->setText(QString());
+        lbl_detectkernelversion->setText(QApplication::translate("detect", "Detecting Kernel version...", 0, QApplication::UnicodeUTF8));
+        lbl_donekernel->setText(QApplication::translate("detect", "Done!", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("detect", "File", 0, QApplication::UnicodeUTF8));
         menuHelp->setTitle(QApplication::translate("detect", "Help", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
