@@ -27,6 +27,7 @@ private:
     QProcess p;
     QStringList list;
     QStringList list2;
+    QStringList list3;
     QString p_out;
     QString snr;
     QString state;
