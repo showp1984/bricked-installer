@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'detect.ui'
 **
-** Created: Sat Jun 30 02:48:38 2012
+** Created: Sat Jun 30 05:07:41 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -45,6 +45,21 @@ public:
     QLabel *lbl_donerom;
     QLabel *lbl_doneandroid;
     QLabel *lbl_donesense;
+    QLabel *lbl_found;
+    QLabel *lbl_snr;
+    QLabel *lbl_state;
+    QLabel *lbl_name;
+    QLabel *lbl_romver;
+    QLabel *lbl_androver;
+    QLabel *lbl_sensever;
+    QLabel *lbl_edt_snr;
+    QLabel *lbl_edt_state;
+    QLabel *lbl_edt_model;
+    QLabel *lbl_edt_romver;
+    QLabel *lbl_edt_androidver;
+    QLabel *lbl_edt_sensever;
+    QLabel *lbl_edt_device;
+    QLabel *lbl_device;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuHelp;
@@ -114,6 +129,58 @@ public:
         lbl_donesense = new QLabel(centralwidget);
         lbl_donesense->setObjectName(QString::fromUtf8("lbl_donesense"));
         lbl_donesense->setGeometry(QRect(650, 140, 41, 16));
+        lbl_found = new QLabel(centralwidget);
+        lbl_found->setObjectName(QString::fromUtf8("lbl_found"));
+        lbl_found->setGeometry(QRect(200, 180, 191, 17));
+        lbl_snr = new QLabel(centralwidget);
+        lbl_snr->setObjectName(QString::fromUtf8("lbl_snr"));
+        lbl_snr->setGeometry(QRect(240, 210, 171, 17));
+        lbl_state = new QLabel(centralwidget);
+        lbl_state->setObjectName(QString::fromUtf8("lbl_state"));
+        lbl_state->setGeometry(QRect(240, 230, 171, 17));
+        lbl_name = new QLabel(centralwidget);
+        lbl_name->setObjectName(QString::fromUtf8("lbl_name"));
+        lbl_name->setGeometry(QRect(240, 250, 171, 17));
+        lbl_romver = new QLabel(centralwidget);
+        lbl_romver->setObjectName(QString::fromUtf8("lbl_romver"));
+        lbl_romver->setGeometry(QRect(240, 290, 171, 17));
+        lbl_androver = new QLabel(centralwidget);
+        lbl_androver->setObjectName(QString::fromUtf8("lbl_androver"));
+        lbl_androver->setGeometry(QRect(240, 310, 171, 17));
+        lbl_sensever = new QLabel(centralwidget);
+        lbl_sensever->setObjectName(QString::fromUtf8("lbl_sensever"));
+        lbl_sensever->setGeometry(QRect(240, 330, 171, 17));
+        lbl_edt_snr = new QLabel(centralwidget);
+        lbl_edt_snr->setObjectName(QString::fromUtf8("lbl_edt_snr"));
+        lbl_edt_snr->setGeometry(QRect(420, 210, 231, 16));
+        lbl_edt_snr->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lbl_edt_state = new QLabel(centralwidget);
+        lbl_edt_state->setObjectName(QString::fromUtf8("lbl_edt_state"));
+        lbl_edt_state->setGeometry(QRect(420, 230, 231, 16));
+        lbl_edt_state->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lbl_edt_model = new QLabel(centralwidget);
+        lbl_edt_model->setObjectName(QString::fromUtf8("lbl_edt_model"));
+        lbl_edt_model->setGeometry(QRect(350, 250, 301, 16));
+        lbl_edt_model->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lbl_edt_romver = new QLabel(centralwidget);
+        lbl_edt_romver->setObjectName(QString::fromUtf8("lbl_edt_romver"));
+        lbl_edt_romver->setGeometry(QRect(420, 290, 231, 16));
+        lbl_edt_romver->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lbl_edt_androidver = new QLabel(centralwidget);
+        lbl_edt_androidver->setObjectName(QString::fromUtf8("lbl_edt_androidver"));
+        lbl_edt_androidver->setGeometry(QRect(420, 310, 231, 16));
+        lbl_edt_androidver->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lbl_edt_sensever = new QLabel(centralwidget);
+        lbl_edt_sensever->setObjectName(QString::fromUtf8("lbl_edt_sensever"));
+        lbl_edt_sensever->setGeometry(QRect(420, 330, 231, 16));
+        lbl_edt_sensever->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lbl_edt_device = new QLabel(centralwidget);
+        lbl_edt_device->setObjectName(QString::fromUtf8("lbl_edt_device"));
+        lbl_edt_device->setGeometry(QRect(350, 270, 301, 16));
+        lbl_edt_device->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lbl_device = new QLabel(centralwidget);
+        lbl_device->setObjectName(QString::fromUtf8("lbl_device"));
+        lbl_device->setGeometry(QRect(240, 270, 171, 17));
         detect->setCentralWidget(centralwidget);
         menubar = new QMenuBar(detect);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -158,6 +225,25 @@ public:
         lbl_donerom->setText(QApplication::translate("detect", "Done!", 0, QApplication::UnicodeUTF8));
         lbl_doneandroid->setText(QApplication::translate("detect", "Done!", 0, QApplication::UnicodeUTF8));
         lbl_donesense->setText(QApplication::translate("detect", "Done!", 0, QApplication::UnicodeUTF8));
+        lbl_found->setText(QApplication::translate("detect", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">I found this phone:</span></p></body></html>", 0, QApplication::UnicodeUTF8));
+        lbl_snr->setText(QApplication::translate("detect", "S/N:", 0, QApplication::UnicodeUTF8));
+        lbl_state->setText(QApplication::translate("detect", "State:", 0, QApplication::UnicodeUTF8));
+        lbl_name->setText(QApplication::translate("detect", "Name:", 0, QApplication::UnicodeUTF8));
+        lbl_romver->setText(QApplication::translate("detect", "Installed Rom:", 0, QApplication::UnicodeUTF8));
+        lbl_androver->setText(QApplication::translate("detect", "Android version:", 0, QApplication::UnicodeUTF8));
+        lbl_sensever->setText(QApplication::translate("detect", "Sense version:", 0, QApplication::UnicodeUTF8));
+        lbl_edt_snr->setText(QString());
+        lbl_edt_state->setText(QString());
+        lbl_edt_model->setText(QString());
+        lbl_edt_romver->setText(QString());
+        lbl_edt_androidver->setText(QString());
+        lbl_edt_sensever->setText(QString());
+        lbl_edt_device->setText(QString());
+        lbl_device->setText(QApplication::translate("detect", "Device:", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("detect", "File", 0, QApplication::UnicodeUTF8));
         menuHelp->setTitle(QApplication::translate("detect", "Help", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
