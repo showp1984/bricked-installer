@@ -60,6 +60,7 @@ detect::~detect()
 {
     delete detecttimer;
     delete ui;
+    delete this;
 }
 
 void detect::changeEvent(QEvent *e)
@@ -228,7 +229,7 @@ void detect::detect_device(void)
                 p_out = p.readAllStandardOutput();
 
                 if (!p_out.isEmpty()) {
-                romver = p_out;
+                    romver = p_out;
                     ui->lbl_donerom->show();
                     ui->bar_detectphone->setValue(64);
                 }
@@ -326,21 +327,34 @@ void detect::detect_device(void)
                 ui->bar_detectphone->setValue(100);
             }
 
-            ui->lbl_device->show();
-            ui->lbl_name->show();
-            ui->lbl_romver->show();
-            ui->lbl_androver->show();
-            ui->lbl_sensever->show();
-            ui->lbl_kernelbuild->show();
-            ui->lbl_kernelversion->show();
-
-            ui->lbl_edt_device->setText(device);
-            ui->lbl_edt_model->setText(model);
-            ui->lbl_edt_romver->setText(romver);
-            ui->lbl_edt_androidver->setText(androidver);
-            ui->lbl_edt_sensever->setText(sensever);
-            ui->lbl_edt_kernelversion->setText(kernelver);
-            ui->lbl_edt_kernelbuild->setText(kernelbuildver);
+            if (!device.isEmpty()) {
+                ui->lbl_device->show();
+                ui->lbl_edt_device->setText(device);
+            }
+            if (!model.isEmpty()) {
+                ui->lbl_name->show();
+                ui->lbl_edt_model->setText(model);
+            }
+            if (!romver.isEmpty()) {
+                ui->lbl_romver->show();
+                ui->lbl_edt_romver->setText(romver);
+            }
+            if (!androidver.isEmpty()) {
+                ui->lbl_androver->show();
+                ui->lbl_edt_androidver->setText(androidver);
+            }
+            if (!sensever.isEmpty()) {
+                ui->lbl_sensever->show();
+                ui->lbl_edt_sensever->setText(sensever);
+            }
+            if (!kernelbuildver.isEmpty()) {
+                ui->lbl_kernelbuild->show();
+                ui->lbl_edt_kernelbuild->setText(kernelbuildver);
+            }
+            if (!kernelver.isEmpty()) {
+                ui->lbl_kernelversion->show();
+                ui->lbl_edt_kernelversion->setText(kernelver);
+            }
         } else if (state.contains("bootloader") || state.contains("fastboot")) {
             p.terminate();
             p_out = "";
