@@ -30,6 +30,12 @@ private:
     QString p_out;
     QString snr;
     QString state;
+    QString model;
+    QString device;
+    QString romver;
+    QString androidver;
+    QString sensever;
+    bool firstcall;
 
 private slots:
     void on_actionInfo_triggered();

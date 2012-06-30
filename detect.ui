@@ -43,17 +43,207 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;img src=&quot;:/res/img_us/img_us/skyscraper.png&quot; /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="out">
+   <widget class="QLabel" name="lbl_detectphone">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>40</y>
+      <width>361</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Detecting your phone...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_plugin">
     <property name="geometry">
      <rect>
       <x>200</x>
       <y>10</y>
       <width>521</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Please connect your phone to your PC now. I will attempt to detect it.</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="bar_detectphone">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>10</y>
+      <width>16</width>
       <height>461</height>
      </rect>
     </property>
-    <property name="plainText">
-     <string>test</string>
+    <property name="minimum">
+     <number>0</number>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="textVisible">
+     <bool>false</bool>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+    <property name="invertedAppearance">
+     <bool>true</bool>
+    </property>
+    <property name="textDirection">
+     <enum>QProgressBar::TopToBottom</enum>
+    </property>
+    <property name="format">
+     <string>%p% Done</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_detectstate">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>60</y>
+      <width>361</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Detecting boot state...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_detectdevice">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>80</y>
+      <width>361</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Detecting device &amp; codename...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_detectromversion">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>100</y>
+      <width>361</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Detecting Rom version...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_detectandroidversion">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>120</y>
+      <width>361</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Detecting Android version...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_detectsenseversion">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>140</y>
+      <width>361</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Detecting Sense version...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_donephone">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>40</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Done!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_donestate">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>60</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Done!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_donedevcode">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>80</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Done!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_donerom">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>100</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Done!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_doneandroid">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>120</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Done!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_donesense">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>140</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Done!</string>
     </property>
    </widget>
   </widget>
