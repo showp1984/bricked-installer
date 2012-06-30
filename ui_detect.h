@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'detect.ui'
 **
-** Created: Sat Jun 30 05:07:41 2012
+** Created: Sat Jun 30 05:16:42 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -20,6 +20,7 @@
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
 #include <QtGui/QProgressBar>
+#include <QtGui/QPushButton>
 #include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -60,6 +61,10 @@ public:
     QLabel *lbl_edt_sensever;
     QLabel *lbl_edt_device;
     QLabel *lbl_device;
+    QLabel *lbl_qcorrect;
+    QPushButton *btn_yes;
+    QPushButton *btn_no;
+    QPushButton *btn_quit;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuHelp;
@@ -88,7 +93,7 @@ public:
         lbl_plugin->setGeometry(QRect(200, 10, 521, 16));
         bar_detectphone = new QProgressBar(centralwidget);
         bar_detectphone->setObjectName(QString::fromUtf8("bar_detectphone"));
-        bar_detectphone->setGeometry(QRect(710, 10, 16, 461));
+        bar_detectphone->setGeometry(QRect(710, 10, 16, 441));
         bar_detectphone->setMinimum(0);
         bar_detectphone->setMaximum(100);
         bar_detectphone->setValue(0);
@@ -181,6 +186,18 @@ public:
         lbl_device = new QLabel(centralwidget);
         lbl_device->setObjectName(QString::fromUtf8("lbl_device"));
         lbl_device->setGeometry(QRect(240, 270, 171, 17));
+        lbl_qcorrect = new QLabel(centralwidget);
+        lbl_qcorrect->setObjectName(QString::fromUtf8("lbl_qcorrect"));
+        lbl_qcorrect->setGeometry(QRect(200, 380, 461, 17));
+        btn_yes = new QPushButton(centralwidget);
+        btn_yes->setObjectName(QString::fromUtf8("btn_yes"));
+        btn_yes->setGeometry(QRect(210, 420, 141, 27));
+        btn_no = new QPushButton(centralwidget);
+        btn_no->setObjectName(QString::fromUtf8("btn_no"));
+        btn_no->setGeometry(QRect(360, 420, 141, 27));
+        btn_quit = new QPushButton(centralwidget);
+        btn_quit->setObjectName(QString::fromUtf8("btn_quit"));
+        btn_quit->setGeometry(QRect(630, 460, 91, 27));
         detect->setCentralWidget(centralwidget);
         menubar = new QMenuBar(detect);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -244,6 +261,14 @@ public:
         lbl_edt_sensever->setText(QString());
         lbl_edt_device->setText(QString());
         lbl_device->setText(QApplication::translate("detect", "Device:", 0, QApplication::UnicodeUTF8));
+        lbl_qcorrect->setText(QApplication::translate("detect", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Is this correct?</span></p></body></html>", 0, QApplication::UnicodeUTF8));
+        btn_yes->setText(QApplication::translate("detect", "Yes", 0, QApplication::UnicodeUTF8));
+        btn_no->setText(QApplication::translate("detect", "No. Do it again!", 0, QApplication::UnicodeUTF8));
+        btn_quit->setText(QApplication::translate("detect", "Quit", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("detect", "File", 0, QApplication::UnicodeUTF8));
         menuHelp->setTitle(QApplication::translate("detect", "Help", 0, QApplication::UnicodeUTF8));
     } // retranslateUi

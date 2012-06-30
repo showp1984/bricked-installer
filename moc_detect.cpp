@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'detect.h'
 **
-** Created: Sat Jun 30 05:04:43 2012
+** Created: Sat Jun 30 05:17:14 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_detect[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,14 +32,17 @@ static const uint qt_meta_data_detect[] = {
 
  // slots: signature, parameters, type, tag, flags
        8,    7,    7,    7, 0x08,
-      34,    7,    7,    7, 0x08,
-      60,    7,    7,    7, 0x08,
+      28,    7,    7,    7, 0x08,
+      50,    7,    7,    7, 0x08,
+      76,    7,    7,    7, 0x08,
+     102,    7,    7,    7, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_detect[] = {
-    "detect\0\0on_actionInfo_triggered()\0"
+    "detect\0\0on_btn_no_clicked()\0"
+    "on_btn_quit_clicked()\0on_actionInfo_triggered()\0"
     "on_actionQuit_triggered()\0detect_device()\0"
 };
 
@@ -72,12 +75,14 @@ int detect::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: on_actionInfo_triggered(); break;
-        case 1: on_actionQuit_triggered(); break;
-        case 2: detect_device(); break;
+        case 0: on_btn_no_clicked(); break;
+        case 1: on_btn_quit_clicked(); break;
+        case 2: on_actionInfo_triggered(); break;
+        case 3: on_actionQuit_triggered(); break;
+        case 4: detect_device(); break;
         default: ;
         }
-        _id -= 3;
+        _id -= 5;
     }
     return _id;
 }

@@ -58,6 +58,7 @@
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <value key="QtVersionId" type="int">0</value>
    <value key="ToolChain" type="int">0</value>
+   <value key="addQDumper" type=""></value>
    <value key="buildConfiguration" type="int">2</value>
   </valuemap>
  </data>
@@ -66,6 +67,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Release</value>
    <value key="QtVersionId" type="int">0</value>
+   <value key="addQDumper" type=""></value>
    <value key="buildConfiguration" type="int">0</value>
   </valuemap>
  </data>
@@ -74,7 +76,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-2KkAQLDtOV,guid=e7248609033b04772312d6264fbad8a8</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ksGzJvsMpt,guid=26128c348b30deb11ff4a1b54fee5e52</value>
     <value type="QString">DEFAULTS_PATH=/usr/share/gconf/gnome.default.path</value>
     <value type="QString">DESKTOP_SESSION=gnome</value>
     <value type="QString">DISPLAY=:0.0</value>
@@ -82,7 +84,7 @@
     <value type="QString">GDM_KEYBOARD_LAYOUT=de</value>
     <value type="QString">GDM_LANG=en_US.utf8</value>
     <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-ymYxIR</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-GHBMG7</value>
     <value type="QString">GTK_MODULES=canberra-gtk-module</value>
     <value type="QString">HOME=/home/showp1984</value>
     <value type="QString">LANG=en_US.utf8</value>
@@ -93,17 +95,17 @@
     <value type="QString">PATH=/usr/bin:/home/showp1984/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</value>
     <value type="QString">PWD=/home/showp1984</value>
     <value type="QString">QTDIR=/usr/share/qt4</value>
-    <value type="QString">SESSION_MANAGER=local/jarvis:@/tmp/.ICE-unix/1615,unix/jarvis:/tmp/.ICE-unix/1615</value>
+    <value type="QString">SESSION_MANAGER=local/jarvis:@/tmp/.ICE-unix/1126,unix/jarvis:/tmp/.ICE-unix/1126</value>
     <value type="QString">SHELL=/bin/bash</value>
     <value type="QString">SPEECHD_PORT=7560</value>
-    <value type="QString">SSH_AGENT_PID=1649</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-ymYxIR/ssh</value>
+    <value type="QString">SSH_AGENT_PID=1171</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-GHBMG7/ssh</value>
     <value type="QString">USER=showp1984</value>
     <value type="QString">USERNAME=showp1984</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-showp1984-fJO7pH/database</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-showp1984-MiRK9O/database</value>
     <value type="QString">XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome:/etc/xdg</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=974fcb0734e21cc3b1c41ff34e9d5403-1337645224.358820-646423744</value>
+    <value type="QString">XDG_SESSION_COOKIE=974fcb0734e21cc3b1c41ff34e9d5403-1341021778.257513-1558412640</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
     <value type="QString">/home/showp1984/_android/WORKDIRECTORY/Kernel_installer_Qt/Bricked-Installer/Bricked-Installer.pro</value>
@@ -122,7 +124,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-2KkAQLDtOV,guid=e7248609033b04772312d6264fbad8a8</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ksGzJvsMpt,guid=26128c348b30deb11ff4a1b54fee5e52</value>
     <value type="QString">DEFAULTS_PATH=/usr/share/gconf/gnome.default.path</value>
     <value type="QString">DESKTOP_SESSION=gnome</value>
     <value type="QString">DISPLAY=:0.0</value>
@@ -130,7 +132,7 @@
     <value type="QString">GDM_KEYBOARD_LAYOUT=de</value>
     <value type="QString">GDM_LANG=en_US.utf8</value>
     <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-ymYxIR</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-GHBMG7</value>
     <value type="QString">GTK_MODULES=canberra-gtk-module</value>
     <value type="QString">HOME=/home/showp1984</value>
     <value type="QString">LANG=en_US.utf8</value>
@@ -141,17 +143,17 @@
     <value type="QString">PATH=/usr/bin:/home/showp1984/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</value>
     <value type="QString">PWD=/home/showp1984</value>
     <value type="QString">QTDIR=/usr/share/qt4</value>
-    <value type="QString">SESSION_MANAGER=local/jarvis:@/tmp/.ICE-unix/1615,unix/jarvis:/tmp/.ICE-unix/1615</value>
+    <value type="QString">SESSION_MANAGER=local/jarvis:@/tmp/.ICE-unix/1126,unix/jarvis:/tmp/.ICE-unix/1126</value>
     <value type="QString">SHELL=/bin/bash</value>
     <value type="QString">SPEECHD_PORT=7560</value>
-    <value type="QString">SSH_AGENT_PID=1649</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-ymYxIR/ssh</value>
+    <value type="QString">SSH_AGENT_PID=1171</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-GHBMG7/ssh</value>
     <value type="QString">USER=showp1984</value>
     <value type="QString">USERNAME=showp1984</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-showp1984-fJO7pH/database</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-showp1984-MiRK9O/database</value>
     <value type="QString">XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome:/etc/xdg</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=974fcb0734e21cc3b1c41ff34e9d5403-1337645224.358820-646423744</value>
+    <value type="QString">XDG_SESSION_COOKIE=974fcb0734e21cc3b1c41ff34e9d5403-1341021778.257513-1558412640</value>
    </valuelist>
    <value key="abstractProcess.IgnoreReturnValue" type="bool">false</value>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
