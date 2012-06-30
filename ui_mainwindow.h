@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sat Jun 30 00:01:34 2012
+** Created: Sat Jun 30 04:25:34 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -114,6 +114,7 @@ public:
         chk_agreed->setTristate(false);
         line = new QFrame(welcome);
         line->setObjectName(QString::fromUtf8("line"));
+        line->setEnabled(true);
         line->setGeometry(QRect(207, 229, 511, 41));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);

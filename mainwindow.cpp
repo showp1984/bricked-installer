@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lbl_disclaimer_accept->hide();
     ui->txt_disclaimer->hide();
     ui->chk_agreed->hide();
+    ui->line->hide();
 }
 
 MainWindow::~MainWindow()
@@ -72,4 +73,5 @@ void MainWindow::on_btn_go_clicked()
     ui->lbl_disclaimer_accept->show();
     ui->txt_disclaimer->show();
     ui->chk_agreed->show();
+    ui->line->show();
 }

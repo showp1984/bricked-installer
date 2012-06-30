@@ -100,7 +100,6 @@ void detect::detect_device(void)
             }
         }
     }
-    qDebug() << "state:" << state << "snr:" << snr;
     if (!snr.isEmpty() && !state.isEmpty()) {
         detecttimer->stop();
         ui->bar_detectphone->setMinimum(0);
