@@ -11,6 +11,7 @@ Info::Info(QWidget *parent) :
 Info::~Info()
 {
     delete ui;
+    delete this;
 }
 
 void Info::changeEvent(QEvent *e)

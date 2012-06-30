@@ -52,6 +52,7 @@ detect::detect(QWidget *parent) :
 
 detect::~detect()
 {
+    delete detecttimer;
     delete ui;
 }
 
