@@ -149,7 +149,7 @@ void detect::detect_device(void)
 
             ui->lbl_detectdevice->show();
 
-            p.start( "tools/adb shell getprop ro.product.model" );
+            p.start( "tools/adb -s " + snr + " shell getprop ro.product.model" );
             p.waitForFinished(4000);
             p_out = p.readAllStandardOutput();
 
@@ -160,7 +160,7 @@ void detect::detect_device(void)
                 p.terminate();
                 p_out = "";
 
-                p.start( "tools/adb shell getprop ro.product.device" );
+                p.start( "tools/adb -s " + snr + " shell getprop ro.product.device" );
                 p.waitForFinished(4000);
                 p_out = p.readAllStandardOutput();
 
@@ -176,7 +176,7 @@ void detect::detect_device(void)
 
             ui->lbl_detectromversion->show();
 
-            p.start( "tools/adb shell getprop ro.product.version" );
+            p.start( "tools/adb -s " + snr + " shell getprop ro.product.version" );
             p.waitForFinished(4000);
             p_out = p.readAllStandardOutput();
 
@@ -191,7 +191,7 @@ void detect::detect_device(void)
 
             ui->lbl_detectandroidversion->show();
 
-            p.start( "tools/adb shell getprop ro.build.version.release" );
+            p.start( "tools/adb -s " + snr + " shell getprop ro.build.version.release" );
             p.waitForFinished(4000);
             p_out = p.readAllStandardOutput();
 
@@ -206,7 +206,7 @@ void detect::detect_device(void)
 
             ui->lbl_detectsenseversion->show();
 
-            p.start( "tools/adb shell getprop ro.build.sense.version" );
+            p.start( "tools/adb -s " + snr + " shell getprop ro.build.sense.version" );
             p.waitForFinished(4000);
             p_out = p.readAllStandardOutput();
 
