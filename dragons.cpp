@@ -1,9 +1,9 @@
+#include <QtGui>
+#include <QtGui/QApplication>
+
 #include "dragons.h"
 #include "ui_dragons.h"
 #include "mainwindow.h"
-
-#include <QtGui>
-#include <QtGui/QApplication>
 
 dragons::dragons(QWidget *parent) :
     QDialog(parent),

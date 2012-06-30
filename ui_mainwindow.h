@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri Jun 29 23:46:45 2012
+** Created: Sat Jun 30 00:01:34 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -51,6 +51,8 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(730, 516);
+        MainWindow->setMinimumSize(QSize(730, 516));
+        MainWindow->setMaximumSize(QSize(730, 516));
         actionQuit = new QAction(MainWindow);
         actionQuit->setObjectName(QString::fromUtf8("actionQuit"));
         actionInfo = new QAction(MainWindow);

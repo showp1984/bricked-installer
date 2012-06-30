@@ -53,7 +53,9 @@ void MainWindow::on_btn_quit_clicked()
 void MainWindow::on_btn_go_2_clicked()
 {
     if (ui->chk_agreed->isChecked()) {
-        //load new form
+        this->close();
+        detectwind = new detect();
+        detectwind->show();
     } else {
         QMessageBox alertbox;
         alertbox.setText("You haven't agreed to the terms.");

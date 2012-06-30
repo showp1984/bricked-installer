@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "info.h"
+#include "detect.h"
 
 namespace Ui {
     class MainWindow;
@@ -21,6 +22,7 @@ protected:
 private:
     Ui::MainWindow *ui;
     Info *infowind;
+    detect *detectwind;
 
 private slots:
     void on_btn_go_clicked();
