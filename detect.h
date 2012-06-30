@@ -43,6 +43,7 @@ private:
     bool firstcall;
 
 private slots:
+    void on_btn_yes_clicked();
     void on_btn_no_clicked();
     void on_btn_quit_clicked();
     void on_actionInfo_triggered();

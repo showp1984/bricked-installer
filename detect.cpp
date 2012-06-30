@@ -380,3 +380,14 @@ void detect::on_btn_no_clicked()
     kernelbuildver = "";
     kernelver = "";
 }
+
+void detect::on_btn_yes_clicked()
+{
+    if (!device.contains("endeavoru")) {
+        QMessageBox alertbox;
+        alertbox.setText("This installer currently only supports the\n HTC One X (endeavoru).\n\n Sorry!");
+        alertbox.exec();
+    } else {
+        //rabbit hole
+    }
+}
