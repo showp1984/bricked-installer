@@ -29,14 +29,14 @@ detect::detect(QWidget *parent) :
     ui->lbl_detectdevice->hide();
     ui->lbl_detectphone->hide();
     ui->lbl_detectromversion->hide();
-    ui->lbl_detectsenseversion->hide();
+    ui->lbl_detectbranchversion->hide();
     ui->lbl_detectstate->hide();
     ui->lbl_detectkernelversion->hide();
     ui->lbl_doneandroid->hide();
     ui->lbl_donedevcode->hide();
     ui->lbl_donephone->hide();
     ui->lbl_donerom->hide();
-    ui->lbl_donesense->hide();
+    ui->lbl_donebranch->hide();
     ui->lbl_donestate->hide();
     ui->lbl_donekernel->hide();
 
@@ -47,7 +47,7 @@ detect::detect(QWidget *parent) :
     ui->lbl_device->hide();
     ui->lbl_romver->hide();
     ui->lbl_androver->hide();
-    ui->lbl_sensever->hide();
+    ui->lbl_branchver->hide();
     ui->lbl_kernelbuild->hide();
     ui->lbl_kernelversion->hide();
 
@@ -260,7 +260,7 @@ void detect::detect_device(void)
                 p.terminate();
                 p_out = "";
 
-                ui->lbl_detectsenseversion->show();
+                ui->lbl_detectbranchversion->show();
 
 #ifdef Q_WS_X11
                 p.start( "tools/adb -s " + snr + " shell getprop ro.build.sense.version" );
@@ -275,8 +275,8 @@ void detect::detect_device(void)
                 p_out = p.readAllStandardOutput();
 
                 if (!p_out.isEmpty()) {
-                    sensever = p_out;
-                    ui->lbl_donesense->show();
+                    branchver = p_out;
+                    ui->lbl_donebranch->show();
                     ui->bar_detectphone->setValue(80);
                 }
             }
@@ -343,9 +343,9 @@ void detect::detect_device(void)
                 ui->lbl_androver->show();
                 ui->lbl_edt_androidver->setText(androidver);
             }
-            if (!sensever.isEmpty()) {
-                ui->lbl_sensever->show();
-                ui->lbl_edt_sensever->setText(sensever);
+            if (!branchver.isEmpty()) {
+                ui->lbl_branchver->show();
+                ui->lbl_edt_branchver->setText(branchver);
             }
             if (!kernelbuildver.isEmpty()) {
                 ui->lbl_kernelbuild->show();
@@ -426,14 +426,14 @@ void detect::on_btn_no_clicked()
     ui->lbl_detectdevice->hide();
     ui->lbl_detectphone->hide();
     ui->lbl_detectromversion->hide();
-    ui->lbl_detectsenseversion->hide();
+    ui->lbl_detectbranchversion->hide();
     ui->lbl_detectstate->hide();
     ui->lbl_detectkernelversion->hide();
     ui->lbl_doneandroid->hide();
     ui->lbl_donedevcode->hide();
     ui->lbl_donephone->hide();
     ui->lbl_donerom->hide();
-    ui->lbl_donesense->hide();
+    ui->lbl_donebranch->hide();
     ui->lbl_donestate->hide();
     ui->lbl_donekernel->hide();
 
@@ -448,7 +448,7 @@ void detect::on_btn_no_clicked()
     ui->lbl_device->hide();
     ui->lbl_romver->hide();
     ui->lbl_androver->hide();
-    ui->lbl_sensever->hide();
+    ui->lbl_branchver->hide();
     ui->lbl_kernelbuild->hide();
     ui->lbl_kernelversion->hide();
 
@@ -461,7 +461,7 @@ void detect::on_btn_no_clicked()
     ui->lbl_edt_device->setText("");
     ui->lbl_edt_romver->setText("");
     ui->lbl_edt_androidver->setText("");
-    ui->lbl_edt_sensever->setText("");
+    ui->lbl_edt_branchver->setText("");
     ui->lbl_edt_state->setText("");
     ui->lbl_edt_kernelbuild->setText("");
     ui->lbl_edt_kernelversion->setText("");
@@ -473,7 +473,7 @@ void detect::on_btn_no_clicked()
     device = "";
     romver = "";
     androidver = "";
-    sensever = "";
+    branchver = "";
     kernelbuildver = "";
     kernelver = "";
 }

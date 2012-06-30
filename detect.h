@@ -37,7 +37,7 @@ private:
     QString device;
     QString romver;
     QString androidver;
-    QString sensever;
+    QString branchver;
     QString kernelbuildver;
     QString kernelver;
     bool firstcall;
