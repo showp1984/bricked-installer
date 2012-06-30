@@ -266,7 +266,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="lbl_snr">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>230</x>
       <y>210</y>
       <width>171</width>
       <height>21</height>
@@ -275,11 +275,14 @@ p, li { white-space: pre-wrap; }
     <property name="text">
      <string>S/N:</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
    </widget>
    <widget class="QLabel" name="lbl_state">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>230</x>
       <y>230</y>
       <width>171</width>
       <height>21</height>
@@ -288,11 +291,14 @@ p, li { white-space: pre-wrap; }
     <property name="text">
      <string>State:</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
    </widget>
    <widget class="QLabel" name="lbl_name">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>230</x>
       <y>270</y>
       <width>171</width>
       <height>21</height>
@@ -301,11 +307,14 @@ p, li { white-space: pre-wrap; }
     <property name="text">
      <string>Name:</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
    </widget>
    <widget class="QLabel" name="lbl_romver">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>230</x>
       <y>290</y>
       <width>171</width>
       <height>21</height>
@@ -314,11 +323,14 @@ p, li { white-space: pre-wrap; }
     <property name="text">
      <string>Installed Rom:</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
    </widget>
    <widget class="QLabel" name="lbl_androver">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>230</x>
       <y>310</y>
       <width>171</width>
       <height>21</height>
@@ -327,11 +339,14 @@ p, li { white-space: pre-wrap; }
     <property name="text">
      <string>Android version:</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
    </widget>
    <widget class="QLabel" name="lbl_sensever">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>230</x>
       <y>330</y>
       <width>171</width>
       <height>21</height>
@@ -340,13 +355,16 @@ p, li { white-space: pre-wrap; }
     <property name="text">
      <string>Sense version:</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
    </widget>
    <widget class="QLabel" name="lbl_edt_snr">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>350</x>
       <y>210</y>
-      <width>231</width>
+      <width>311</width>
       <height>21</height>
      </rect>
     </property>
@@ -354,13 +372,13 @@ p, li { white-space: pre-wrap; }
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_edt_state">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>430</x>
       <y>230</y>
       <width>231</width>
       <height>21</height>
@@ -370,13 +388,13 @@ p, li { white-space: pre-wrap; }
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_edt_model">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>360</x>
       <y>270</y>
       <width>301</width>
       <height>21</height>
@@ -386,15 +404,15 @@ p, li { white-space: pre-wrap; }
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_edt_romver">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>330</x>
       <y>290</y>
-      <width>301</width>
+      <width>331</width>
       <height>21</height>
      </rect>
     </property>
@@ -402,13 +420,13 @@ p, li { white-space: pre-wrap; }
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_edt_androidver">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>430</x>
       <y>310</y>
       <width>231</width>
       <height>21</height>
@@ -418,13 +436,13 @@ p, li { white-space: pre-wrap; }
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_edt_sensever">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>430</x>
       <y>330</y>
       <width>231</width>
       <height>21</height>
@@ -434,29 +452,13 @@ p, li { white-space: pre-wrap; }
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbl_edt_device">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>250</y>
-      <width>301</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_device">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>230</x>
       <y>250</y>
       <width>171</width>
       <height>21</height>
@@ -465,12 +467,15 @@ p, li { white-space: pre-wrap; }
     <property name="text">
      <string>Device:</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
    </widget>
    <widget class="QLabel" name="lbl_qcorrect">
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>400</y>
+      <y>440</y>
       <width>131</width>
       <height>16</height>
      </rect>
@@ -487,7 +492,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>430</y>
+      <y>460</y>
       <width>141</width>
       <height>27</height>
      </rect>
@@ -500,7 +505,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>430</y>
+      <y>460</y>
       <width>141</width>
       <height>27</height>
      </rect>
@@ -525,7 +530,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="lbl_kernelversion">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>230</x>
       <y>350</y>
       <width>171</width>
       <height>21</height>
@@ -534,11 +539,14 @@ p, li { white-space: pre-wrap; }
     <property name="text">
      <string>Kernel version:</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
    </widget>
    <widget class="QLabel" name="lbl_kernelbuild">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>230</x>
       <y>370</y>
       <width>171</width>
       <height>21</height>
@@ -547,11 +555,14 @@ p, li { white-space: pre-wrap; }
     <property name="text">
      <string>Kernel build:</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
    </widget>
    <widget class="QLabel" name="lbl_edt_kernelversion">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>360</x>
       <y>350</y>
       <width>301</width>
       <height>21</height>
@@ -561,32 +572,7 @@ p, li { white-space: pre-wrap; }
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbl_edt_kernelbuild">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>370</y>
-      <width>321</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Bitstream Charter</family>
-      <pointsize>8</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="wordWrap">
-     <bool>true</bool>
+     <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_detectkernelversion">
@@ -613,6 +599,38 @@ p, li { white-space: pre-wrap; }
     </property>
     <property name="text">
      <string>Done!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_edt_device">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>250</y>
+      <width>231</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_edt_kernelbuild">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>370</y>
+      <width>351</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
     </property>
    </widget>
   </widget>
