@@ -28,6 +28,8 @@ private:
     QStringList list;
     QStringList list2;
     QStringList list3;
+    QStringList list4;
+    QStringList list5;
     QString p_out;
     QString snr;
     QString state;

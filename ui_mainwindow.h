@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sat Jun 30 04:25:34 2012
+** Created: Sat Jun 30 17:09:17 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -85,7 +85,7 @@ public:
         btn_quit->setGeometry(QRect(530, 460, 93, 27));
         txt_disclaimer = new QPlainTextEdit(welcome);
         txt_disclaimer->setObjectName(QString::fromUtf8("txt_disclaimer"));
-        txt_disclaimer->setGeometry(QRect(200, 10, 521, 211));
+        txt_disclaimer->setGeometry(QRect(200, 10, 521, 291));
         txt_disclaimer->setFrameShape(QFrame::StyledPanel);
         txt_disclaimer->setFrameShadow(QFrame::Sunken);
         txt_disclaimer->setLineWidth(1);
@@ -97,11 +97,11 @@ public:
         txt_disclaimer->setCenterOnScroll(false);
         lbl_disclaimer_accept = new QLabel(welcome);
         lbl_disclaimer_accept->setObjectName(QString::fromUtf8("lbl_disclaimer_accept"));
-        lbl_disclaimer_accept->setGeometry(QRect(230, 260, 481, 81));
+        lbl_disclaimer_accept->setGeometry(QRect(230, 340, 481, 81));
         lbl_disclaimer_accept->setWordWrap(true);
         chk_agreed = new QCheckBox(welcome);
         chk_agreed->setObjectName(QString::fromUtf8("chk_agreed"));
-        chk_agreed->setGeometry(QRect(200, 270, 20, 21));
+        chk_agreed->setGeometry(QRect(200, 350, 20, 21));
         QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -115,7 +115,7 @@ public:
         line = new QFrame(welcome);
         line->setObjectName(QString::fromUtf8("line"));
         line->setEnabled(true);
-        line->setGeometry(QRect(207, 229, 511, 41));
+        line->setGeometry(QRect(207, 299, 511, 51));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
         MainWindow->setCentralWidget(welcome);
@@ -173,6 +173,11 @@ public:
 " * included in this kernel before flashing it! YOU are choosing to make\n"
 " * these modifications, and if you point the finger at me for messing up\n"
 " * your device, I will laugh at you.\n"
+" *\n"
+" * This program might also transmit your device data (!encrypted!) to a\n"
+" * database for certain functions. You will be asked if you want that, if you\n"
+" * choose no then some functions of this program might not be available\n"
+" * for you.\n"
 " */", 0, QApplication::UnicodeUTF8));
         lbl_disclaimer_accept->setText(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

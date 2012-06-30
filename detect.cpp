@@ -20,6 +20,8 @@ detect::detect(QWidget *parent) :
     list = QStringList() << "" << "" << "" << "" << "" << "" << "";
     list2 = QStringList() << "" << "";
     list3 = QStringList() << "" << "";
+    list4 = QStringList() << "" << "" << "" << "" << "" << "";
+    list5 = QStringList() << "" << "";
 
     ui->setupUi(this);
 
@@ -212,17 +214,45 @@ void detect::detect_device(void)
                 sensever = p_out;
                 ui->lbl_donesense->show();
             }
-            ui->lbl_name->show();
             ui->lbl_device->show();
+            ui->lbl_name->show();
             ui->lbl_romver->show();
             ui->lbl_androver->show();
             ui->lbl_sensever->show();
 
-            ui->lbl_edt_model->setText(model);
             ui->lbl_edt_device->setText(device);
+            ui->lbl_edt_model->setText(model);
             ui->lbl_edt_romver->setText(romver);
             ui->lbl_edt_androidver->setText(androidver);
             ui->lbl_edt_sensever->setText(sensever);
+        } else if (state.contains("bootloader") || state.contains("fastboot")) {
+            p.terminate();
+            p_out = "";
+
+            ui->lbl_detectdevice->show();
+
+            p.start( "tools/fastboot getvar product" );
+            p.waitForFinished(4000);
+            p_out = p.readAllStandardOutput();
+
+            if (!p_out.isEmpty()) {
+                list4 = p_out.split("\n");
+                if (!list4.isEmpty()) {
+                    while (device.isEmpty()) {
+                        device = list4.takeLast();
+                    }
+                    device = list4.takeLast();
+                    if (!device.isEmpty()) {
+                        list5 = device.split(": ");
+                        if ((!list5.isEmpty()) && (list5.count() > 1)) {
+                            device = list5[1];
+                            ui->lbl_donedevcode->show();
+                        }
+                    }
+                }
+                ui->lbl_device->show();
+                ui->lbl_edt_device->setText(device);
+            }
         }
         ui->bar_detectphone->setValue(100);
         ui->lbl_found->show();

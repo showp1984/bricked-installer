@@ -126,7 +126,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>Detecting device &amp; codename...</string>
+     <string>Detecting device name...</string>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_detectromversion">
@@ -293,7 +293,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>250</y>
+      <y>270</y>
       <width>171</width>
       <height>17</height>
      </rect>
@@ -377,7 +377,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>250</y>
+      <y>270</y>
       <width>301</width>
       <height>16</height>
      </rect>
@@ -441,7 +441,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>270</y>
+      <y>250</y>
       <width>301</width>
       <height>16</height>
      </rect>
@@ -457,7 +457,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>270</y>
+      <y>250</y>
       <width>171</width>
       <height>17</height>
      </rect>

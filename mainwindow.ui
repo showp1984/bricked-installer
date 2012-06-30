@@ -138,7 +138,7 @@ p, li { white-space: pre-wrap; }
       <x>200</x>
       <y>10</y>
       <width>521</width>
-      <height>211</height>
+      <height>291</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -170,6 +170,11 @@ p, li { white-space: pre-wrap; }
  * included in this kernel before flashing it! YOU are choosing to make
  * these modifications, and if you point the finger at me for messing up
  * your device, I will laugh at you.
+ *
+ * This program might also transmit your device data (!encrypted!) to a
+ * database for certain functions. You will be asked if you want that, if you
+ * choose no then some functions of this program might not be available
+ * for you.
  */</string>
     </property>
     <property name="textInteractionFlags">
@@ -186,7 +191,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>260</y>
+      <y>340</y>
       <width>481</width>
       <height>81</height>
      </rect>
@@ -206,7 +211,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>270</y>
+      <y>350</y>
       <width>20</width>
       <height>21</height>
      </rect>
@@ -255,9 +260,9 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>207</x>
-      <y>229</y>
+      <y>299</y>
       <width>511</width>
-      <height>41</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="orientation">

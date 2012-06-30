@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'detect.h'
 **
-** Created: Sat Jun 30 05:44:06 2012
+** Created: Sat Jun 30 17:09:29 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!

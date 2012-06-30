@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'detect.ui'
 **
-** Created: Sat Jun 30 05:16:42 2012
+** Created: Sat Jun 30 16:46:23 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -145,7 +145,7 @@ public:
         lbl_state->setGeometry(QRect(240, 230, 171, 17));
         lbl_name = new QLabel(centralwidget);
         lbl_name->setObjectName(QString::fromUtf8("lbl_name"));
-        lbl_name->setGeometry(QRect(240, 250, 171, 17));
+        lbl_name->setGeometry(QRect(240, 270, 171, 17));
         lbl_romver = new QLabel(centralwidget);
         lbl_romver->setObjectName(QString::fromUtf8("lbl_romver"));
         lbl_romver->setGeometry(QRect(240, 290, 171, 17));
@@ -165,7 +165,7 @@ public:
         lbl_edt_state->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lbl_edt_model = new QLabel(centralwidget);
         lbl_edt_model->setObjectName(QString::fromUtf8("lbl_edt_model"));
-        lbl_edt_model->setGeometry(QRect(350, 250, 301, 16));
+        lbl_edt_model->setGeometry(QRect(350, 270, 301, 16));
         lbl_edt_model->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lbl_edt_romver = new QLabel(centralwidget);
         lbl_edt_romver->setObjectName(QString::fromUtf8("lbl_edt_romver"));
@@ -181,11 +181,11 @@ public:
         lbl_edt_sensever->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lbl_edt_device = new QLabel(centralwidget);
         lbl_edt_device->setObjectName(QString::fromUtf8("lbl_edt_device"));
-        lbl_edt_device->setGeometry(QRect(350, 270, 301, 16));
+        lbl_edt_device->setGeometry(QRect(350, 250, 301, 16));
         lbl_edt_device->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lbl_device = new QLabel(centralwidget);
         lbl_device->setObjectName(QString::fromUtf8("lbl_device"));
-        lbl_device->setGeometry(QRect(240, 270, 171, 17));
+        lbl_device->setGeometry(QRect(240, 250, 171, 17));
         lbl_qcorrect = new QLabel(centralwidget);
         lbl_qcorrect->setObjectName(QString::fromUtf8("lbl_qcorrect"));
         lbl_qcorrect->setGeometry(QRect(200, 380, 461, 17));
@@ -232,7 +232,7 @@ public:
         lbl_plugin->setText(QApplication::translate("detect", "Please connect your phone to your PC now. I will attempt to detect it.", 0, QApplication::UnicodeUTF8));
         bar_detectphone->setFormat(QApplication::translate("detect", "%p% Done", 0, QApplication::UnicodeUTF8));
         lbl_detectstate->setText(QApplication::translate("detect", "Detecting boot state...", 0, QApplication::UnicodeUTF8));
-        lbl_detectdevice->setText(QApplication::translate("detect", "Detecting device & codename...", 0, QApplication::UnicodeUTF8));
+        lbl_detectdevice->setText(QApplication::translate("detect", "Detecting device name...", 0, QApplication::UnicodeUTF8));
         lbl_detectromversion->setText(QApplication::translate("detect", "Detecting Rom version...", 0, QApplication::UnicodeUTF8));
         lbl_detectandroidversion->setText(QApplication::translate("detect", "Detecting Android version...", 0, QApplication::UnicodeUTF8));
         lbl_detectsenseversion->setText(QApplication::translate("detect", "Detecting Sense version...", 0, QApplication::UnicodeUTF8));
