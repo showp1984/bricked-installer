@@ -174,50 +174,51 @@ void detect::detect_device(void)
                     ui->bar_detectphone->setValue(49);
                 }
             }
+            if (!state.contains("recovery")) {
+                p.terminate();
+                p_out = "";
 
-            p.terminate();
-            p_out = "";
+                ui->lbl_detectromversion->show();
 
-            ui->lbl_detectromversion->show();
+                p.start( "tools/adb -s " + snr + " shell getprop ro.product.version" );
+                p.waitForFinished(4000);
+                p_out = p.readAllStandardOutput();
 
-            p.start( "tools/adb -s " + snr + " shell getprop ro.product.version" );
-            p.waitForFinished(4000);
-            p_out = p.readAllStandardOutput();
+                if (!p_out.isEmpty()) {
+                romver = p_out;
+                    ui->lbl_donerom->show();
+                    ui->bar_detectphone->setValue(64);
+                }
 
-            if (!p_out.isEmpty()) {
-            romver = p_out;
-                ui->lbl_donerom->show();
-                ui->bar_detectphone->setValue(64);
-            }
+                p.terminate();
+                p_out = "";
 
-            p.terminate();
-            p_out = "";
+                ui->lbl_detectandroidversion->show();
 
-            ui->lbl_detectandroidversion->show();
+                p.start( "tools/adb -s " + snr + " shell getprop ro.build.version.release" );
+                p.waitForFinished(4000);
+                p_out = p.readAllStandardOutput();
 
-            p.start( "tools/adb -s " + snr + " shell getprop ro.build.version.release" );
-            p.waitForFinished(4000);
-            p_out = p.readAllStandardOutput();
+                if (!p_out.isEmpty()) {
+                    androidver = p_out;
+                    ui->lbl_doneandroid->show();
+                    ui->bar_detectphone->setValue(70);
+                }
 
-            if (!p_out.isEmpty()) {
-                androidver = p_out;
-                ui->lbl_doneandroid->show();
-                ui->bar_detectphone->setValue(70);
-            }
+                p.terminate();
+                p_out = "";
 
-            p.terminate();
-            p_out = "";
+                ui->lbl_detectsenseversion->show();
 
-            ui->lbl_detectsenseversion->show();
+                p.start( "tools/adb -s " + snr + " shell getprop ro.build.sense.version" );
+                p.waitForFinished(4000);
+                p_out = p.readAllStandardOutput();
 
-            p.start( "tools/adb -s " + snr + " shell getprop ro.build.sense.version" );
-            p.waitForFinished(4000);
-            p_out = p.readAllStandardOutput();
-
-            if (!p_out.isEmpty()) {
-                sensever = p_out;
-                ui->lbl_donesense->show();
-                ui->bar_detectphone->setValue(80);
+                if (!p_out.isEmpty()) {
+                    sensever = p_out;
+                    ui->lbl_donesense->show();
+                    ui->bar_detectphone->setValue(80);
+                }
             }
 
             p.terminate();
