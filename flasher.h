@@ -16,6 +16,8 @@ class flasher : public QMainWindow {
 public:
     flasher(QWidget *parent = 0);
     ~flasher();
+    void set_snr(QString);
+    void set_state(QString);
 
 protected:
     void changeEvent(QEvent *e);
@@ -23,7 +25,9 @@ protected:
 private:
     Ui::flasher *ui;
     Info *infowind;
-    QTextCursor *c;
+    QTextCursor c;
+    QString snr;
+    QString state;
 
 private slots:
     void on_txt_out_textChanged();

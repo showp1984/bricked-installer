@@ -28,6 +28,16 @@ void flasher::changeEvent(QEvent *e)
     }
 }
 
+void flasher::set_snr(QString str)
+{
+    snr = str;
+}
+
+void flasher::set_state(QString str)
+{
+    state = str;
+}
+
 void flasher::on_actionQuit_triggered()
 {
     this->close();
@@ -51,12 +61,12 @@ void flasher::on_btn_start_clicked()
     ui->actionQuit->setEnabled(false);
     ui->bar_flash->show();
 
-
+    ui->txt_out->clear();
 }
 
 void flasher::on_txt_out_textChanged()
 {
-    *c = ui->txt_out->textCursor();
-    c->movePosition(QTextCursor::End);
-    ui->txt_out->setTextCursor(*c);
+    c = ui->txt_out->textCursor();
+    c.movePosition(QTextCursor::End);
+    ui->txt_out->setTextCursor(c);
 }
