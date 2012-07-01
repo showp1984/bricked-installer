@@ -59,6 +59,7 @@ private slots:
     void on_actionInfo_triggered();
     void on_actionQuit_triggered();
     void flash_device(void);
+    int extract(void);
     int detect_device(void);
     int get_booted(void);
     int push_files(void);

@@ -112,7 +112,8 @@ void flasher::flash_device(void)
     {
     case EXTRACT:
         ui->bar_flash->setValue(10);
-        //break;
+        flash_state = extract();
+        break;
     case DETECT:
         flash_state = detect_device();
         ui->bar_flash->setValue(20);
@@ -154,6 +155,12 @@ void flasher::flash_device(void)
     default:
         break;
     }
+}
+
+int flasher::extract(void)
+{
+    //empty for now, skip to detect
+    return DETECT;
 }
 
 int flasher::detect_device(void) {
