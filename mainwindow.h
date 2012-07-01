@@ -21,6 +21,7 @@ protected:
 
 private:
     Ui::MainWindow *ui;
+    QMessageBox alertbox;
     Info *infowind;
     detect *detectwind;
 

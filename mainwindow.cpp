@@ -59,7 +59,6 @@ void MainWindow::on_btn_go_2_clicked()
         detectwind = new detect();
         detectwind->show();
     } else {
-        QMessageBox alertbox;
         alertbox.setText("You haven't agreed to the terms.");
         alertbox.exec();
     }
