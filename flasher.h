@@ -23,8 +23,11 @@ protected:
 private:
     Ui::flasher *ui;
     Info *infowind;
+    QTextCursor *c;
 
 private slots:
+    void on_txt_out_textChanged();
+    void on_btn_start_clicked();
     void on_btn_quit_clicked();
     void on_actionInfo_triggered();
     void on_actionQuit_triggered();

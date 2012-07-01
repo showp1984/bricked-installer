@@ -6,6 +6,8 @@ flasher::flasher(QWidget *parent) :
     ui(new Ui::flasher)
 {
     ui->setupUi(this);
+
+    ui->bar_flash->hide();
 }
 
 flasher::~flasher()
@@ -40,4 +42,21 @@ void flasher::on_actionInfo_triggered()
 void flasher::on_btn_quit_clicked()
 {
     this->close();
+}
+
+void flasher::on_btn_start_clicked()
+{
+    ui->btn_start->hide();
+    ui->btn_quit->setEnabled(false);
+    ui->actionQuit->setEnabled(false);
+    ui->bar_flash->show();
+
+
+}
+
+void flasher::on_txt_out_textChanged()
+{
+    *c = ui->txt_out->textCursor();
+    c->movePosition(QTextCursor::End);
+    ui->txt_out->setTextCursor(*c);
 }
