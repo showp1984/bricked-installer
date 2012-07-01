@@ -528,6 +528,8 @@ void detect::on_btn_yes_clicked()
         alertbox.setText("This installer currently only supports the\n HTC One X (endeavoru).\n\n Sorry!");
         alertbox.exec();
     } else {
-        //rabbit hole
+        this->close();
+        flasherwind = new flasher();
+        flasherwind->show();
     }
 }

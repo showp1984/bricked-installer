@@ -2,6 +2,10 @@
 #define FLASHER_H
 
 #include <QMainWindow>
+#include <QtGui>
+#include <QtGui/QApplication>
+
+#include "info.h"
 
 namespace Ui {
     class flasher;
@@ -18,6 +22,12 @@ protected:
 
 private:
     Ui::flasher *ui;
+    Info *infowind;
+
+private slots:
+    void on_btn_quit_clicked();
+    void on_actionInfo_triggered();
+    void on_actionQuit_triggered();
 };
 
 #endif // FLASHER_H

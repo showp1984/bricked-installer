@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'detect.ui'
 **
-** Created: Sun Jul 1 01:45:18 2012
+** Created: Sun Jul 1 03:17:40 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -255,7 +255,7 @@ public:
 
     void retranslateUi(QMainWindow *detect)
     {
-        detect->setWindowTitle(QApplication::translate("detect", "Detecting your phone...", 0, QApplication::UnicodeUTF8));
+        detect->setWindowTitle(QApplication::translate("detect", "Bricked-Installer", 0, QApplication::UnicodeUTF8));
         actionQuit->setText(QApplication::translate("detect", "Quit", 0, QApplication::UnicodeUTF8));
         actionInfo->setText(QApplication::translate("detect", "Info", 0, QApplication::UnicodeUTF8));
         lbl_brickedimage->setText(QApplication::translate("detect", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

@@ -11,6 +11,7 @@ flasher::flasher(QWidget *parent) :
 flasher::~flasher()
 {
     delete ui;
+    delete this;
 }
 
 void flasher::changeEvent(QEvent *e)
@@ -23,4 +24,20 @@ void flasher::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void flasher::on_actionQuit_triggered()
+{
+    this->close();
+}
+
+void flasher::on_actionInfo_triggered()
+{
+    infowind = new Info();
+    infowind->show();
+}
+
+void flasher::on_btn_quit_clicked()
+{
+    this->close();
 }

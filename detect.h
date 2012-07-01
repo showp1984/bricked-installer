@@ -6,6 +6,7 @@
 #include <QtGui/QApplication>
 
 #include "info.h"
+#include "flasher.h"
 
 namespace Ui {
     class detect;
@@ -23,6 +24,7 @@ protected:
 private:
     Ui::detect *ui;
     Info *infowind;
+    flasher *flasherwind;
     QTimer *detecttimer;
     QProcess p;
     QStringList list;

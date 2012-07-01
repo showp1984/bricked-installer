@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sat Jun 30 17:09:17 2012
+** Created: Sun Jul 1 03:17:40 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -64,7 +64,7 @@ public:
         btn_go = new QPushButton(welcome);
         btn_go->setObjectName(QString::fromUtf8("btn_go"));
         btn_go->setEnabled(true);
-        btn_go->setGeometry(QRect(630, 460, 93, 27));
+        btn_go->setGeometry(QRect(530, 460, 93, 27));
         lbl_welcome = new QLabel(welcome);
         lbl_welcome->setObjectName(QString::fromUtf8("lbl_welcome"));
         lbl_welcome->setGeometry(QRect(200, 10, 511, 431));
@@ -78,11 +78,11 @@ public:
         btn_go_2 = new QPushButton(welcome);
         btn_go_2->setObjectName(QString::fromUtf8("btn_go_2"));
         btn_go_2->setEnabled(true);
-        btn_go_2->setGeometry(QRect(630, 460, 93, 27));
+        btn_go_2->setGeometry(QRect(530, 460, 93, 27));
         btn_quit = new QPushButton(welcome);
         btn_quit->setObjectName(QString::fromUtf8("btn_quit"));
         btn_quit->setEnabled(true);
-        btn_quit->setGeometry(QRect(530, 460, 93, 27));
+        btn_quit->setGeometry(QRect(630, 460, 93, 27));
         txt_disclaimer = new QPlainTextEdit(welcome);
         txt_disclaimer->setObjectName(QString::fromUtf8("txt_disclaimer"));
         txt_disclaimer->setGeometry(QRect(200, 10, 521, 291));
