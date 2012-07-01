@@ -5,6 +5,9 @@ flasher::flasher(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::flasher)
 {
+    flashtimer = new QTimer(this);
+    connect(flashtimer, SIGNAL(timeout()), this, SLOT(flash_device()));
+
     list = QStringList() << "" << "" << "" << "" << "" << "" << "";
     list2 = QStringList() << "" << "";
     list3 = QStringList() << "" << "";
@@ -14,12 +17,13 @@ flasher::flasher(QWidget *parent) :
 
     ui->bar_flash->hide();
     ui->bar_flash->setMinimum(0);
-    ui->bar_flash->setMaximum(100);
+    ui->bar_flash->setMaximum(90);
     ui->bar_flash->setValue(0);
 }
 
 flasher::~flasher()
 {
+    delete flashtimer;
     delete ui;
     delete this;
 }
@@ -70,10 +74,89 @@ void flasher::on_btn_start_clicked()
     ui->bar_flash->show();
 
     ui->txt_out->clear();
-//    ui->txt_out->append("Old S/N: " + snr_old + "...");
-//    ui->txt_out->append("Checking again...");
     ui->txt_out->append("Sending in GLaDoS...\n");
 
+    flash_state = EXTRACT;
+    flashtimer->start(0);
+}
+
+void flasher::on_txt_out_textChanged()
+{
+    c = ui->txt_out->textCursor();
+    c.movePosition(QTextCursor::End);
+    ui->txt_out->setTextCursor(c);
+}
+
+void flasher::flash_device(void)
+{
+    if (firstcall) {
+            firstcall = false;
+            flashtimer->stop();
+            flashtimer->start(1000);
+    }
+    /*
+     * Available states:
+     *
+     * EXTRACT = 0,
+     * DETECT,
+     * GET_BOOTED,
+     * CHECK_SNR,
+     * PUSH_FILES,
+     * REBOOT_FASTBOOT,
+     * FLASH_BOOTIMG,
+     * CHECK_INSTALL,
+     * RELEASE_CONTROLS,
+     */
+    switch (flash_state)
+    {
+    case EXTRACT:
+        ui->bar_flash->setValue(10);
+        //break;
+    case DETECT:
+        flash_state = detect_device();
+        ui->bar_flash->setValue(20);
+        break;
+    case GET_BOOTED:
+        flash_state = get_booted();
+        ui->bar_flash->setValue(30);
+        break;
+    case CHECK_SNR:
+        ui->txt_out->append("Checking if S/N changed...");
+        if (snr_old != snr) {
+            ui->txt_out->append("Device S/N has changed!");
+            ui->txt_out->append("Old S/N: " + snr_old + ", new S/N: " + snr + "...");
+            ui->txt_out->append("\nGo back and detect this device first!");
+            flash_state = RELEASE_CONTROLS;
+        } else {
+            ui->txt_out->append("S/N matches. Checking state...");
+        }
+        ui->bar_flash->setValue(40);
+        break;
+    case PUSH_FILES:
+        ui->bar_flash->setValue(50);
+        break;
+    case REBOOT_FASTBOOT:
+        ui->bar_flash->setValue(60);
+        break;
+    case FLASH_BOOTIMG:
+        ui->bar_flash->setValue(70);
+        break;
+    case CHECK_INSTALL:
+        ui->bar_flash->setValue(80);
+        break;
+    case RELEASE_CONTROLS:
+        ui->bar_flash->setValue(90);
+        flashtimer->stop();
+        ui->btn_quit->setEnabled(true);
+        ui->actionQuit->setEnabled(true);
+        break;
+    default:
+        break;
+    }
+}
+
+int flasher::detect_device(void) {
+    ui->txt_out->append("< Waiting for your device >");
 #ifdef Q_WS_X11
     p.start( "tools/adb devices" );
 #endif
@@ -104,7 +187,6 @@ void flasher::on_btn_start_clicked()
                 if (list2.count() == 1) {
                     p.terminate();
                     p_out = "";
-
 #ifdef Q_WS_X11
                     p.start( "tools/fastboot devices" );
 #endif
@@ -128,74 +210,82 @@ void flasher::on_btn_start_clicked()
             }
         }
     }
-/*    if (snr_old != snr) {
-        error = true;
-        ui->txt_out->append("Device S/N has changed!");
-        ui->txt_out->append("Old S/N: " + snr_old + ", new S/N: " + snr + "...");
-        ui->txt_out->append("\nGo back and detect this device first!");
-        return;
-    } else {
-        ui->txt_out->append("S/N matches. Checking state...");
+    if (!snr.isEmpty() && !state.isEmpty()) {
+        return GET_BOOTED;
     }
-*/
+    return DETECT;
+}
 
-    ui->bar_flash->setValue(10);
-
-    if (error != true) {
-        if (!state.isEmpty()) {
-            if (state.contains("fastboot")) {
-                 ui->txt_out->append("Device in bootloader, rebooting...");
-                 p.terminate();
-                 p_out = "";
- #ifdef Q_WS_X11
-                 p.start( "tools/fastboot -p " + device + " reboot" );
- #endif
- #ifdef Q_WS_MAC
-                 p.start( "tools/fastboot-mac -p " + device + " reboot" );
- #endif
- #ifdef Q_WS_WIN
-                 p.start( "tools\\fastboot.exe -p " + device + " reboot" );
- #endif
-                 p.waitForFinished(-1);
-                 p_out = p.readAllStandardOutput();
-                 if (!p_out.isEmpty()) {
-                     ui->txt_out->append(p_out);
-                     ui->bar_flash->setValue(20);
-                 }
-            }
-            if (state.contains("recovery")) {
-                ui->txt_out->append("Device in recovery, rebooting...");
-                p.terminate();
-                p_out = "";
+int flasher::get_booted(void) {
+    if (!state.isEmpty()) {
+        ui->txt_out->append("Detecting device state...");
+        if (state.contains("fastboot")) {
+            ui->txt_out->append("Device in bootloader, rebooting...");
+            p.terminate();
+            p_out = "";
 #ifdef Q_WS_X11
-                p.start( "tools/adb -s " + snr + " reboot" );
+            p.start( "tools/fastboot -p " + device + " reboot" );
 #endif
 #ifdef Q_WS_MAC
-                p.start( "tools/adb-mac -s " + snr + " reboot" );
+            p.start( "tools/fastboot-mac -p " + device + " reboot" );
 #endif
 #ifdef Q_WS_WIN
-                p.start( "tools\\adb.exe -s " + snr + " reboot" );
+            p.start( "tools\\fastboot.exe -p " + device + " reboot" );
 #endif
-                p.waitForFinished(-1);
-                p_out = p.readAllStandardOutput();
-                if (!p_out.isEmpty()) {
-                    ui->txt_out->append(p_out);
-                    ui->bar_flash->setValue(20);
-                }
-            }
-            if (state.contains("device")) {
-                ui->txt_out->append("Device booted, proceeding...");
-                ui->bar_flash->setValue(20);
+            p.waitForFinished(-1);
+            p_out = p.readAllStandardOutput();
+            if (!p_out.isEmpty()) {
+                ui->txt_out->append(p_out);
             }
         }
+        if (state.contains("recovery")) {
+            ui->txt_out->append("Device in recovery, rebooting...");
+            p.terminate();
+            p_out = "";
+#ifdef Q_WS_X11
+            p.start( "tools/adb -s " + snr + " reboot" );
+#endif
+#ifdef Q_WS_MAC
+            p.start( "tools/adb-mac -s " + snr + " reboot" );
+#endif
+#ifdef Q_WS_WIN
+            p.start( "tools\\adb.exe -s " + snr + " reboot" );
+#endif
+            p.waitForFinished(-1);
+            p_out = p.readAllStandardOutput();
+            if (!p_out.isEmpty()) {
+                ui->txt_out->append(p_out);
+            }
+        }
+        if (state.contains("device")) {
+            ui->txt_out->append("Device booted, proceeding...");
+            return RELEASE_CONTROLS;
+        }
+       /* return CHECK_SNR;
+        * we can't use this since the bootloader sometimes shows
+        * '????????????' on unlocked devices. Skip this check for
+        * now.
+        */
+        return DETECT;
     }
-    ui->btn_quit->setEnabled(true);
-    ui->actionQuit->setEnabled(true);
+    return DETECT;
 }
 
-void flasher::on_txt_out_textChanged()
-{
-    c = ui->txt_out->textCursor();
-    c.movePosition(QTextCursor::End);
-    ui->txt_out->setTextCursor(c);
-}
+/*
+       p.terminate();
+       p_out = "";
+#ifdef Q_WS_X11
+       p.start( "tools/adb -s " + snr + " shell echo lool" );
+#endif
+#ifdef Q_WS_MAC
+       p.start( "tools/adb-mac -s " + snr + " shell echo lool" );
+#endif
+#ifdef Q_WS_WIN
+       p.start( "tools\\adb.exe -s " + snr + " shell echo lool" );
+#endif
+       p.waitForFinished(-1);
+       p_out = p.readAllStandardOutput();
+       if (!p_out.isEmpty()) {
+           ui->txt_out->append(p_out);
+       }
+*/

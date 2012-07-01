@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'flasher.h'
 **
-** Created: Sun Jul 1 05:46:23 2012
+** Created: Sun Jul 1 17:35:14 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_flasher[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -36,6 +36,9 @@ static const uint qt_meta_data_flasher[] = {
       57,    8,    8,    8, 0x08,
       79,    8,    8,    8, 0x08,
      105,    8,    8,    8, 0x08,
+     131,    8,    8,    8, 0x08,
+     150,    8,  146,    8, 0x08,
+     166,    8,  146,    8, 0x08,
 
        0        // eod
 };
@@ -44,7 +47,8 @@ static const char qt_meta_stringdata_flasher[] = {
     "flasher\0\0on_txt_out_textChanged()\0"
     "on_btn_start_clicked()\0on_btn_quit_clicked()\0"
     "on_actionInfo_triggered()\0"
-    "on_actionQuit_triggered()\0"
+    "on_actionQuit_triggered()\0flash_device()\0"
+    "int\0detect_device()\0get_booted()\0"
 };
 
 const QMetaObject flasher::staticMetaObject = {
@@ -81,9 +85,14 @@ int flasher::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 2: on_btn_quit_clicked(); break;
         case 3: on_actionInfo_triggered(); break;
         case 4: on_actionQuit_triggered(); break;
+        case 5: flash_device(); break;
+        case 6: { int _r = detect_device();
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+        case 7: { int _r = get_booted();
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
         default: ;
         }
-        _id -= 5;
+        _id -= 8;
     }
     return _id;
 }
