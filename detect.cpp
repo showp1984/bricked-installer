@@ -227,11 +227,31 @@ void detect::detect_device(void)
 #endif
                 p.waitForFinished(4000);
                 p_out = p.readAllStandardOutput();
-
-                if (!p_out.isEmpty()) {
+                p_out = p_out.replace("\n"," ").simplified();
+                if (!p_out.isEmpty() && (!p_out.contains("\n"))) {
                     romver = p_out;
                     ui->lbl_donerom->show();
                     ui->bar_detectphone->setValue(64);
+                } else {
+                    p.terminate();
+                    p_out = "";
+#ifdef Q_WS_X11
+                    p.start( "tools/adb -s " + snr + " shell getprop ro.cm.version" );
+#endif
+#ifdef Q_WS_MAC
+                    p.start( "tools/adb-mac -s " + snr + " shell getprop ro.cm.version" );
+#endif
+#ifdef Q_WS_WIN
+                    p.start( "tools\\adb.exe -s " + snr + " shell getprop ro.cm.version" );
+#endif
+                    p.waitForFinished(4000);
+                    p_out = p.readAllStandardOutput();
+
+                    if (!p_out.isEmpty()) {
+                        romver = p_out;
+                        ui->lbl_donerom->show();
+                        ui->bar_detectphone->setValue(64);
+                    }
                 }
 
                 p.terminate();
@@ -273,11 +293,34 @@ void detect::detect_device(void)
 #endif
                 p.waitForFinished(4000);
                 p_out = p.readAllStandardOutput();
-
-                if (!p_out.isEmpty()) {
+                p_out = p_out.replace("\n"," ").simplified();
+                if (!p_out.isEmpty() && (!p_out.contains("\n"))) {
                     branchver = p_out;
+                    branchver.prepend("Sense ");
                     ui->lbl_donebranch->show();
                     ui->bar_detectphone->setValue(80);
+                } else {
+                    p.terminate();
+                    p_out = "";
+
+#ifdef Q_WS_X11
+                    p.start( "tools/adb -s " + snr + " shell getprop ro.modversion" );
+#endif
+#ifdef Q_WS_MAC
+                    p.start( "tools/adb-mac -s " + snr + " shell getprop ro.modversion" );
+#endif
+#ifdef Q_WS_WIN
+                    p.start( "tools\\adb.exe -s " + snr + " shell getprop ro.modversion" );
+#endif
+                    p.waitForFinished(4000);
+                    p_out = p.readAllStandardOutput();
+
+                    if (!p_out.isEmpty()) {
+                        branchver = p_out;
+                        branchver.prepend("AOSP CM");
+                        ui->lbl_donebranch->show();
+                        ui->bar_detectphone->setValue(80);
+                    }
                 }
             }
 

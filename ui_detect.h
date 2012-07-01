@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'detect.ui'
 **
-** Created: Sun Jul 1 01:05:18 2012
+** Created: Sun Jul 1 01:45:18 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -165,7 +165,7 @@ public:
         lbl_androver->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         lbl_branchver = new QLabel(centralwidget);
         lbl_branchver->setObjectName(QString::fromUtf8("lbl_branchver"));
-        lbl_branchver->setGeometry(QRect(230, 330, 171, 21));
+        lbl_branchver->setGeometry(QRect(230, 330, 101, 21));
         lbl_branchver->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         lbl_edt_snr = new QLabel(centralwidget);
         lbl_edt_snr->setObjectName(QString::fromUtf8("lbl_edt_snr"));
@@ -185,11 +185,11 @@ public:
         lbl_edt_romver->setAlignment(Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing);
         lbl_edt_androidver = new QLabel(centralwidget);
         lbl_edt_androidver->setObjectName(QString::fromUtf8("lbl_edt_androidver"));
-        lbl_edt_androidver->setGeometry(QRect(430, 310, 231, 21));
+        lbl_edt_androidver->setGeometry(QRect(340, 310, 321, 21));
         lbl_edt_androidver->setAlignment(Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing);
         lbl_edt_branchver = new QLabel(centralwidget);
         lbl_edt_branchver->setObjectName(QString::fromUtf8("lbl_edt_branchver"));
-        lbl_edt_branchver->setGeometry(QRect(430, 330, 231, 21));
+        lbl_edt_branchver->setGeometry(QRect(340, 330, 321, 21));
         lbl_edt_branchver->setAlignment(Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing);
         lbl_device = new QLabel(centralwidget);
         lbl_device->setObjectName(QString::fromUtf8("lbl_device"));

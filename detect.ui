@@ -348,7 +348,7 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>230</x>
       <y>330</y>
-      <width>171</width>
+      <width>101</width>
       <height>21</height>
      </rect>
     </property>
@@ -426,9 +426,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="lbl_edt_androidver">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>340</x>
       <y>310</y>
-      <width>231</width>
+      <width>321</width>
       <height>21</height>
      </rect>
     </property>
@@ -442,9 +442,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="lbl_edt_branchver">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>340</x>
       <y>330</y>
-      <width>231</width>
+      <width>321</width>
       <height>21</height>
      </rect>
     </property>
