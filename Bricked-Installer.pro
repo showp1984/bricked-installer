@@ -2,6 +2,13 @@
 # Project created by QtCreator 2012-06-28T20:21:06
 # -------------------------------------------------
 QT += sql
+
+# version
+VERSION = 0.1
+
+# preprocessor macro
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
+
 TARGET = Bricked-Installer
 TEMPLATE = app
 SOURCES += main.cpp \

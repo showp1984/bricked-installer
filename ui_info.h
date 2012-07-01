@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'info.ui'
 **
-** Created: Fri Jun 29 22:16:11 2012
+** Created: Sun Jul 1 02:42:35 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -32,14 +32,14 @@ public:
         if (Info->objectName().isEmpty())
             Info->setObjectName(QString::fromUtf8("Info"));
         Info->setEnabled(true);
-        Info->resize(322, 306);
+        Info->resize(322, 320);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(Info->sizePolicy().hasHeightForWidth());
         Info->setSizePolicy(sizePolicy);
-        Info->setMinimumSize(QSize(322, 306));
-        Info->setMaximumSize(QSize(322, 306));
+        Info->setMinimumSize(QSize(322, 320));
+        Info->setMaximumSize(QSize(322, 320));
         Info->setFocusPolicy(Qt::StrongFocus);
         Info->setContextMenuPolicy(Qt::NoContextMenu);
         Info->setSizeGripEnabled(false);
@@ -53,7 +53,7 @@ public:
         lbl_info->setOpenExternalLinks(true);
         btn_back = new QPushButton(Info);
         btn_back->setObjectName(QString::fromUtf8("btn_back"));
-        btn_back->setGeometry(QRect(10, 280, 301, 20));
+        btn_back->setGeometry(QRect(10, 290, 301, 20));
 
         retranslateUi(Info);
 
