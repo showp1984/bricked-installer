@@ -530,7 +530,7 @@ void detect::on_btn_yes_clicked()
     } else {
         flasherwind = new flasher();
         flasherwind->set_snr(snr);
-        flasherwind->set_state(state);
+        flasherwind->set_device(device);
         flasherwind->show();
         this->close();
     }

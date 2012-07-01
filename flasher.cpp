@@ -41,9 +41,9 @@ void flasher::set_snr(QString str)
     snr_old = str;
 }
 
-void flasher::set_state(QString str)
+void flasher::set_device(QString str)
 {
-    state_old = str;
+    device = str;
 }
 
 void flasher::on_actionQuit_triggered()
@@ -137,19 +137,54 @@ void flasher::on_btn_start_clicked()
     } else {
         ui->txt_out->append("S/N matches. Checking state...");
     }
-    if (!error) {
+
+    ui->bar_flash->setValue(10);
+
+    if (error != true) {
         if (!state.isEmpty()) {
-            if (state.contains("bootloader"))
-            {
+            if (state.contains("fastboot")) {
                  ui->txt_out->append("Device in bootloader, rebooting...");
+                 p.terminate();
+                 p_out = "";
+ #ifdef Q_WS_X11
+                 p.start( "tools/fastboot -p " + device + " reboot" );
+ #endif
+ #ifdef Q_WS_MAC
+                 p.start( "tools/fastboot-mac -p " + device + " reboot" );
+ #endif
+ #ifdef Q_WS_WIN
+                 p.start( "tools\\fastboot.exe -p " + device + " reboot" );
+ #endif
+                 p.waitForFinished(-1);
+                 p_out = p.readAllStandardOutput();
+                 if (!p_out.isEmpty()) {
+                     ui->txt_out->append(p_out);
+                     ui->bar_flash->setValue(20);
+                 }
             }
-            if (state.contains("recovery"))
-            {
+            if (state.contains("recovery")) {
                 ui->txt_out->append("Device in recovery, rebooting...");
+                p.terminate();
+                p_out = "";
+#ifdef Q_WS_X11
+                p.start( "tools/adb -s " + snr + " reboot" );
+#endif
+#ifdef Q_WS_MAC
+                p.start( "tools/adb-mac -s " + snr + " reboot" );
+#endif
+#ifdef Q_WS_WIN
+                p.start( "tools\\adb.exe -s " + snr + " reboot" );
+#endif
+                p.waitForFinished(-1);
+                p_out = p.readAllStandardOutput();
+                if (!p_out.isEmpty()) {
+                    ui->txt_out->append(p_out);
+                    ui->bar_flash->setValue(20);
+                }
             }
-            if (state.contains("device"))
-            {
+            if (state.contains("device")) {
                 ui->txt_out->append("Device booted, proceeding...");
+                ui->bar_flash->setValue(20);
             }
         }
     }

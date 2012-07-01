@@ -17,7 +17,7 @@ public:
     flasher(QWidget *parent = 0);
     ~flasher();
     void set_snr(QString);
-    void set_state(QString);
+    void set_device(QString);
 
 protected:
     void changeEvent(QEvent *e);
@@ -32,8 +32,8 @@ private:
     QStringList list2;
     QStringList list3;
     QString p_out;
+    QString device;
     QString snr_old;
-    QString state_old;
     QString snr;
     QString state;
 
