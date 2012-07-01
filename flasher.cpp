@@ -2,6 +2,9 @@
 #include "ui_flasher.h"
 #include "openfile.h"
 
+#include "quazip/quazip.h"
+#include "quazip/quazipfile.h"
+
 flasher::flasher(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::flasher)
