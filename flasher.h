@@ -32,6 +32,7 @@ public:
     void set_device(QString);
     void set_filename(QString);
     void set_filepath(QString);
+    void set_type(int);
 
 protected:
     void changeEvent(QEvent *e);
@@ -45,6 +46,7 @@ private:
     bool error;
     bool firstcall;
     int flash_state;
+    int type;
     QStringList list;
     QStringList list2;
     QStringList list3;

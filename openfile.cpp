@@ -54,13 +54,23 @@ void openfile::on_btn_quit_clicked()
 
 void openfile::on_btn_go_clicked()
 {
-    flasherwind = new flasher();
-    flasherwind->set_snr(snr_old);
-    flasherwind->set_device(device);
-    flasherwind->set_filename(filename);
-    flasherwind->set_filepath(filepath);
-    flasherwind->show();
-    this->close();
+    switch (ui->cmb_type->currentIndex())
+    {
+    case KERNEL:
+        flasherwind = new flasher();
+        flasherwind->set_snr(snr_old);
+        flasherwind->set_device(device);
+        flasherwind->set_filename(filename);
+        flasherwind->set_filepath(filepath);
+        flasherwind->set_type(ui->cmb_type->currentIndex());
+        flasherwind->show();
+        this->close();
+        break;
+    case ROM:
+        alertbox.setText("Sorry, Kernel flashing is unimplemented.");
+        alertbox.exec();
+        break;
+    }
 }
 
 void openfile::on_btn_find_clicked()
@@ -70,5 +80,19 @@ void openfile::on_btn_find_clicked()
         ui->edt_filename->setText(filepath);
         fileinfo = filepath;
         filename = fileinfo.fileName();
+    }
+}
+
+void openfile::on_cmb_type_currentIndexChanged(int index)
+{
+    switch (index)
+    {
+    case KERNEL:
+        break;
+    case ROM:
+        alertbox.setText("Sorry, unimplemented.");
+        alertbox.exec();
+        ui->cmb_type->setCurrentIndex(0);
+        break;
     }
 }

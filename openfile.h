@@ -12,6 +12,11 @@ namespace Ui {
     class openfile;
 }
 
+enum {
+    KERNEL = 0,
+    ROM
+};
+
 class openfile : public QMainWindow {
     Q_OBJECT
 public:
@@ -27,6 +32,7 @@ private:
     Ui::openfile *ui;
     Info *infowind;
     flasher *flasherwind;
+    QMessageBox alertbox;
     QFileInfo fileinfo;
     QString device;
     QString snr_old;
@@ -34,6 +40,7 @@ private:
     QString filepath;
 
 private slots:
+    void on_cmb_type_currentIndexChanged(int index);
     void on_btn_find_clicked();
     void on_btn_go_clicked();
     void on_btn_quit_clicked();

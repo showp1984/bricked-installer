@@ -1,5 +1,6 @@
 #include "flasher.h"
 #include "ui_flasher.h"
+#include "openfile.h"
 
 flasher::flasher(QWidget *parent) :
     QMainWindow(parent),
@@ -64,6 +65,11 @@ void flasher::set_filepath(QString str)
     ui->edt_filepath->setText(filepath);
 }
 
+void flasher::set_type(int integer)
+{
+    type = integer;
+}
+
 void flasher::on_actionQuit_triggered()
 {
     this->close();
@@ -89,9 +95,15 @@ void flasher::on_btn_start_clicked()
     ui->bar_flash->show();
 
     ui->txt_out->clear();
-    ui->txt_out->append("Wake up, daddy's home....");
+    ui->txt_out->append("Wake up, daddy's home...");
     ui->txt_out->append("JARVIS: Welcome home, sir!");
-    ui->txt_out->append("JARVIS: Starting automated flashing procedure...\n");
+    ui->txt_out->append("JARVIS: Starting automated flashing procedure.");
+
+    if (type == KERNEL) {
+        ui->txt_out->append("JARVIS: switching to Kernel flashing mode...\n");
+    } else if (type == ROM) {
+        ui->txt_out->append("JARVIS: switching to ROM flashing mode...\n");
+    }
 
     flash_state = EXTRACT;
     firstcall = true;

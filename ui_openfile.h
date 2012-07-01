@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'openfile.ui'
 **
-** Created: Sun Jul 1 22:44:30 2012
+** Created: Sun Jul 1 23:44:28 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QComboBox>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
@@ -37,6 +38,7 @@ public:
     QLineEdit *edt_filename;
     QPushButton *btn_find;
     QLabel *lbl_file;
+    QComboBox *cmb_type;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuHelp;
@@ -72,6 +74,10 @@ public:
         lbl_file = new QLabel(centralwidget);
         lbl_file->setObjectName(QString::fromUtf8("lbl_file"));
         lbl_file->setGeometry(QRect(200, 10, 521, 17));
+        cmb_type = new QComboBox(centralwidget);
+        cmb_type->setObjectName(QString::fromUtf8("cmb_type"));
+        cmb_type->setGeometry(QRect(200, 90, 521, 31));
+        cmb_type->setFrame(true);
         openfile->setCentralWidget(centralwidget);
         menubar = new QMenuBar(openfile);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -88,6 +94,9 @@ public:
         menuHelp->addAction(actionInfo);
 
         retranslateUi(openfile);
+
+        cmb_type->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(openfile);
     } // setupUi
@@ -106,6 +115,11 @@ public:
         btn_go->setText(QApplication::translate("openfile", "Go!", 0, QApplication::UnicodeUTF8));
         btn_find->setText(QApplication::translate("openfile", "Find", 0, QApplication::UnicodeUTF8));
         lbl_file->setText(QApplication::translate("openfile", "Which file do you want to flash?", 0, QApplication::UnicodeUTF8));
+        cmb_type->clear();
+        cmb_type->insertItems(0, QStringList()
+         << QApplication::translate("openfile", "This contains a kernel", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("openfile", "This contains a ROM", 0, QApplication::UnicodeUTF8)
+        );
         menuFile->setTitle(QApplication::translate("openfile", "File", 0, QApplication::UnicodeUTF8));
         menuHelp->setTitle(QApplication::translate("openfile", "Help", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
