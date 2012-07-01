@@ -26,6 +26,14 @@ private:
     Ui::flasher *ui;
     Info *infowind;
     QTextCursor c;
+    QProcess p;
+    bool error;
+    QStringList list;
+    QStringList list2;
+    QStringList list3;
+    QString p_out;
+    QString snr_old;
+    QString state_old;
     QString snr;
     QString state;
 
