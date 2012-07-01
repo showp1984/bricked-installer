@@ -70,9 +70,9 @@ void flasher::on_btn_start_clicked()
     ui->bar_flash->show();
 
     ui->txt_out->clear();
-    ui->txt_out->append("Old S/N: " + snr_old + "...");
-    ui->txt_out->append("Checking again...");
-    //ui->txt_out->append("Sending in GLaDoS...\n");
+//    ui->txt_out->append("Old S/N: " + snr_old + "...");
+//    ui->txt_out->append("Checking again...");
+    ui->txt_out->append("Sending in GLaDoS...\n");
 
 #ifdef Q_WS_X11
     p.start( "tools/adb devices" );
@@ -128,7 +128,7 @@ void flasher::on_btn_start_clicked()
             }
         }
     }
-    if (snr_old != snr) {
+/*    if (snr_old != snr) {
         error = true;
         ui->txt_out->append("Device S/N has changed!");
         ui->txt_out->append("Old S/N: " + snr_old + ", new S/N: " + snr + "...");
@@ -137,6 +137,7 @@ void flasher::on_btn_start_clicked()
     } else {
         ui->txt_out->append("S/N matches. Checking state...");
     }
+*/
 
     ui->bar_flash->setValue(10);
 
