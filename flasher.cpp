@@ -19,6 +19,7 @@ flasher::flasher(QWidget *parent) :
     ui->bar_flash->setMinimum(0);
     ui->bar_flash->setMaximum(90);
     ui->bar_flash->setValue(0);
+    ui->txt_out->hide();
 }
 
 flasher::~flasher()
@@ -51,6 +52,18 @@ void flasher::set_device(QString str)
     device = str;
 }
 
+void flasher::set_filename(QString str)
+{
+    filename = str;
+    ui->lbl_edt_filename->setText(filename);
+}
+
+void flasher::set_filepath(QString str)
+{
+    filepath = str;
+    ui->edt_filepath->setText(filepath);
+}
+
 void flasher::on_actionQuit_triggered()
 {
     this->close();
@@ -70,6 +83,7 @@ void flasher::on_btn_quit_clicked()
 void flasher::on_btn_start_clicked()
 {
     ui->btn_start->hide();
+    ui->txt_out->show();
     ui->btn_quit->setEnabled(false);
     ui->actionQuit->setEnabled(false);
     ui->bar_flash->show();

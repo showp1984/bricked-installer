@@ -58,16 +58,17 @@ void openfile::on_btn_go_clicked()
     flasherwind->set_snr(snr_old);
     flasherwind->set_device(device);
     flasherwind->set_filename(filename);
+    flasherwind->set_filepath(filepath);
     flasherwind->show();
     this->close();
 }
 
 void openfile::on_btn_find_clicked()
 {
-    file = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Files (*.*)"));
-    if (!file.isEmpty()) {
-        ui->edt_filename->setText(file);
-        fileinfo = file;
-        filename = fileinfo.filename();
+    filepath = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Zip-Files (*.zip)"));
+    if (!filepath.isNull()) {
+        ui->edt_filename->setText(filepath);
+        fileinfo = filepath;
+        filename = fileinfo.fileName();
     }
 }

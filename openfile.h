@@ -27,11 +27,11 @@ private:
     Ui::openfile *ui;
     Info *infowind;
     flasher *flasherwind;
-    QFileInfo fileInfo;
+    QFileInfo fileinfo;
     QString device;
     QString snr_old;
-    QString fileName;
-    QString file;
+    QString filename;
+    QString filepath;
 
 private slots:
     void on_btn_find_clicked();

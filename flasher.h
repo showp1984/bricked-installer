@@ -30,6 +30,8 @@ public:
     ~flasher();
     void set_snr(QString);
     void set_device(QString);
+    void set_filename(QString);
+    void set_filepath(QString);
 
 protected:
     void changeEvent(QEvent *e);
@@ -42,6 +44,7 @@ private:
     QProcess p;
     bool error;
     bool firstcall;
+    int flash_state;
     QStringList list;
     QStringList list2;
     QStringList list3;
@@ -50,7 +53,8 @@ private:
     QString snr_old;
     QString snr;
     QString state;
-    int flash_state;
+    QString filename;
+    QString filepath;
 
 private slots:
     void on_txt_out_textChanged();
