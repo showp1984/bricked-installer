@@ -90,8 +90,8 @@ void detect::detect_device(void)
 {
     if (firstcall) {
             firstcall = false;
-            detecttimer->stop();
-            detecttimer->start(5000);
+    } else {
+        detecttimer->setInterval(6000);
     }
 
     snr = "";

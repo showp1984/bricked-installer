@@ -61,6 +61,7 @@ private slots:
     void flash_device(void);
     int detect_device(void);
     int get_booted(void);
+    int push_files(void);
 };
 
 #endif // FLASHER_H

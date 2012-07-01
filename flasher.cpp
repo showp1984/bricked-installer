@@ -77,6 +77,7 @@ void flasher::on_btn_start_clicked()
     ui->txt_out->append("Sending in GLaDoS...\n");
 
     flash_state = EXTRACT;
+    firstcall = true;
     flashtimer->start(0);
 }
 
@@ -91,11 +92,11 @@ void flasher::flash_device(void)
 {
     if (firstcall) {
             firstcall = false;
-            flashtimer->stop();
-            flashtimer->start(1000);
+    } else {
+        flashtimer->setInterval(1000);
     }
     /*
-     * Available states:
+     * Available flash_states:
      *
      * EXTRACT = 0,
      * DETECT,
@@ -118,7 +119,6 @@ void flasher::flash_device(void)
         break;
     case GET_BOOTED:
         flash_state = get_booted();
-        ui->bar_flash->setValue(30);
         break;
     case CHECK_SNR:
         ui->txt_out->append("Checking if S/N changed...");
@@ -133,6 +133,7 @@ void flasher::flash_device(void)
         ui->bar_flash->setValue(40);
         break;
     case PUSH_FILES:
+        flash_state = push_files();
         ui->bar_flash->setValue(50);
         break;
     case REBOOT_FASTBOOT:
@@ -157,6 +158,11 @@ void flasher::flash_device(void)
 
 int flasher::detect_device(void) {
     ui->txt_out->append("< Waiting for your device >");
+    flashtimer->setInterval(6000);
+    p.terminate();
+    p_out = "";
+    snr = "";
+    state = "";
 #ifdef Q_WS_X11
     p.start( "tools/adb devices" );
 #endif
@@ -168,7 +174,6 @@ int flasher::detect_device(void) {
 #endif
     p.waitForFinished(-1);
     p_out = p.readAllStandardOutput();
-
     if (!p_out.isEmpty()) {
         list = p_out.split("\n");
         if (!list.isEmpty()) {
@@ -198,7 +203,6 @@ int flasher::detect_device(void) {
 #endif
                     p.waitForFinished(-1);
                     p_out = p.readAllStandardOutput();
-
                     if (!p_out.isEmpty()) {
                         list3 = p_out.split("\t");
                         if ((!list3.isEmpty()) && (list3.count() > 1)) {
@@ -211,8 +215,10 @@ int flasher::detect_device(void) {
         }
     }
     if (!snr.isEmpty() && !state.isEmpty()) {
+        flashtimer->setInterval(1000);
         return GET_BOOTED;
     }
+    flashtimer->setInterval(6000);
     return DETECT;
 }
 
@@ -232,7 +238,7 @@ int flasher::get_booted(void) {
 #ifdef Q_WS_WIN
             p.start( "tools\\fastboot.exe -p " + device + " reboot" );
 #endif
-            p.waitForFinished(-1);
+            p.waitForFinished(1000);
             p_out = p.readAllStandardOutput();
             if (!p_out.isEmpty()) {
                 ui->txt_out->append(p_out);
@@ -259,7 +265,8 @@ int flasher::get_booted(void) {
         }
         if (state.contains("device")) {
             ui->txt_out->append("Device booted, proceeding...");
-            return RELEASE_CONTROLS;
+            ui->bar_flash->setValue(30);
+            return PUSH_FILES;
         }
        /* return CHECK_SNR;
         * we can't use this since the bootloader sometimes shows
@@ -271,21 +278,23 @@ int flasher::get_booted(void) {
     return DETECT;
 }
 
-/*
-       p.terminate();
-       p_out = "";
+int flasher::push_files(void)
+{
+    p.terminate();
+    p_out = "";
 #ifdef Q_WS_X11
-       p.start( "tools/adb -s " + snr + " shell echo lool" );
+    p.start( "tools/adb -s " + snr + " shell echo lool" );
 #endif
 #ifdef Q_WS_MAC
-       p.start( "tools/adb-mac -s " + snr + " shell echo lool" );
+    p.start( "tools/adb-mac -s " + snr + " shell echo lool" );
 #endif
 #ifdef Q_WS_WIN
-       p.start( "tools\\adb.exe -s " + snr + " shell echo lool" );
+    p.start( "tools\\adb.exe -s " + snr + " shell echo lool" );
 #endif
-       p.waitForFinished(-1);
-       p_out = p.readAllStandardOutput();
-       if (!p_out.isEmpty()) {
-           ui->txt_out->append(p_out);
-       }
-*/
+    p.waitForFinished(-1);
+    p_out = p.readAllStandardOutput();
+    if (!p_out.isEmpty()) {
+        ui->txt_out->append(p_out);
+    }
+    return RELEASE_CONTROLS;
+}
