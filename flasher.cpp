@@ -74,7 +74,9 @@ void flasher::on_btn_start_clicked()
     ui->bar_flash->show();
 
     ui->txt_out->clear();
-    ui->txt_out->append("Sending in GLaDoS...\n");
+    ui->txt_out->append("Wake up, daddy's home....");
+    ui->txt_out->append("JARVIS: Welcome home, sir!");
+    ui->txt_out->append("JARVIS: Starting automated flashing procedure...\n");
 
     flash_state = EXTRACT;
     firstcall = true;
