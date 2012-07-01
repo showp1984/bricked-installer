@@ -57,6 +57,7 @@ private:
     QString state;
     QString filename;
     QString filepath;
+    QString tmp_folder;
 
 private slots:
     void on_txt_out_textChanged();

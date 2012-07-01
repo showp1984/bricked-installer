@@ -188,7 +188,24 @@ void flasher::flash_device(void)
 
 int flasher::extract(void)
 {
-    //empty for now, skip to detect
+    unsigned int rnd = 0, max = 999999;
+    bool success = false;
+
+    while (!success) {
+        rnd = qrand() % max;
+        tmp_folder = QString("%1").arg(rnd);
+        if (!QDir(tmp_folder).exists()) {
+            QDir().mkdir(tmp_folder);
+            success = true;
+        }
+    }
+    ui->txt_out->append("Created temporary directory: " + tmp_folder);
+
+
+
+    QDir().rmdir(tmp_folder);
+    ui->txt_out->append("Deleted temporary directory: " + tmp_folder);
+    //skip to detect
     return DETECT;
 }
 
