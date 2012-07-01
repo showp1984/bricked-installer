@@ -58,6 +58,7 @@ detect::detect(QWidget *parent) :
 
 detect::~detect()
 {
+    detecttimer->stop();
     delete detecttimer;
     delete ui;
     delete this;
@@ -528,10 +529,10 @@ void detect::on_btn_yes_clicked()
         alertbox.setText("This installer currently only supports the\n HTC One X (endeavoru).\n\n Sorry!");
         alertbox.exec();
     } else {
-        flasherwind = new flasher();
-        flasherwind->set_snr(snr);
-        flasherwind->set_device(device);
-        flasherwind->show();
+        openfilewind = new openfile();
+        openfilewind->set_snr(snr);
+        openfilewind->set_device(device);
+        openfilewind->show();
         this->close();
     }
 }

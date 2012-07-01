@@ -18,8 +18,10 @@ dragons::dragons(QWidget *parent) :
 
 dragons::~dragons()
 {
+    timer->stop();
     delete timer;
     delete ui;
+    delete this;
 }
 
 void dragons::changeEvent(QEvent *e)

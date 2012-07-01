@@ -23,6 +23,7 @@ flasher::flasher(QWidget *parent) :
 
 flasher::~flasher()
 {
+    flashtimer->stop();
     delete flashtimer;
     delete ui;
     delete this;

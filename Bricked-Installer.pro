@@ -15,15 +15,18 @@ SOURCES += main.cpp \
     dragons.cpp \
     info.cpp \
     detect.cpp \
-    flasher.cpp
+    flasher.cpp \
+    openfile.cpp
 HEADERS += mainwindow.h \
     dragons.h \
     info.h \
     detect.h \
-    flasher.h
+    flasher.h \
+    openfile.h
 FORMS += mainwindow.ui \
     dragons.ui \
     info.ui \
     detect.ui \
-    flasher.ui
+    flasher.ui \
+    openfile.ui
 RESOURCES += res/res_loc.qrc
