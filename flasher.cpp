@@ -589,45 +589,75 @@ int flasher::reboot_fastboot(void)
 
 int flasher::flash_boot(void)
 {
-    ui->txt_out->append("Flashing boot.img...");
-    QDirIterator it(QString(abstemppath), QDirIterator::Subdirectories);
-    while (it.hasNext()) {
-        if (it.next().contains("boot.img") && !it.next().isEmpty()) {
-            p.terminate();
-            p_out = "";
-#ifdef Q_WS_X11
-            p.start( "tools/fastboot -d " + device + " flash boot " + it.next());
-#endif
-#ifdef Q_WS_MAC
-            p.start( "tools/fastboot-mac -d " + device + " flash boot " + it.next());
-#endif
-#ifdef Q_WS_WIN
-            p.start( "tools\\fastboot.exe -d " + device + " flash boot " + it.next());
-#endif
-            p.waitForFinished(-1);
-            p_out = p.readAllStandardOutput();
-            if (!p_out.isEmpty()) {
-                ui->txt_out->append(p_out);
-            }
-        }
-    }
-    ui->txt_out->append("boot.img flashed...");
-    ui->txt_out->append("Rebooting device...");
+    ui->txt_out->append("< Waiting for your device >");
+    flashtimer->setInterval(6000);
     p.terminate();
     p_out = "";
+    snr = "";
+    state = "";
 #ifdef Q_WS_X11
-    p.start( "tools/fastboot -d " + device + " reboot");
+    p.start( "tools/fastboot devices" );
 #endif
 #ifdef Q_WS_MAC
-    p.start( "tools/fastboot-mac -d " + device + " reboot");
+    p.start( "tools/fastboot-mac devices" );
 #endif
 #ifdef Q_WS_WIN
-    p.start( "tools\\fastboot.exe -d " + device + " reboot");
+    p.start( "tools\\fastboot.exe devices" );
 #endif
     p.waitForFinished(-1);
     p_out = p.readAllStandardOutput();
     if (!p_out.isEmpty()) {
-        ui->txt_out->append(p_out);
+        list3 = p_out.split("\t");
+        if ((!list3.isEmpty()) && (list3.count() > 1)) {
+            snr = list3[0];
+            state = list3[1];
+        }
     }
-    return RELEASE_CONTROLS;
+    if (!snr.isEmpty() && !state.isEmpty()) {
+        flashtimer->setInterval(1000);
+        ui->txt_out->append("Flashing boot.img...");
+        QDirIterator it(QString(abstemppath), QDirIterator::Subdirectories);
+        while (it.hasNext()) {
+            if (it.next().contains("boot.img") && !it.next().isEmpty()) {
+                p.terminate();
+                p_out = "";
+    #ifdef Q_WS_X11
+                p.start( "tools/fastboot -p " + device + " flash boot " + "'" + it.next() + "'");
+    #endif
+    #ifdef Q_WS_MAC
+                p.start( "tools/fastboot-mac -p " + device + " flash boot " + "'" + it.next() + "'");
+    #endif
+    #ifdef Q_WS_WIN
+                p.start( "tools\\fastboot.exe -p " + device + " flash boot " + "\"" + it.next() + "\"");
+    #endif
+                p.waitForFinished(-1);
+                p_out = p.readAllStandardOutput();
+qDebug() << p_out;
+                if (!p_out.isEmpty()) {
+                    ui->txt_out->append(p_out);
+                }
+            }
+        }
+        ui->txt_out->append("boot.img flashed...");
+        ui->txt_out->append("Rebooting device...");
+        p.terminate();
+        p_out = "";
+    #ifdef Q_WS_X11
+        p.start( "tools/fastboot -p " + device + " reboot");
+    #endif
+    #ifdef Q_WS_MAC
+        p.start( "tools/fastboot-mac -p " + device + " reboot");
+    #endif
+    #ifdef Q_WS_WIN
+        p.start( "tools\\fastboot.exe -p " + device + " reboot");
+    #endif
+        p.waitForFinished(-1);
+        p_out = p.readAllStandardOutput();
+        if (!p_out.isEmpty()) {
+            ui->txt_out->append(p_out);
+        }
+        return RELEASE_CONTROLS;
+    }
+    flashtimer->setInterval(6000);
+    return FLASH_BOOTIMG;
 }
