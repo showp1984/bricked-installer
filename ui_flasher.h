@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'flasher.ui'
 **
-** Created: Mon Jul 2 10:56:24 2012
+** Created: Mon Jul 2 12:51:06 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -86,10 +86,10 @@ public:
         txt_out = new QTextEdit(centralwidget);
         txt_out->setObjectName(QString::fromUtf8("txt_out"));
         txt_out->setGeometry(QRect(200, 60, 521, 371));
-        txt_out->setContextMenuPolicy(Qt::NoContextMenu);
+        txt_out->setContextMenuPolicy(Qt::DefaultContextMenu);
         txt_out->setUndoRedoEnabled(false);
         txt_out->setReadOnly(true);
-        txt_out->setTextInteractionFlags(Qt::NoTextInteraction);
+        txt_out->setTextInteractionFlags(Qt::TextSelectableByMouse);
         lbl_filepath = new QLabel(centralwidget);
         lbl_filepath->setObjectName(QString::fromUtf8("lbl_filepath"));
         lbl_filepath->setGeometry(QRect(200, 30, 41, 25));

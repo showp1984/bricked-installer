@@ -537,17 +537,19 @@ void PushWorker::run(void)
 {
     QProcess p2;
     QDirIterator it2(QString(abstemppath), QDirIterator::Subdirectories);
+    QString filepath2;
     while (it2.hasNext()) {
-        if (it2.next().contains(".ko") && !it2.next().isEmpty()) {
+        filepath2 = it2.next();
+        if (filepath2 .contains(".ko") && !filepath2 .isEmpty()) {
             p2.terminate();
 #ifdef Q_WS_X11
-            p2.start( "tools/adb -s " + snr + " push " + it2.next() + " /system/lib/modules/");
+            p2.start( "tools/adb -s " + snr + " push " + filepath2  + " /system/lib/modules/");
 #endif
 #ifdef Q_WS_MAC
-            p2.start( "tools/adb-mac -s " + snr + " push " + it2.next() + " /system/lib/modules/");
+            p2.start( "tools/adb-mac -s " + snr + " push " + filepath2 + " /system/lib/modules/");
 #endif
 #ifdef Q_WS_WIN
-            p2.start( "tools\\adb.exe -s " + snr + " push " + it2.next() + " /system/lib/modules/");
+            p2.start( "tools\\adb.exe -s " + snr + " push " + filepath2  + " /system/lib/modules/");
 #endif
             p2.waitForFinished(-1);
         }
@@ -617,20 +619,23 @@ int flasher::flash_boot(void)
     if (!snr.isEmpty() && !state.isEmpty()) {
         flashtimer->setInterval(1000);
         ui->txt_out->append("Flashing boot.img...");
+        
         QDirIterator it(QString(qApp->applicationDirPath() + "/" + tmp_folder), QDirIterator::Subdirectories);
+        QString filepath;
         while (it.hasNext()) {
-            if (it.next().contains("boot.img") && !it.next().isEmpty()) {
-qDebug() << it.next();
+            filepath = it.next();
+            if (filepath.contains("boot.img") && !filepath.isEmpty()) {
+qDebug() << filepath;
                 p.terminate();
                 p_out = "";
     #ifdef Q_WS_X11
-                p.start( "tools/fastboot -p " + device + " flash boot " + "\"" + it.next() + "\"");
+                p.start( "tools/fastboot -p " + device + " flash boot " + "\"" + filepath + "\"");
     #endif
     #ifdef Q_WS_MAC
-                p.start( "tools/fastboot-mac -p " + device + " flash boot " + "\"" + it.next() + "\"");
+                p.start( "tools/fastboot-mac -p " + device + " flash boot " + "\"" + filepath + "\"");
     #endif
     #ifdef Q_WS_WIN
-                p.start( "tools\\fastboot.exe -p " + device + " flash boot " + "\"" + it.next() + "\"");
+                p.start( "tools\\fastboot.exe -p " + device + " flash boot " + "\"" + filepath + "\"");
     #endif
                 p.waitForFinished(-1);
                 p_out = p.readAllStandardOutput();
