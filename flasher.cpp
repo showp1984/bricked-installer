@@ -15,10 +15,6 @@ flasher::flasher(QWidget *parent) :
     flashtimer = new QTimer(this);
     connect(flashtimer, SIGNAL(timeout()), this, SLOT(flash_device()));
 
-    pushtimer = new QTimer(this);
-    connect(pushtimer, SIGNAL(timeout()), this, SLOT(push_files_timed()));
-    pushtimer->setSingleShot(true);
-
     list = QStringList() << "" << "" << "" << "" << "" << "" << "";
     list2 = QStringList() << "" << "";
     list3 = QStringList() << "" << "";
@@ -43,8 +39,6 @@ flasher::~flasher()
 {
     flashtimer->stop();
     delete flashtimer;
-    pushtimer->stop();
-    delete pushtimer;
     delete ui;
     delete this;
 }
@@ -516,20 +510,32 @@ void flasher::push_files(void)
         if (!p_out.isEmpty()) {
             ui->txt_out->append(p_out);
         }
-        pushtimer->start(0);
+        ui->txt_out->append("Searching for modules...");
+        PushWorker *pworker = new PushWorker();
+        pworker->set_snr(snr);
+        pworker->set_abstemppath(abstemppath);
+        QObject::connect(pworker,
+                         SIGNAL(finished()),
+                         this,
+                         SLOT(push_files_finished()));
+        ui->txt_out->append("Pushing modules... (may take a minute)");
+        pworker->start();
     }
 }
 
-void flasher::push_files_timed(void)
+void flasher::push_files_finished(void) {
+    ui->txt_out->append("Modules pushed...");
+    //REBOOT_FASTBOOT
+    flash_state = REBOOT_FASTBOOT;
+}
+
+void PushWorker::run(void)
 {
-    ui->txt_out->append("Searching for modules...");
+    QProcess p;
     QDirIterator it(QString(abstemppath), QDirIterator::Subdirectories);
     while (it.hasNext()) {
         if (it.next().contains(".ko") && !it.next().isEmpty()) {
-            ui->txt_out->append(it.next());
-
             p.terminate();
-            p_out = "";
 #ifdef Q_WS_X11
             p.start( "tools/adb -s " + snr + " push " + it.next() + " /system/lib/modules/");
 #endif
@@ -540,13 +546,18 @@ void flasher::push_files_timed(void)
             p.start( "tools\\adb.exe -s " + snr + " push " + it.next() + " /system/lib/modules/");
 #endif
             p.waitForFinished(-1);
-            p_out = p.readAllStandardOutput();
-            if (!p_out.isEmpty()) {
-                ui->txt_out->append(p_out);
-            }
         }
     }
-    ui->txt_out->append("Modules pushed...");
-    //REBOOT_FASTBOOT
-    flash_state = RELEASE_CONTROLS;
+    this->finished();
+    this->quit();
+}
+
+void PushWorker::set_snr(QString str)
+{
+    snr = str;
+}
+
+void PushWorker::set_abstemppath(QString str)
+{
+    abstemppath = str;
 }

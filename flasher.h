@@ -41,7 +41,6 @@ private:
     Ui::flasher *ui;
     Info *infowind;
     QTimer *flashtimer;
-    QTimer *pushtimer;
     QTextCursor c;
     QProcess p;
     bool error;
@@ -61,6 +60,7 @@ private:
     QString filepath;
     QString tmp_folder;
     QString abstemppath;
+    QString itprev;
 
 private slots:
     void on_txt_out_textChanged();
@@ -69,7 +69,7 @@ private slots:
     void on_actionInfo_triggered();
     void on_actionQuit_triggered();
     void flash_device(void);
-    void push_files_timed(void);
+    void push_files_finished(void);
     int extract(void);
     int detect_device(void);
     int get_booted(void);
@@ -77,5 +77,19 @@ private slots:
     bool extract_zip(const QString&, const QString&, const QString&);
     bool rmdir_recursive(const QString&);
 };
+
+class PushWorker : public QThread {
+    Q_OBJECT
+ public:
+     void run();
+     void set_snr(QString);
+     void set_abstemppath(QString);
+ signals:
+     void finished();
+     void error(QString err);
+ private:
+     QString snr;
+     QString abstemppath;
+ };
 
 #endif // FLASHER_H
