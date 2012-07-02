@@ -296,15 +296,18 @@ void flasher::flash_device(void)
         ui->bar_flash->setValue(50);
         break;
     case REBOOT_FASTBOOT:
+        flash_state = reboot_fastboot();
         ui->bar_flash->setValue(60);
         break;
     case FLASH_BOOTIMG:
+        flash_state = flash_boot();
         ui->bar_flash->setValue(70);
         break;
     case CHECK_INSTALL:
         ui->bar_flash->setValue(80);
         break;
     case RELEASE_CONTROLS:
+        ui->txt_out->append("Doing some cleanup...");
         ret = rmdir_recursive(QString(qApp->applicationDirPath() + "/" + tmp_folder));
         if (!ret) {
             ui->txt_out->append("Error! Could not delete temporary directory: " + tmp_folder);
@@ -315,6 +318,7 @@ void flasher::flash_device(void)
         flashtimer->stop();
         ui->btn_quit->setEnabled(true);
         ui->actionQuit->setEnabled(true);
+        ui->txt_out->append("Installation finished...");
         break;
     default:
         break;
@@ -525,7 +529,6 @@ void flasher::push_files(void)
 
 void flasher::push_files_finished(void) {
     ui->txt_out->append("Modules pushed...");
-    //REBOOT_FASTBOOT
     flash_state = REBOOT_FASTBOOT;
 }
 
@@ -560,4 +563,71 @@ void PushWorker::set_snr(QString str)
 void PushWorker::set_abstemppath(QString str)
 {
     abstemppath = str;
+}
+
+int flasher::reboot_fastboot(void)
+{
+    ui->txt_out->append("Rebooting device to fastboot...");
+    p.terminate();
+    p_out = "";
+#ifdef Q_WS_X11
+    p.start( "tools/adb -s " + snr + " reboot-bootloader" );
+#endif
+#ifdef Q_WS_MAC
+    p.start( "tools/adb-mac -s " + snr + " reboot-bootloader" );
+#endif
+#ifdef Q_WS_WIN
+    p.start( "tools\\adb.exe -s " + snr + " reboot-bootloader" );
+#endif
+    p.waitForFinished(-1);
+    p_out = p.readAllStandardOutput();
+    if (!p_out.isEmpty()) {
+        ui->txt_out->append(p_out);
+    }
+    return FLASH_BOOTIMG;
+}
+
+int flasher::flash_boot(void)
+{
+    ui->txt_out->append("Flashing boot.img...");
+    QDirIterator it(QString(abstemppath), QDirIterator::Subdirectories);
+    while (it.hasNext()) {
+        if (it.next().contains("boot.img") && !it.next().isEmpty()) {
+            p.terminate();
+            p_out = "";
+#ifdef Q_WS_X11
+            p.start( "tools/fastboot -d " + device + " flash boot " + it.next());
+#endif
+#ifdef Q_WS_MAC
+            p.start( "tools/fastboot-mac -d " + device + " flash boot " + it.next());
+#endif
+#ifdef Q_WS_WIN
+            p.start( "tools\\fastboot.exe -d " + device + " flash boot " + it.next());
+#endif
+            p.waitForFinished(-1);
+            p_out = p.readAllStandardOutput();
+            if (!p_out.isEmpty()) {
+                ui->txt_out->append(p_out);
+            }
+        }
+    }
+    ui->txt_out->append("boot.img flashed...");
+    ui->txt_out->append("Rebooting device...");
+    p.terminate();
+    p_out = "";
+#ifdef Q_WS_X11
+    p.start( "tools/fastboot -d " + device + " reboot");
+#endif
+#ifdef Q_WS_MAC
+    p.start( "tools/fastboot-mac -d " + device + " reboot");
+#endif
+#ifdef Q_WS_WIN
+    p.start( "tools\\fastboot.exe -d " + device + " reboot");
+#endif
+    p.waitForFinished(-1);
+    p_out = p.readAllStandardOutput();
+    if (!p_out.isEmpty()) {
+        ui->txt_out->append(p_out);
+    }
+    return RELEASE_CONTROLS;
 }

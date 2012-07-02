@@ -76,6 +76,8 @@ private slots:
     void push_files(void);
     bool extract_zip(const QString&, const QString&, const QString&);
     bool rmdir_recursive(const QString&);
+    int reboot_fastboot(void);
+    int flash_boot(void);
 };
 
 class PushWorker : public QThread {

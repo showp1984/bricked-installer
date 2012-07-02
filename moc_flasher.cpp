@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'flasher.h'
 **
-** Created: Mon Jul 2 10:15:16 2012
+** Created: Mon Jul 2 10:30:40 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_flasher[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      15,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -44,6 +44,8 @@ static const uint qt_meta_data_flasher[] = {
      211,    8,    8,    8, 0x08,
      232,  229,  224,    8, 0x08,
      269,    8,  224,    8, 0x08,
+     294,    8,  168,    8, 0x08,
+     312,    8,  168,    8, 0x08,
 
        0        // eod
 };
@@ -56,7 +58,8 @@ static const char qt_meta_stringdata_flasher[] = {
     "push_files_finished()\0int\0extract()\0"
     "detect_device()\0get_booted()\0push_files()\0"
     "bool\0,,\0extract_zip(QString,QString,QString)\0"
-    "rmdir_recursive(QString)\0"
+    "rmdir_recursive(QString)\0reboot_fastboot()\0"
+    "flash_boot()\0"
 };
 
 const QMetaObject flasher::staticMetaObject = {
@@ -106,9 +109,13 @@ int flasher::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         case 12: { bool _r = rmdir_recursive((*reinterpret_cast< const QString(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+        case 13: { int _r = reboot_fastboot();
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+        case 14: { int _r = flash_boot();
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
         default: ;
         }
-        _id -= 13;
+        _id -= 15;
     }
     return _id;
 }
