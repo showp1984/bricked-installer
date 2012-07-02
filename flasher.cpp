@@ -541,6 +541,9 @@ void PushWorker::run(void)
     while (it2.hasNext()) {
         filepath2 = it2.next();
         if (filepath2 .contains(".ko") && !filepath2 .isEmpty()) {
+#ifdef Q_WS_WIN
+            filepath2.replace(QString("/"), QString("\\"));
+#endif
             p2.terminate();
 #ifdef Q_WS_X11
             p2.start( "tools/adb -s " + snr + " push " + filepath2  + " /system/lib/modules/");
@@ -625,7 +628,9 @@ int flasher::flash_boot(void)
         while (it.hasNext()) {
             filepath = it.next();
             if (filepath.contains("boot.img") && !filepath.isEmpty()) {
-qDebug() << filepath;
+#ifdef Q_WS_WIN
+            filepath.replace(QString("/"), QString("\\"));
+#endif
                 p.terminate();
                 p_out = "";
     #ifdef Q_WS_X11
