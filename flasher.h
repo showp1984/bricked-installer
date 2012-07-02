@@ -41,10 +41,12 @@ private:
     Ui::flasher *ui;
     Info *infowind;
     QTimer *flashtimer;
+    QTimer *pushtimer;
     QTextCursor c;
     QProcess p;
     bool error;
     bool firstcall;
+    bool firstcall_push;
     int flash_state;
     int type;
     QStringList list;
@@ -58,6 +60,7 @@ private:
     QString filename;
     QString filepath;
     QString tmp_folder;
+    QString abstemppath;
 
 private slots:
     void on_txt_out_textChanged();
@@ -66,10 +69,11 @@ private slots:
     void on_actionInfo_triggered();
     void on_actionQuit_triggered();
     void flash_device(void);
+    void push_files_timed(void);
     int extract(void);
     int detect_device(void);
     int get_booted(void);
-    int push_files(void);
+    void push_files(void);
     bool extract_zip(const QString&, const QString&, const QString&);
     bool rmdir_recursive(const QString&);
 };

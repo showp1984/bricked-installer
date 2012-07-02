@@ -10,8 +10,14 @@ flasher::flasher(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::flasher)
 {
+    firstcall_push = true;
+
     flashtimer = new QTimer(this);
     connect(flashtimer, SIGNAL(timeout()), this, SLOT(flash_device()));
+
+    pushtimer = new QTimer(this);
+    connect(pushtimer, SIGNAL(timeout()), this, SLOT(push_files_timed()));
+    pushtimer->setSingleShot(true);
 
     list = QStringList() << "" << "" << "" << "" << "" << "" << "";
     list2 = QStringList() << "" << "";
@@ -37,6 +43,8 @@ flasher::~flasher()
 {
     flashtimer->stop();
     delete flashtimer;
+    pushtimer->stop();
+    delete pushtimer;
     delete ui;
     delete this;
 }
@@ -149,7 +157,6 @@ bool flasher::extract_zip(const QString & filePath, const QString & extDirPath, 
 
     QFile out;
     QString name;
-    QString path;
     QString temppath;
     QString basepath = qApp->applicationDirPath();
     QStringList splitpath = QStringList() << "" << "" << "" << "" << "" << "" << "" << "" << "" << "" << "" << "" << "" << "";
@@ -172,7 +179,7 @@ bool flasher::extract_zip(const QString & filePath, const QString & extDirPath, 
         splitpath = file.getActualFileName().split("/");
         temppath = splitpath.takeLast();
         temppath = splitpath.join("/");
-        path = QString("%1/%2/%3").arg(basepath).arg(extDirPath).arg(temppath);
+        abstemppath = QString("%1/%2/%3").arg(basepath).arg(extDirPath).arg(temppath);
         name = QString("%1/%2/%3").arg(basepath).arg(extDirPath).arg(file.getActualFileName());
 
         if (file.getZipError() != UNZ_OK) {
@@ -180,9 +187,9 @@ bool flasher::extract_zip(const QString & filePath, const QString & extDirPath, 
             return false;
         }
 
-        filedir.setPath(path);
+        filedir.setPath(abstemppath);
         if (!filedir.exists()) {
-            filedir.mkpath(path);
+            filedir.mkpath(abstemppath);
         }
 
         out.setFileName(name);
@@ -291,7 +298,7 @@ void flasher::flash_device(void)
         ui->bar_flash->setValue(40);
         break;
     case PUSH_FILES:
-        flash_state = push_files();
+        push_files();
         ui->bar_flash->setValue(50);
         break;
     case REBOOT_FASTBOOT:
@@ -469,23 +476,77 @@ int flasher::get_booted(void) {
     return DETECT;
 }
 
-int flasher::push_files(void)
+void flasher::push_files(void)
 {
-    p.terminate();
-    p_out = "";
+    if (firstcall_push) {
+        firstcall_push = false;
+
+        ui->txt_out->append("Grabbing root...");
+        p.terminate();
+        p_out = "";
 #ifdef Q_WS_X11
-    p.start( "tools/adb -s " + snr + " shell echo lool" );
+        p.start( "tools/adb -s " + snr + " root");
 #endif
 #ifdef Q_WS_MAC
-    p.start( "tools/adb-mac -s " + snr + " shell echo lool" );
+        p.start( "tools/adb-mac -s " + snr + " root");
 #endif
 #ifdef Q_WS_WIN
-    p.start( "tools\\adb.exe -s " + snr + " shell echo lool" );
+        p.start( "tools\\adb.exe -s " + snr + " root");
 #endif
-    p.waitForFinished(-1);
-    p_out = p.readAllStandardOutput();
-    if (!p_out.isEmpty()) {
-        ui->txt_out->append(p_out);
+        p.waitForFinished(-1);
+        p_out = p.readAllStandardOutput();
+        if (!p_out.isEmpty()) {
+            ui->txt_out->append(p_out);
+        }
+    
+        ui->txt_out->append("Remount /system with r/w...");
+        p.terminate();
+        p_out = "";
+#ifdef Q_WS_X11
+        p.start( "tools/adb -s " + snr + " remount");
+#endif
+#ifdef Q_WS_MAC
+        p.start( "tools/adb-mac -s " + snr + " remount");
+#endif
+#ifdef Q_WS_WIN
+        p.start( "tools\\adb.exe -s " + snr + " remount");
+#endif
+        p.waitForFinished(-1);
+        p_out = p.readAllStandardOutput();
+        if (!p_out.isEmpty()) {
+            ui->txt_out->append(p_out);
+        }
+        pushtimer->start(0);
     }
-    return RELEASE_CONTROLS;
+}
+
+void flasher::push_files_timed(void)
+{
+    ui->txt_out->append("Searching for modules...");
+    QDirIterator it(QString(abstemppath), QDirIterator::Subdirectories);
+    while (it.hasNext()) {
+        if (it.next().contains(".ko") && !it.next().isEmpty()) {
+            ui->txt_out->append(it.next());
+
+            p.terminate();
+            p_out = "";
+#ifdef Q_WS_X11
+            p.start( "tools/adb -s " + snr + " push " + it.next() + " /system/lib/modules/");
+#endif
+#ifdef Q_WS_MAC
+            p.start( "tools/adb-mac -s " + snr + " push " + it.next() + " /system/lib/modules/");
+#endif
+#ifdef Q_WS_WIN
+            p.start( "tools\\adb.exe -s " + snr + " push " + it.next() + " /system/lib/modules/");
+#endif
+            p.waitForFinished(-1);
+            p_out = p.readAllStandardOutput();
+            if (!p_out.isEmpty()) {
+                ui->txt_out->append(p_out);
+            }
+        }
+    }
+    ui->txt_out->append("Modules pushed...");
+    //REBOOT_FASTBOOT
+    flash_state = RELEASE_CONTROLS;
 }

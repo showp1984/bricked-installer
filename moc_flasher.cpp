@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'flasher.h'
 **
-** Created: Mon Jul 2 05:48:39 2012
+** Created: Mon Jul 2 07:17:33 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_flasher[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -37,12 +37,13 @@ static const uint qt_meta_data_flasher[] = {
       79,    8,    8,    8, 0x08,
      105,    8,    8,    8, 0x08,
      131,    8,    8,    8, 0x08,
-     150,    8,  146,    8, 0x08,
-     160,    8,  146,    8, 0x08,
-     176,    8,  146,    8, 0x08,
-     189,    8,  146,    8, 0x08,
-     210,  207,  202,    8, 0x08,
-     247,    8,  202,    8, 0x08,
+     146,    8,    8,    8, 0x08,
+     169,    8,  165,    8, 0x08,
+     179,    8,  165,    8, 0x08,
+     195,    8,  165,    8, 0x08,
+     208,    8,    8,    8, 0x08,
+     229,  226,  221,    8, 0x08,
+     266,    8,  221,    8, 0x08,
 
        0        // eod
 };
@@ -52,9 +53,9 @@ static const char qt_meta_stringdata_flasher[] = {
     "on_btn_start_clicked()\0on_btn_quit_clicked()\0"
     "on_actionInfo_triggered()\0"
     "on_actionQuit_triggered()\0flash_device()\0"
-    "int\0extract()\0detect_device()\0"
-    "get_booted()\0push_files()\0bool\0,,\0"
-    "extract_zip(QString,QString,QString)\0"
+    "push_files_timed()\0int\0extract()\0"
+    "detect_device()\0get_booted()\0push_files()\0"
+    "bool\0,,\0extract_zip(QString,QString,QString)\0"
     "rmdir_recursive(QString)\0"
 };
 
@@ -93,21 +94,21 @@ int flasher::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 3: on_actionInfo_triggered(); break;
         case 4: on_actionQuit_triggered(); break;
         case 5: flash_device(); break;
-        case 6: { int _r = extract();
+        case 6: push_files_timed(); break;
+        case 7: { int _r = extract();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 7: { int _r = detect_device();
+        case 8: { int _r = detect_device();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 8: { int _r = get_booted();
+        case 9: { int _r = get_booted();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 9: { int _r = push_files();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 10: { bool _r = extract_zip((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])));
+        case 10: push_files(); break;
+        case 11: { bool _r = extract_zip((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 11: { bool _r = rmdir_recursive((*reinterpret_cast< const QString(*)>(_a[1])));
+        case 12: { bool _r = rmdir_recursive((*reinterpret_cast< const QString(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         default: ;
         }
-        _id -= 12;
+        _id -= 13;
     }
     return _id;
 }

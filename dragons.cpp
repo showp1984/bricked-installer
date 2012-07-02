@@ -21,7 +21,7 @@ dragons::~dragons()
     timer->stop();
     delete timer;
     delete ui;
-    delete this;
+    //delete this;
 }
 
 void dragons::changeEvent(QEvent *e)
