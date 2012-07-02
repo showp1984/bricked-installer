@@ -24,6 +24,12 @@ flasher::flasher(QWidget *parent) :
     ui->bar_flash->setMinimum(0);
     ui->bar_flash->setMaximum(90);
     ui->bar_flash->setValue(0);
+
+    ui->bar_extract->hide();
+    ui->bar_extract->setMinimum(0);
+    ui->bar_extract->setMaximum(100);
+    ui->bar_extract->setValue(0);
+
     ui->txt_out->hide();
 }
 
@@ -123,6 +129,8 @@ void flasher::on_txt_out_textChanged()
 
 bool flasher::extract_zip(const QString & filePath, const QString & extDirPath, const QString & singleFileName = QString(""))
 {
+    ui->bar_extract->show();
+
     QuaZip zip(filePath);
 
     if (!zip.open(QuaZip::mdUnzip)) {
@@ -147,6 +155,8 @@ bool flasher::extract_zip(const QString & filePath, const QString & extDirPath, 
     QStringList splitpath = QStringList() << "" << "" << "" << "" << "" << "" << "" << "" << "" << "" << "" << "" << "" << "";
     QByteArray cnt;
     QDir filedir;
+    int filenr = 0;
+    ui->bar_extract->setMaximum(zip.getEntriesCount());
     for (bool more = zip.goToFirstFile(); more; more = zip.goToNextFile()) {
         if (!zip.getCurrentFileInfo(&info)) {
             qWarning("testRead(): getCurrentFileInfo(): %d\n", zip.getZipError());
@@ -199,6 +209,8 @@ bool flasher::extract_zip(const QString & filePath, const QString & extDirPath, 
             qWarning("testRead(): file.close(): %d", file.getZipError());
             return false;
         }
+        ui->bar_extract->setValue(filenr);
+        filenr++;
     }
     zip.close();
     if (zip.getZipError() != UNZ_OK) {
@@ -297,8 +309,10 @@ int flasher::extract(void)
     if (!xtr_return) {
         ui->txt_out->append("Error! Could not extract zip file.");
         return RELEASE_CONTROLS;
+    } else {
+        ui->txt_out->append("Successfully extracted zip file.");
     }
-
+    ui->bar_extract->hide();
     //QDir().rmdir(tmp_folder);
     //ui->txt_out->append("Deleted temporary directory: " + tmp_folder);
     //skip to detect

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'flasher.ui'
 **
-** Created: Mon Jul 2 01:03:12 2012
+** Created: Mon Jul 2 04:54:39 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -42,6 +42,7 @@ public:
     QTextEdit *txt_out;
     QLabel *lbl_filepath;
     QLineEdit *edt_filepath;
+    QProgressBar *bar_extract;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuHelp;
@@ -103,6 +104,11 @@ public:
         edt_filepath->setSizePolicy(sizePolicy);
         edt_filepath->setCursor(QCursor(Qt::IBeamCursor));
         edt_filepath->setReadOnly(true);
+        bar_extract = new QProgressBar(centralwidget);
+        bar_extract->setObjectName(QString::fromUtf8("bar_extract"));
+        bar_extract->setGeometry(QRect(200, 440, 421, 23));
+        bar_extract->setValue(0);
+        bar_extract->setInvertedAppearance(false);
         flasher->setCentralWidget(centralwidget);
         menubar = new QMenuBar(flasher);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -143,6 +149,7 @@ public:
 "</style></head><body style=\" font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>", 0, QApplication::UnicodeUTF8));
         lbl_filepath->setText(QApplication::translate("flasher", "From:", 0, QApplication::UnicodeUTF8));
+        bar_extract->setFormat(QApplication::translate("flasher", "Extracting... %p%", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("flasher", "File", 0, QApplication::UnicodeUTF8));
         menuHelp->setTitle(QApplication::translate("flasher", "Help", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
