@@ -220,8 +220,33 @@ bool flasher::extract_zip(const QString & filePath, const QString & extDirPath, 
     return true;
 }
 
+bool flasher::rmdir_recursive(const QString &dirName)
+{
+    bool result = true;
+    QDir dir(dirName);
+
+    if (dir.exists(dirName)) {
+        Q_FOREACH(QFileInfo info, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden  | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
+            if (info.isDir()) {
+                result = rmdir_recursive(info.absoluteFilePath());
+            }
+            else {
+                result = QFile::remove(info.absoluteFilePath());
+            }
+            if (!result) {
+                return result;
+            }
+        }
+        result = dir.rmdir(dirName);
+    }
+    return result;
+}
+
+
 void flasher::flash_device(void)
 {
+    bool ret;
+
     if (firstcall) {
             firstcall = false;
     } else {
@@ -279,6 +304,12 @@ void flasher::flash_device(void)
         ui->bar_flash->setValue(80);
         break;
     case RELEASE_CONTROLS:
+        ret = rmdir_recursive(QString(qApp->applicationDirPath() + "/" + tmp_folder));
+        if (!ret) {
+            ui->txt_out->append("Error! Could not delete temporary directory: " + tmp_folder);
+        } else {
+            ui->txt_out->append("Deleted temporary directory: " + tmp_folder);
+        }
         ui->bar_flash->setValue(90);
         flashtimer->stop();
         ui->btn_quit->setEnabled(true);
@@ -313,8 +344,6 @@ int flasher::extract(void)
         ui->txt_out->append("Successfully extracted zip file.");
     }
     ui->bar_extract->hide();
-    //QDir().rmdir(tmp_folder);
-    //ui->txt_out->append("Deleted temporary directory: " + tmp_folder);
     //skip to detect
     return DETECT;
 }

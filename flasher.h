@@ -71,6 +71,7 @@ private slots:
     int get_booted(void);
     int push_files(void);
     bool extract_zip(const QString&, const QString&, const QString&);
+    bool rmdir_recursive(const QString&);
 };
 
 #endif // FLASHER_H
