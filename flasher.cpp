@@ -342,10 +342,9 @@ int flasher::extract(void)
         return RELEASE_CONTROLS;
     } else {
         ui->txt_out->append("Successfully extracted zip file.");
+        ui->bar_extract->hide();
+        return DETECT;
     }
-    ui->bar_extract->hide();
-    //skip to detect
-    return DETECT;
 }
 
 int flasher::detect_device(void) {
