@@ -1,3 +1,61 @@
-*.o
+#zip files
 *.zip
+
+# Compiled object files
+*.o
+
+# Generated MOC, resource and UI files
+moc_*.cpp
+qrc_*.cpp
+
+# Debug and Release directories (Windows, not Linux)
+Debug/
+Release/
+
+# .log files
+*.log
+
+# Built windows .exe and linux binaries
+*.exe
+*.dll
 Bricked-Installer
+
+# Windows-specific files
+Thumbs.db
+desktop.ini
+
+# Mac-specific things (thanks to Michael Aaron Safyan)
+.DS_Store
+
+# Editors temporary files 
+*~
+
+#Symbian specific
+*.mmp
+*.pkg
+bld.inf*
+ABLD.BAT
+*.mk
+*.rss
+*.sis
+*.loc
+*.sisx
+.make.cache
+qmakepluginstubs
+
+#Visual Studio files
+*.sln
+*.vcproj
+*.suo
+*.ncb
+*.user
+
+#QtCreator project files
+*.pro.user
+=======
+*.pro.user*
+
+# Failed patch
+*.orig
+*.rej
+
