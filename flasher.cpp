@@ -4,6 +4,7 @@
 
 #include "quazip/quazip.h"
 #include "quazip/quazipfile.h"
+#include "quazip/JlCompress.h"
 
 flasher::flasher(QWidget *parent) :
     QMainWindow(parent),
@@ -120,7 +121,7 @@ void flasher::on_txt_out_textChanged()
     ui->txt_out->setTextCursor(c);
 }
 
-static bool extract(const QString & filePath, const QString & extDirPath, const QString & singleFileName = QString(""))
+bool flasher::extract_zip(const QString & filePath, const QString & extDirPath, const QString & singleFileName = QString(""))
 {
     QuaZip zip(filePath);
 
@@ -140,40 +141,46 @@ static bool extract(const QString & filePath, const QString & extDirPath, const 
 
     QFile out;
     QString name;
-    char c;
+    QString path;
+    QString temppath;
+    QString basepath = qApp->applicationDirPath();
+    QStringList splitpath = QStringList() << "" << "" << "" << "" << "" << "" << "" << "" << "" << "" << "" << "" << "" << "";
+    QByteArray cnt;
+    QDir filedir;
     for (bool more = zip.goToFirstFile(); more; more = zip.goToNextFile()) {
-
         if (!zip.getCurrentFileInfo(&info)) {
             qWarning("testRead(): getCurrentFileInfo(): %d\n", zip.getZipError());
             return false;
         }
-
         if (!singleFileName.isEmpty())
             if (!info.name.contains(singleFileName))
                 continue;
-
-        if (!file.open(QIODevice::ReadOnly)) {
+        if (!file.open(QuaZipFile::ReadOnly)) {
             qWarning("testRead(): file.open(): %d", file.getZipError());
             return false;
         }
-
-        name = QString("%1/%2").arg(extDirPath).arg(file.getActualFileName());
+        splitpath = file.getActualFileName().split("/");
+        temppath = splitpath.takeLast();
+        temppath = splitpath.join("/");
+        path = QString("%1/%2/%3").arg(basepath).arg(extDirPath).arg(temppath);
+        name = QString("%1/%2/%3").arg(basepath).arg(extDirPath).arg(file.getActualFileName());
 
         if (file.getZipError() != UNZ_OK) {
             qWarning("testRead(): file.getFileName(): %d", file.getZipError());
             return false;
         }
 
-        //out.setFileName("out/" + name);
+        filedir.setPath(path);
+        if (!filedir.exists()) {
+            filedir.mkpath(path);
+        }
+
         out.setFileName(name);
-
-        // this will fail if "name" contains subdirectories, but we don't mind that
+        cnt=file.readAll();
+        qDebug()<<"name: "<<name;
+        qDebug()<<"writing "<<cnt.size()<<" bytes";
         out.open(QIODevice::WriteOnly);
-        // Slow like hell (on GNU/Linux at least), but it is not my fault.
-        // Not ZIP/UNZIP package's fault either.
-        // The slowest thing here is out.putChar(c).
-        while (file.getChar(&c)) out.putChar(c);
-
+        out.write(cnt);
         out.close();
 
         if (file.getZipError() != UNZ_OK) {
@@ -193,14 +200,11 @@ static bool extract(const QString & filePath, const QString & extDirPath, const 
             return false;
         }
     }
-
     zip.close();
-
     if (zip.getZipError() != UNZ_OK) {
         qWarning("testRead(): zip.close(): %d", zip.getZipError());
         return false;
     }
-
     return true;
 }
 
@@ -276,7 +280,7 @@ void flasher::flash_device(void)
 int flasher::extract(void)
 {
     unsigned int rnd = 0, max = 999999;
-    bool success = false;
+    bool success = false, xtr_return = false;
 
     while (!success) {
         rnd = qrand() % max;
@@ -288,10 +292,15 @@ int flasher::extract(void)
     }
     ui->txt_out->append("Created temporary directory: " + tmp_folder);
 
+    xtr_return = extract_zip(filepath, tmp_folder);
 
+    if (!xtr_return) {
+        ui->txt_out->append("Error! Could not extract zip file.");
+        return RELEASE_CONTROLS;
+    }
 
-    QDir().rmdir(tmp_folder);
-    ui->txt_out->append("Deleted temporary directory: " + tmp_folder);
+    //QDir().rmdir(tmp_folder);
+    //ui->txt_out->append("Deleted temporary directory: " + tmp_folder);
     //skip to detect
     return DETECT;
 }

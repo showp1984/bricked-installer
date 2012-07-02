@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'flasher.h'
 **
-** Created: Mon Jul 2 01:03:27 2012
+** Created: Mon Jul 2 02:27:49 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_flasher[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -41,6 +41,7 @@ static const uint qt_meta_data_flasher[] = {
      160,    8,  146,    8, 0x08,
      176,    8,  146,    8, 0x08,
      189,    8,  146,    8, 0x08,
+     210,  207,  202,    8, 0x08,
 
        0        // eod
 };
@@ -51,7 +52,8 @@ static const char qt_meta_stringdata_flasher[] = {
     "on_actionInfo_triggered()\0"
     "on_actionQuit_triggered()\0flash_device()\0"
     "int\0extract()\0detect_device()\0"
-    "get_booted()\0push_files()\0"
+    "get_booted()\0push_files()\0bool\0,,\0"
+    "extract_zip(QString,QString,QString)\0"
 };
 
 const QMetaObject flasher::staticMetaObject = {
@@ -97,9 +99,11 @@ int flasher::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
         case 9: { int _r = push_files();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+        case 10: { bool _r = extract_zip((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])));
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         default: ;
         }
-        _id -= 10;
+        _id -= 11;
     }
     return _id;
 }

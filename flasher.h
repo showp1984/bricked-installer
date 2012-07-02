@@ -70,6 +70,7 @@ private slots:
     int detect_device(void);
     int get_booted(void);
     int push_files(void);
+    bool extract_zip(const QString&, const QString&, const QString&);
 };
 
 #endif // FLASHER_H
