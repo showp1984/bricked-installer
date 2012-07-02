@@ -11,6 +11,7 @@ flasher::flasher(QWidget *parent) :
     ui(new Ui::flasher)
 {
     firstcall_push = true;
+    p.setProcessChannelMode(QProcess::MergedChannels);
 
     flashtimer = new QTimer(this);
     connect(flashtimer, SIGNAL(timeout()), this, SLOT(flash_device()));
@@ -422,7 +423,7 @@ int flasher::get_booted(void) {
     if (!state.isEmpty()) {
         ui->txt_out->append("Detecting device state...");
         if (state.contains("fastboot")) {
-            ui->txt_out->append("Device in bootloader, rebooting...");
+            ui->txt_out->append("Device in bootloader,");
             p.terminate();
             p_out = "";
 #ifdef Q_WS_X11
@@ -534,21 +535,21 @@ void flasher::push_files_finished(void) {
 
 void PushWorker::run(void)
 {
-    QProcess p;
-    QDirIterator it(QString(abstemppath), QDirIterator::Subdirectories);
-    while (it.hasNext()) {
-        if (it.next().contains(".ko") && !it.next().isEmpty()) {
-            p.terminate();
+    QProcess p2;
+    QDirIterator it2(QString(abstemppath), QDirIterator::Subdirectories);
+    while (it2.hasNext()) {
+        if (it2.next().contains(".ko") && !it2.next().isEmpty()) {
+            p2.terminate();
 #ifdef Q_WS_X11
-            p.start( "tools/adb -s " + snr + " push " + it.next() + " /system/lib/modules/");
+            p2.start( "tools/adb -s " + snr + " push " + it2.next() + " /system/lib/modules/");
 #endif
 #ifdef Q_WS_MAC
-            p.start( "tools/adb-mac -s " + snr + " push " + it.next() + " /system/lib/modules/");
+            p2.start( "tools/adb-mac -s " + snr + " push " + it2.next() + " /system/lib/modules/");
 #endif
 #ifdef Q_WS_WIN
-            p.start( "tools\\adb.exe -s " + snr + " push " + it.next() + " /system/lib/modules/");
+            p2.start( "tools\\adb.exe -s " + snr + " push " + it2.next() + " /system/lib/modules/");
 #endif
-            p.waitForFinished(-1);
+            p2.waitForFinished(-1);
         }
     }
     this->finished();
@@ -616,16 +617,17 @@ int flasher::flash_boot(void)
     if (!snr.isEmpty() && !state.isEmpty()) {
         flashtimer->setInterval(1000);
         ui->txt_out->append("Flashing boot.img...");
-        QDirIterator it(QString(abstemppath), QDirIterator::Subdirectories);
+        QDirIterator it(QString(qApp->applicationDirPath() + "/" + tmp_folder), QDirIterator::Subdirectories);
         while (it.hasNext()) {
             if (it.next().contains("boot.img") && !it.next().isEmpty()) {
+qDebug() << it.next();
                 p.terminate();
                 p_out = "";
     #ifdef Q_WS_X11
-                p.start( "tools/fastboot -p " + device + " flash boot " + "'" + it.next() + "'");
+                p.start( "tools/fastboot -p " + device + " flash boot " + "\"" + it.next() + "\"");
     #endif
     #ifdef Q_WS_MAC
-                p.start( "tools/fastboot-mac -p " + device + " flash boot " + "'" + it.next() + "'");
+                p.start( "tools/fastboot-mac -p " + device + " flash boot " + "\"" + it.next() + "\"");
     #endif
     #ifdef Q_WS_WIN
                 p.start( "tools\\fastboot.exe -p " + device + " flash boot " + "\"" + it.next() + "\"");
