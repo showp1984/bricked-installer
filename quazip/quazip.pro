@@ -37,6 +37,11 @@ unix:!symbian {
 }
 
 win32 {
+    INCLUDEPATH += $$[QT_INSTALL_PREFIX]/src/3rdparty/zlib
+    DEFINES += QUAZIP_BUILD
+    CONFIG(staticlib): DEFINES += QUAZIP_STATI
+    DESTDIR += libs
+
     headers.path=$$PREFIX/include/quazip
     headers.files=$$HEADERS
     target.path=$$PREFIX/lib

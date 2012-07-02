@@ -11,35 +11,13 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 TARGET = Bricked-Installer
 TEMPLATE = app
 SOURCES += main.cpp \
-    quazip/unzip.c \
-    quazip/zip.c \
-    quazip/JlCompress.cpp \
-    quazip/qioapi.cpp \
-    quazip/quaadler32.cpp \
-    quazip/quacrc32.cpp \
-    quazip/quazip.cpp \
-    quazip/quazipfile.cpp \
-    quazip/quazipnewinfo.cpp \
     mainwindow.cpp \
     dragons.cpp \
     info.cpp \
     detect.cpp \
     flasher.cpp \
     openfile.cpp
-HEADERS += quazip/crypt.h \
-    quazip/ioapi.h \
-    quazip/JlCompress.h \
-    quazip/quaadler32.h \
-    quazip/quachecksum32.h \
-    quazip/quacrc32.h \
-    quazip/quazipfile.h \
-    quazip/quazipfileinfo.h \
-    quazip/quazip_global.h \
-    quazip/quazip.h \
-    quazip/quazipnewinfo.h \
-    quazip/unzip.h \
-    quazip/zip.h \
-    mainwindow.h \
+HEADERS += mainwindow.h \
     dragons.h \
     info.h \
     detect.h \
@@ -52,3 +30,38 @@ FORMS += mainwindow.ui \
     flasher.ui \
     openfile.ui
 RESOURCES += res/res_loc.qrc
+
+unix {
+SOURCES += quazip/unzip.c \
+    quazip/zip.c \
+    quazip/JlCompress.cpp \
+    quazip/qioapi.cpp \
+    quazip/quaadler32.cpp \
+    quazip/quacrc32.cpp \
+    quazip/quazip.cpp \
+    quazip/quazipfile.cpp \
+    quazip/quazipnewinfo.cpp
+HEADERS += quazip/crypt.h \
+    quazip/ioapi.h \
+    quazip/JlCompress.h \
+    quazip/quaadler32.h \
+    quazip/quachecksum32.h \
+    quazip/quacrc32.h \
+    quazip/quazipfile.h \
+    quazip/quazipfileinfo.h \
+    quazip/quazip_global.h \
+    quazip/quazip.h \
+    quazip/quazipnewinfo.h \
+    quazip/unzip.h \
+    quazip/zip.h
+}
+
+Debug:UI_DIR = debug/.ui
+
+win32 {
+    INCLUDEPATH += $$[QT_INSTALL_PREFIX]/src/3rdparty/zlib
+    DEFINES += QUAZIP_BUILD
+    CONFIG(staticlib): DEFINES += QUAZIP_STATIC
+    LIBS += -Lquazip/libs
+    LIBS += -lquazip
+}
