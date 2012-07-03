@@ -37,7 +37,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->line->hide();
 
     if (back_detect) {
-        alertbox.exec();
         back_detect = false;
         ui->btn_go->hide();
         ui->btn_back->show();
