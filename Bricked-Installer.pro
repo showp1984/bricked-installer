@@ -56,8 +56,6 @@ HEADERS += quazip/crypt.h \
     quazip/zip.h
 }
 
-Debug:UI_DIR = debug/.ui
-
 win32 {
     INCLUDEPATH += $$[QT_INSTALL_PREFIX]/src/3rdparty/zlib
     DEFINES += QUAZIP_BUILD
