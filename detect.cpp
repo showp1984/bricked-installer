@@ -3,6 +3,7 @@
 
 #include "detect.h"
 #include "ui_detect.h"
+#include "mainwindow.h"
 
 detect::detect(QWidget *parent) :
     QMainWindow(parent),
@@ -535,4 +536,12 @@ void detect::on_btn_yes_clicked()
         openfilewind->show();
         this->close();
     }
+}
+
+void detect::on_btn_back_clicked()
+{
+    set_back_detect(true);
+    MainWindow *mainwind = new MainWindow();
+    mainwind->show();
+    this->close();
 }

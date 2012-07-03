@@ -26,11 +26,14 @@ private:
     detect *detectwind;
 
 private slots:
+    void on_btn_back_clicked();
     void on_btn_go_clicked();
     void on_btn_go_2_clicked();
     void on_btn_quit_clicked();
     void on_actionInfo_triggered();
     void on_actionQuit_triggered();
 };
+
+void set_back_detect(bool);
 
 #endif // MAINWINDOW_H

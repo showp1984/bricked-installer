@@ -633,6 +633,19 @@ p, li { white-space: pre-wrap; }
      <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
     </property>
    </widget>
+   <widget class="QPushButton" name="btn_back">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>460</y>
+      <width>93</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

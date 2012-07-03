@@ -3,6 +3,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+static bool back_detect = false;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -10,12 +12,26 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     ui->btn_go->show();
+    ui->btn_back->hide();
     ui->lbl_welcome->show();
     ui->btn_go_2->hide();
     ui->lbl_disclaimer_accept->hide();
     ui->txt_disclaimer->hide();
     ui->chk_agreed->hide();
     ui->line->hide();
+
+    if (back_detect) {
+        alertbox.exec();
+        back_detect = false;
+        ui->btn_go->hide();
+        ui->btn_back->show();
+        ui->lbl_welcome->hide();
+        ui->btn_go_2->show();
+        ui->lbl_disclaimer_accept->show();
+        ui->txt_disclaimer->show();
+        ui->chk_agreed->show();
+        ui->line->show();
+    }
 }
 
 MainWindow::~MainWindow()
@@ -68,10 +84,27 @@ void MainWindow::on_btn_go_clicked()
 {
     //hide label & go, visible label2 and go2
     ui->btn_go->hide();
+    ui->btn_back->show();
     ui->lbl_welcome->hide();
     ui->btn_go_2->show();
     ui->lbl_disclaimer_accept->show();
     ui->txt_disclaimer->show();
     ui->chk_agreed->show();
     ui->line->show();
+}
+
+void MainWindow::on_btn_back_clicked()
+{
+    ui->btn_go->show();
+    ui->btn_back->hide();
+    ui->lbl_welcome->show();
+    ui->btn_go_2->hide();
+    ui->lbl_disclaimer_accept->hide();
+    ui->txt_disclaimer->hide();
+    ui->chk_agreed->hide();
+    ui->line->hide();
+}
+
+void set_back_detect(bool bo) {
+    back_detect = bo;
 }

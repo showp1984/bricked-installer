@@ -269,6 +269,19 @@ p, li { white-space: pre-wrap; }
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
+   <widget class="QPushButton" name="btn_back">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>460</y>
+      <width>93</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
