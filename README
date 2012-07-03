@@ -1,0 +1,31 @@
+
+	Bricked-Installer <http://bricked.de/>
+
+These are the release notes for Bricked-Installer.  Read them carefully,
+as they tell you what this is all about, explain how to use it, and what
+to do if something goes wrong.
+
+WHAT IS BRICKED-INSTALLER?
+
+  Bricked-Installer is a fully automated onscreen installer which enables
+  the user to flash kernels/roms without any console interactions to
+  their devices.
+
+  It is distributed under the GNU General Public License - see the
+  accompanying COPYING file for more details. 
+
+ON WHAT OPERATING SYSTEM DOES IT RUN?
+
+  Although originally developed for Linux it runs perfectly on Windows and
+  Macs (thanks to qt).
+
+SOFTWARE REQUIREMENTS
+
+  You may need the appropriate qt packages to run it on Linux.
+  If you want to use the source, you will need qt on all platforms.
+
+
+IF SOMETHING GOES WRONG:
+
+  Use the IssueTracker @ github.
+
