@@ -1,5 +1,5 @@
 /*
- * main.cpp
+ * database.cpp
  *
  * Copyright (c) 2012, Dennis Rassmann <showp1984@gmail.com>
  *
@@ -14,22 +14,23 @@
  * more details.
  */
 
-#include <string>
-#include <iostream>
-#include <QtGui/QApplication>
-#include <QTimer>
+#include <QSqlDatabase>
+#include <QSqlQuery>
 #include <QDebug>
 
-#include "update_notif.h"
+QSqlDatabase connectDB(void) {
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    update_notif un;
+    /* I won't give you my login data here :p */
+    db.setHostName("111.222.33.44");
+    db.setDatabaseName("dbstuffz");
+    db.setUserName("supersecretlogin");
+    db.setPassword("supersecretpw");
 
-    a.setApplicationVersion(APP_VERSION);
+    if (!db.open()) qDebug() << "Failed to connect to database";
+    return db;
+}
 
-    un.show();
-
-    return a.exec();
+void closeDB(QSqlDatabase db) {
+    db.close();
 }
