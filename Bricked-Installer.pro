@@ -18,14 +18,16 @@ SOURCES += main.cpp \
     flasher.cpp \
     openfile.cpp \
     update_notif.cpp \
-    database.cpp
+    database.cpp \
+    downmanager.cpp
 HEADERS += mainwindow.h \
     dragons.h \
     info.h \
     detect.h \
     flasher.h \
     openfile.h \
-    update_notif.h
+    update_notif.h \
+    downmanager.h
 FORMS += mainwindow.ui \
     dragons.ui \
     info.ui \
