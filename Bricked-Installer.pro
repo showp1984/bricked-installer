@@ -2,6 +2,7 @@
 # Project created by QtCreator 2012-06-28T20:21:06
 # -------------------------------------------------
 QT += sql
+QT += network
 
 # version
 VERSION = 0.1
