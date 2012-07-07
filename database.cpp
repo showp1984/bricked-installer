@@ -14,6 +14,7 @@
  * more details.
  */
 
+#include <QApplication>
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
@@ -29,8 +30,4 @@ QSqlDatabase connectDB(void) {
 
     if (!db.open()) qDebug() << "Failed to connect to database";
     return db;
-}
-
-void closeDB(QSqlDatabase db) {
-    db.close();
 }

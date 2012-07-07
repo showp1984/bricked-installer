@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
     a.setApplicationVersion(APP_VERSION);
 
     un.show();
+    un.hide();
 
     return a.exec();
 }

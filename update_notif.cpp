@@ -27,19 +27,27 @@ update_notif::update_notif(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::update_notif)
 {
-    timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(closeupdnot()));
+    timer_tout = new QTimer(this);
+    connect(timer_tout, SIGNAL(timeout()), this, SLOT(tout_close()));
+
+    getDBupd *dbupd = new getDBupd();
+    QObject::connect(dbupd,
+                     SIGNAL(finished()),
+                     this,
+                     SLOT(closeupdnot()));
+    dbupd->start();
+    this->p_dbupd = dbupd;
 
     ui->setupUi(this);
 
-    timer->setSingleShot(true);
-    timer->setInterval(0);
-    timer->start();
+    timer_tout->setSingleShot(true);
+    timer_tout->setInterval(1000);
+    timer_tout->start();
 }
 
 update_notif::~update_notif()
 {
-    delete timer;
+    delete timer_tout;
     delete ui;
 }
 
@@ -57,14 +65,48 @@ void update_notif::changeEvent(QEvent *e)
 
 void update_notif::closeupdnot(void)
 {
-    float version = 0;
+    QString ver;
+    timer_tout->stop();
+    show();
+    if (p_dbupd->version > qApp->applicationVersion().toFloat()) {
+        qDebug() << "Update found!";
+        ver = QString::number(p_dbupd->version);
+        ui->lbl_edt_vers->setText(ver);
+        ui->lbl_edt_branch->setText(p_dbupd->branch);
+        ui->lbl_edt_date->setText(p_dbupd->date);
+        ui->txt_change->setText(p_dbupd->changelog);
+        url = url;
+    } else {
+        qDebug() << "No update found.";
+        this->close();
+        d = new dragons();
+        d->show();
+    }
+}
+
+void update_notif::tout_close(void)
+{
+    this->close();
+    d = new dragons();
+    d->show();
+}
+
+void update_notif::on_btn_quit_clicked()
+{
+    this->close();
+}
+
+void update_notif::on_btn_later_clicked()
+{
+    this->close();
+    d = new dragons();
+    d->show();
+}
+
+void getDBupd::run(void)
+{
     QSqlDatabase db = connectDB();
     QSqlQuery query;
-    QString branch;
-    QString changelog;
-    QString date;
-    QString url;
-    QString ver;
 
     qDebug() << "Local: " << qApp->applicationVersion();
 
@@ -78,34 +120,8 @@ void update_notif::closeupdnot(void)
         url = query.value(4).toString();
         qDebug() << version << branch << date << url;// << changelog;
     }
-
-    if (version > qApp->applicationVersion().toFloat()) {
-        qDebug() << "Update found!";
-        ver = QString::number(version);
-        ui->lbl_edt_vers->setText(ver);
-        ui->lbl_edt_branch->setText(branch);
-        ui->lbl_edt_date->setText(date);
-        ui->txt_change->setText(changelog);
-        url = url;
-    } else {
-        qDebug() << "No update found.";
-        closeDB(db);
-        this->close();
-        d = new dragons();
-        d->show();
-    }
-
-    closeDB(db);
-}
-
-void update_notif::on_btn_quit_clicked()
-{
-    this->close();
-}
-
-void update_notif::on_btn_later_clicked()
-{
-    this->close();
-    d = new dragons();
-    d->show();
+    db.close();
+    db.removeDatabase("default");
+    this->finished();
+    this->quit();
 }
