@@ -43,6 +43,13 @@ update_notif::update_notif(QWidget *parent) :
     timer_tout->setSingleShot(true);
     timer_tout->setInterval(1000);
     timer_tout->start();
+
+    ui->lbl2_restart->hide();
+    ui->lbl2_updating->hide();
+    ui->lbl2_warn->hide();
+    ui->lbl2_xtr->hide();
+    ui->bar2_xtr->hide();
+    ui->bar2_downl->hide();
 }
 
 update_notif::~update_notif()
@@ -124,4 +131,28 @@ void getDBupd::run(void)
     db.removeDatabase("default");
     this->finished();
     this->quit();
+}
+
+void update_notif::on_btn_now_clicked()
+{
+    ui->btn_later->hide();
+    ui->btn_now->hide();
+    ui->btn_quit->hide();
+    ui->lbl_branch->hide();
+    ui->lbl_change->hide();
+    ui->lbl_date->hide();
+    ui->lbl_edt_branch->hide();
+    ui->lbl_edt_date->hide();
+    ui->lbl_edt_vers->hide();
+    ui->lbl_updnot->hide();
+    ui->lbl_vers->hide();
+    ui->txt_change->hide();
+
+    ui->lbl2_warn->show();
+
+    ui->lbl2_updating->show();
+    ui->bar2_downl->show();
+    ui->lbl2_xtr->show();
+    ui->bar2_xtr->show();
+    ui->lbl2_restart->show();
 }

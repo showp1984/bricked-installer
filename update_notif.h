@@ -45,6 +45,7 @@ private:
     QString url;
 
 private slots:
+    void on_btn_now_clicked();
     void on_btn_later_clicked();
     void on_btn_quit_clicked();
     void closeupdnot(void);
