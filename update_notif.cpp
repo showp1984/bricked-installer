@@ -468,12 +468,47 @@ void update_notif::extract_files(void)
         ui->bar2_xtr->setMaximum(1);
         ui->bar2_xtr->setValue(1);
         QMessageBox::information(this, "Update sucessfull!", tr("The update was successfull. I will now restart to the new version."));
+        ui->lbl2_restart->show();
+        ui->lbl2_warn->hide();
+        QTimer::singleShot(2000, this, SLOT(restart_app()));
     } else {
         QMessageBox::information(this, "Update failed", tr("The update failed. You are required to redownload the application from www.bricked.de"));
         this->close();
     }
 }
 
-/*
-    ui->lbl2_restart->show();
-*/
+void update_notif::restart_app(void)
+{
+    QString appname;
+#ifdef Q_WS_X11
+    appname = qApp->applicationDirPath() + "/" + "Bricked-Installer";
+#endif
+#ifdef Q_WS_MAC
+    appname = qApp->applicationDirPath() + "/" + "Bricked-Installer";
+#endif
+#ifdef Q_WS_WIN
+    appname = qApp->applicationDirPath() + "\\" + "Bricked-Installer.exe";
+#endif
+    QString oldappname = appname;
+#ifdef Q_WS_WIN
+    oldappname.chop(4);
+    oldappname += "_old.exe";
+#else
+    oldappname += "_old";
+#endif
+
+    //Get file permissions of old binary
+    QFile::Permissions oldperm;
+    oldperm = QFile::permissions(QString(oldappname));
+
+    //Set file permissions of new binary
+    bool isOK=0;
+    isOK = QFile::setPermissions(appname, oldperm);
+    qDebug() << "Perms set? " << isOK << endl;
+
+    p.terminate();
+    p.start( appname );
+    p.waitForFinished(-1);
+    this->close();
+    qApp->exit();
+}

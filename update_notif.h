@@ -61,6 +61,7 @@ private:
     QNetworkAccessManager manager;
     QFile *file;
     QNetworkReply *reply;
+    QProcess p;
     bool downloadRequestAborted;
     void rename_installer(void);
     void extract_files(void);
@@ -73,6 +74,7 @@ private slots:
     void on_btn_quit_clicked();
     void closeupdnot(void);
     void tout_close(void);
+    void restart_app(void);
 };
 
 class getDBupd : public QThread {
