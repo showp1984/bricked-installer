@@ -122,7 +122,7 @@ void getDBupd::run(void)
 
     qDebug() << "Local: " << qApp->applicationVersion();
 
-    query.prepare("SELECT version, branch, changelog, date, url FROM versions WHERE version = (SELECT MAX(version) FROM versions) AND version > " + qApp->applicationVersion());
+    query.prepare("SELECT version, branch, changelog, date, url FROM hp_downloads WHERE cat='installer' AND version > " + qApp->applicationVersion() + "ORDER BY version DESC LIMIT 1");
     query.exec();
     while (query.next()) {
         version = query.value(0).toFloat();
