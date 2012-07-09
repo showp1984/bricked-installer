@@ -27,6 +27,27 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     update_notif un;
 
+    QString oldname;
+#ifdef Q_WS_X11
+    oldname = qApp->applicationDirPath() + "/" + "Bricked-Installer";
+#endif
+#ifdef Q_WS_MAC
+    oldname = qApp->applicationDirPath() + "/" + "Bricked-Installer";
+#endif
+#ifdef Q_WS_WIN
+    oldname = qApp->applicationDirPath() + "\\" + "Bricked-Installer.exe";
+#endif
+#ifdef Q_WS_WIN
+    oldname.chop(4);
+    oldname += "_old.exe";
+#else
+    oldname += "_old";
+#endif
+
+    if(QFile::exists(oldname)) {
+            QFile::remove(oldname);
+    }
+
     a.setApplicationVersion(APP_VERSION);
 
     un.show();

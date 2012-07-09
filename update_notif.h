@@ -55,11 +55,17 @@ private:
     dragons *d;
     QTimer *timer_tout;
     QString url;
+    QString abspath;
+    QString downfilepath;
+    QString oldname;
     QNetworkAccessManager manager;
     QFile *file;
     QNetworkReply *reply;
     bool downloadRequestAborted;
-    void rename_installer();
+    void rename_installer(void);
+    void extract_files(void);
+    bool extract_zip(const QString&);
+    bool rmdir_recursive_notparent(const QString&);
 
 private slots:
     void on_btn_now_clicked();
