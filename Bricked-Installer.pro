@@ -5,7 +5,7 @@ QT += sql
 QT += network
 
 # version
-VERSION = 0.1
+VERSION = 0.2
 
 # preprocessor macro
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
