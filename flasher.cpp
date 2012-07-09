@@ -667,7 +667,25 @@ qDebug() << p_out;
             }
         }
         ui->txt_out->append("boot.img flashed...");
-        ui->txt_out->append("Rebooting device...");
+        ui->txt_out->append(" ");
+        p.terminate();
+        p_out = "";
+    #ifdef Q_WS_X11
+        p.start( "tools/fastboot -p " + device + " erase cache");
+    #endif
+    #ifdef Q_WS_MAC
+        p.start( "tools/fastboot-mac -p " + device + " erase cache");
+    #endif
+    #ifdef Q_WS_WIN
+        p.start( "tools\\fastboot.exe -p " + device + " erase cache");
+    #endif
+        p.waitForFinished(-1);
+        p_out = p.readAllStandardOutput();
+        if (!p_out.isEmpty()) {
+            ui->txt_out->append(p_out);
+        }
+
+        ui->txt_out->append(" ");
         p.terminate();
         p_out = "";
     #ifdef Q_WS_X11
