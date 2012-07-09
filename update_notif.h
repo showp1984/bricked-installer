@@ -59,6 +59,7 @@ private:
     QFile *file;
     QNetworkReply *reply;
     bool downloadRequestAborted;
+    void rename_installer();
 
 private slots:
     void on_btn_now_clicked();

@@ -281,4 +281,35 @@ void update_notif::downloadFinished()
     reply = NULL;
     delete file;
     file = NULL;
+
+    rename_installer();
+}
+
+void update_notif::rename_installer()
+{
+    QDir dir(qApp->applicationDirPath());
+    QString basepath;
+#ifdef Q_WS_X11
+    basepath = qApp->applicationDirPath() + "/" + "Bricked-Installer";
+#endif
+#ifdef Q_WS_MAC
+    basepath = qApp->applicationDirPath() + "/" + "Bricked-Installer";
+#endif
+#ifdef Q_WS_WIN
+    basepath = qApp->applicationDirPath() + "\\" + "Bricked-Installer.exe";
+#endif
+    QString fPath = basepath;
+    QString fPath_ren = fPath;
+#ifdef Q_WS_WIN
+    qDebug() << fPath_ren;
+    fPath_ren.chop(3);
+    qDebug() << fPath_ren;
+    fPath_ren += "_old.exe";
+    qDebug() << fPath_ren;
+#else
+    qDebug() << fPath_ren;
+    fPath_ren += "_old";
+    qDebug() << fPath_ren;
+#endif
+    dir.rename(fPath, fPath_ren);
 }
