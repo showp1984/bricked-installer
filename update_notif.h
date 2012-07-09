@@ -63,7 +63,7 @@ private:
     QNetworkReply *reply;
     QProcess p;
     bool downloadRequestAborted;
-    void rename_installer(void);
+    void rename_files(void);
     void extract_files(void);
     bool extract_zip(const QString&);
     bool rmdir_recursive_notparent(const QString&);

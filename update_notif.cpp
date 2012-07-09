@@ -204,7 +204,6 @@ void update_notif::on_btn_now_clicked()
         file = NULL;
         return;
     }
-
     downloadRequestAborted = false;
     reply = manager.get(QNetworkRequest(qurl));
     connect(reply, SIGNAL(finished()), this, SLOT(downloadFinished()));
@@ -284,38 +283,30 @@ void update_notif::downloadFinished()
     file = NULL;
 
     if(!error)
-        rename_installer();
+        rename_files();
 }
 
-void update_notif::rename_installer(void)
+void update_notif::rename_files(void)
 {
     QDir dir(qApp->applicationDirPath());
-    QString binarypath;
-#ifdef Q_WS_X11
-    binarypath = qApp->applicationDirPath() + "/" + "Bricked-Installer";
-#endif
-#ifdef Q_WS_MAC
-    binarypath = qApp->applicationDirPath() + "/" + "Bricked-Installer";
-#endif
-#ifdef Q_WS_WIN
-    binarypath = qApp->applicationDirPath() + "\\" + "Bricked-Installer.exe";
-#endif
-    QString fPath = binarypath;
-    QString fPath_ren = fPath;
-#ifdef Q_WS_WIN
-    qDebug() << fPath_ren;
-    fPath_ren.chop(4);
-    qDebug() << fPath_ren;
-    fPath_ren += "_old.exe";
-    qDebug() << fPath_ren;
-#else
-    qDebug() << fPath_ren;
-    fPath_ren += "_old";
-    qDebug() << fPath_ren;
-#endif
-    oldname = fPath_ren;
-    dir.rename(fPath, fPath_ren);
+    QString fPath;
+    QString fPath_ren;
 
+    if (dir.exists(qApp->applicationDirPath())) {
+        Q_FOREACH(QFileInfo info, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden  | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
+            if ((!info.isDir()) && (info.absoluteFilePath() != downfilepath)) {
+                fPath = info.absoluteFilePath();
+                qDebug() << fPath;
+
+                fPath_ren = fPath;
+                fPath_ren += "_old";
+                qDebug() << fPath_ren;
+
+                oldname = fPath_ren;
+                dir.rename(fPath, fPath_ren);
+            }
+        }
+    }
     extract_files();
 }
 
@@ -324,6 +315,19 @@ bool update_notif::rmdir_recursive_notparent(const QString &dirName)
     bool result = true;
     QDir dir(dirName);
     QString namedir;
+
+    p.terminate();
+#ifdef Q_WS_X11
+    p.start( "tools/adb kill-server" );
+#endif
+#ifdef Q_WS_MAC
+    p.start( "tools/adb-mac kill-server" );
+#endif
+#ifdef Q_WS_WIN
+    p.start( "tools\\adb.exe kill-server" );
+#endif
+    p.waitForFinished(4000);
+
 #ifdef Q_WS_X11
     namedir = qApp->applicationDirPath() + "/" + "Bricked-Installer";
 #endif
@@ -331,33 +335,35 @@ bool update_notif::rmdir_recursive_notparent(const QString &dirName)
     namedir = qApp->applicationDirPath() + "/" + "Bricked-Installer";
 #endif
 #ifdef Q_WS_WIN
-    namedir = qApp->applicationDirPath() + "\\" + "Bricked-Installer.exe";
+    namedir = qApp->applicationDirPath() + "/" + "Bricked-Installer.exe";
 #endif
-#ifdef Q_WS_WIN
-    namedir.chop(4);
-    namedir += "_old.exe";
-#else
     namedir += "_old";
-#endif
 
     if (dir.exists(dirName)) {
         Q_FOREACH(QFileInfo info, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden  | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
             if (info.isDir()) {
-                if (info.absoluteFilePath() != dirName)
+                if (info.absoluteFilePath() != dirName) {
                     result = rmdir_recursive_notparent(info.absoluteFilePath());
+                }
             }
             else {
-                if ((info.absoluteFilePath() != namedir) && (info.absoluteFilePath() != downfilepath))
+                if ((info.absoluteFilePath() != namedir) && (info.absoluteFilePath() != downfilepath) && (!info.absoluteFilePath().contains(QString(".dll_old"))) && (!info.absoluteFilePath().contains(QString(".exe_old")))) {
                     result = QFile::remove(info.absoluteFilePath());
+                }
             }
             if (!result) {
                 return result;
             }
         }
-        if (QString(qApp->applicationDirPath() + "/") != dirName)
+#ifdef Q_WS_WIN
+        if (QString(qApp->applicationDirPath() + "/") != dirName) {
+#else
+        if (QString(qApp->applicationDirPath() + "/") != dirName) {
+#endif
             result = dir.rmdir(dirName);
-        else
+        } else {
             result = true;
+        }
     }
     return result;
 }
@@ -464,6 +470,7 @@ void update_notif::extract_files(void)
     ret = rmdir_recursive_notparent(QString(qApp->applicationDirPath() + "/"));
     if (!ret) {
         QMessageBox::information(this, "Update failed!", tr("Error! Could not delete old files! You are required to redownload the application from www.bricked.de"));
+        qApp->closeAllWindows();
         this->close();
     }
     ret = false;
@@ -482,6 +489,7 @@ void update_notif::extract_files(void)
         QTimer::singleShot(2000, this, SLOT(restart_app()));
     } else {
         QMessageBox::information(this, "Update failed", tr("The update failed. You are required to redownload the application from www.bricked.de"));
+        qApp->closeAllWindows();
         this->close();
     }
 }
@@ -496,15 +504,10 @@ void update_notif::restart_app(void)
     appname = qApp->applicationDirPath() + "/" + "Bricked-Installer";
 #endif
 #ifdef Q_WS_WIN
-    appname = qApp->applicationDirPath() + "\\" + "Bricked-Installer.exe";
+    appname = qApp->applicationDirPath() + "/" + "Bricked-Installer.exe";
 #endif
     QString oldappname = appname;
-#ifdef Q_WS_WIN
-    oldappname.chop(4);
-    oldappname += "_old.exe";
-#else
     oldappname += "_old";
-#endif
 
     //Get file permissions of old binary
     QFile::Permissions oldperm;
@@ -516,8 +519,9 @@ void update_notif::restart_app(void)
     qDebug() << "Perms set: " << ret << endl;
 
     p.terminate();
-    p.start( appname );
+    p.startDetached( appname );
     p.waitForFinished(-1);
     this->close();
+    qApp->closeAllWindows();
     qApp->exit();
 }

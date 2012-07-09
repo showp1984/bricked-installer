@@ -26,26 +26,18 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     update_notif un;
+    QStringList splitlist;
+    QString last_splitlist;
+    QDir dir(a.applicationDirPath());
 
-    QString oldname;
-#ifdef Q_WS_X11
-    oldname = qApp->applicationDirPath() + "/" + "Bricked-Installer";
-#endif
-#ifdef Q_WS_MAC
-    oldname = qApp->applicationDirPath() + "/" + "Bricked-Installer";
-#endif
-#ifdef Q_WS_WIN
-    oldname = qApp->applicationDirPath() + "\\" + "Bricked-Installer.exe";
-#endif
-#ifdef Q_WS_WIN
-    oldname.chop(4);
-    oldname += "_old.exe";
-#else
-    oldname += "_old";
-#endif
-
-    if(QFile::exists(oldname)) {
-            QFile::remove(oldname);
+    if (dir.exists(a.applicationDirPath())) {
+        Q_FOREACH(QFileInfo info, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden  | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
+            splitlist = info.absoluteFilePath().split(QString("_"));
+            last_splitlist = splitlist.takeLast();
+            if ((!info.isDir()) && (last_splitlist == "old")) {
+                (void) QFile::remove(info.absoluteFilePath());
+            }
+        }
     }
 
     a.setApplicationVersion(APP_VERSION);
