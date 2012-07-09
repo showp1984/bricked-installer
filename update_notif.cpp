@@ -235,6 +235,7 @@ void update_notif::cancelDownload()
 
 void update_notif::downloadFinished()
 {
+    bool error = false;
     if(downloadRequestAborted) {
         if(file) {
             file->close();
@@ -274,6 +275,7 @@ void update_notif::downloadFinished()
         QMessageBox::information(this, "Download failed", tr("Failed: %1").arg(reply->errorString()));
         cancelDownload();
         downloadFinished();
+        error = true;
     }
 
     reply->deleteLater();
@@ -281,7 +283,8 @@ void update_notif::downloadFinished()
     delete file;
     file = NULL;
 
-    rename_installer();
+    if(!error)
+        rename_installer();
 }
 
 void update_notif::rename_installer(void)
