@@ -420,6 +420,12 @@ bool update_notif::extract_zip(const QString & filePath)
         out.open(QIODevice::WriteOnly);
         out.write(cnt);
         out.close();
+        if (out.fileName().contains(QString("adb")) || out.fileName().contains(QString("fastboot")) || out.fileName().contains(QString("perl"))) {
+            bool ret = false;
+            ret = QFile::setPermissions(out.fileName(), QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner|QFile::ReadGroup|QFile::ExeGroup|QFile::ReadOther|QFile::ExeOther);
+            qDebug() << "Extract perms set: " << ret << endl;
+        }
+
 
         if (file.getZipError() != UNZ_OK) {
             qWarning("testRead(): file.getFileName(): %d", file.getZipError());
@@ -502,9 +508,9 @@ void update_notif::restart_app(void)
     oldperm = QFile::permissions(QString(oldappname));
 
     //Set file permissions of new binary
-    bool isOK=0;
-    isOK = QFile::setPermissions(appname, oldperm);
-    qDebug() << "Perms set? " << isOK << endl;
+    bool ret = false;
+    ret = QFile::setPermissions(appname, oldperm);
+    qDebug() << "Perms set: " << ret << endl;
 
     p.terminate();
     p.start( appname );
