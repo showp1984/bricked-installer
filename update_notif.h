@@ -21,7 +21,13 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QThread>
+#include <QtGui/QMainWindow>
+#include <QProgressDialog>
+#include <QFile>
+#include <QtNetwork>
+#include <QMessageBox>
 
+#include "ui_update_notif.h"
 #include "dragons.h"
 
 namespace Ui {
@@ -35,6 +41,12 @@ public:
     ~update_notif();
     getDBupd *p_dbupd;
 
+public slots:
+    void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+    void downloadFinished();
+    void downloadReadyRead();
+    void cancelDownload();
+
 protected:
     void changeEvent(QEvent *e);
 
@@ -43,6 +55,10 @@ private:
     dragons *d;
     QTimer *timer_tout;
     QString url;
+    QNetworkAccessManager manager;
+    QFile *file;
+    QNetworkReply *reply;
+    bool downloadRequestAborted;
 
 private slots:
     void on_btn_now_clicked();
