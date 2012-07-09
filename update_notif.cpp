@@ -16,6 +16,7 @@
 
 #include <QDebug>
 #include <QTimer>
+#include <QSqlError>
 
 #include "quazip/quazip.h"
 #include "quazip/quazipfile.h"
@@ -204,6 +205,16 @@ void update_notif::on_btn_now_clicked()
         file = NULL;
         return;
     }
+
+    QString ver;
+    QSqlDatabase db = connectDB();
+    QSqlQuery query;
+    ver = QString::number(p_dbupd->version);
+    query.prepare("UPDATE hp_downloads SET nrdowns = nrdowns + 1 WHERE version = " + ver);
+    query.exec();
+    db.close();
+    db.removeDatabase("default");
+
     downloadRequestAborted = false;
     reply = manager.get(QNetworkRequest(qurl));
     connect(reply, SIGNAL(finished()), this, SLOT(downloadFinished()));
